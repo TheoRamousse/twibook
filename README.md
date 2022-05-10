@@ -33,7 +33,11 @@ Après avoir réfléchi aux différentes contraintes techniques que nous nous im
 
 Nous avons décidé de rajouter de l'incoporation dans les objets suivants : 
 - Comment : Permet d'afficher le pseudo et l'utilisateur et son avatar sans avoir à faire une sous requête pour récupérer ces attributs
-- Post : Permet d'afficher le premier commentaire du post sans voir à faire une sous requête pour le récupérer 
+- Post : Permet d'afficher le premier commentaire du post sans voir à faire une sous requête pour le récupérer
+
+Nous avons décidé d'utiliser le référencement pour séparer les posts des commentaires. Ainsi, cela nécessitera de travailler avec les jointures pour requêter les données mais cela évitera d'avoir des résultats de requêtes trop importants (un post peut potentiellement avoir un grand nombre de commentaires qui lui sont associé).
+
+Pour la relation entre un utilisateur et ses posts, nous auront une relation OneToFew car un utilisateur ne postera jamais un très grand nombre de posts. Nous avons donc choisi d'utiliser l'incorporation des posts dans le document "user".
 
 ### Spring Boot
 
