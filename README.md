@@ -37,7 +37,7 @@ Nous avons décidé de rajouter de l'incoporation dans les objets suivants :
 
 Nous avons décidé d'utiliser le référencement pour séparer les posts des commentaires ainsi que pour séparer les users des posts. Cela nécessitera donc de travailler avec les jointures pour requêter les données mais cela évitera d'avoir des résultats de requêtes trop importants (un post peut potentiellement avoir un grand nombre de commentaires qui lui sont associé).
 
-Pour la relation entre un utilisateur et ses voitures, nous auront une relation OneToFew car un utilisateur ne postera jamais un très grand nombre de posts. Nous avons donc choisi d'utiliser l'incorporation des voitures dans le document "user".
+Pour la relation entre un utilisateur et ses voitures, nous auront une relation OneToFew car un utilisateur ne possédera jamais un très grand nombre de voitures. Nous avons donc choisi d'utiliser l'incorporation des voitures dans le document "user".
 
 ### Spring Boot
 
