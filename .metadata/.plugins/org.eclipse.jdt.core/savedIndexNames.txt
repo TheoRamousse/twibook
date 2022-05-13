@@ -30,7 +30,6 @@ INDEX VERSION 1.131+C:\Users\Mbouvard\Desktop\Cours\twibook\.metadata\.plugins\o
 114032254.index
 810216032.index
 2310496412.index
-388536752.index
 2920465594.index
 576726936.index
 2671419552.index
