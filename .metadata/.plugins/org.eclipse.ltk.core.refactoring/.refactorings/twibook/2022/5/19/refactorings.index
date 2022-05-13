@@ -1,0 +1,13 @@
+1652358453360	Rename package 'iut.uca.twibook.collection'
+1652358750474	Rename compilation unit 'TwibookUser.java'
+1652359323007	Rename type 'User'
+1652359331002	Rename type 'Post'
+1652455951203	Extract interface 'ICommentRepository'
+1652455996328	Delete element
+1652456037625	Delete element
+1652456181145	Extract interface 'IUserService'
+1652456185673	Move compilation unit
+1652456251024	Extract interface 'ICommentService'
+1652456257739	Move compilation unit
+1652456820192	Extract interface 'IPostService'
+1652456825123	Move compilation unit

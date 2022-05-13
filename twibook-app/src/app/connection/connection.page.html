@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Tab 1
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background-image" [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tab 1</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <app-login-register-container>
+    <div class="form-container" #body>
+      <input class="text-input form-child" placeholder="Identifiant" />
+      <br />
+      <input class="text-input form-child" type="password" placeholder="Mot de passe" />
+      <br />
+      <div class="form-child checkbox-container">
+        <input class="form-child checkbox" type="checkbox" />
+        <label>Se souvenir de moi</label>
+      </div>
+      <br />
+      <a class="form-child">Mot de passe oublié ?</a>
+      <br />
+      <button class="form-child">SE CONNECTER</button>
+    </div>
+  </app-login-register-container>
+</ion-content>

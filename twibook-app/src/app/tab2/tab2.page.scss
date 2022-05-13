@@ -1,0 +1,40 @@
+.form-container>.form-child {
+    margin-top: 1.5rem;
+    display: inline-block;
+    width: 300px;
+}
+
+.form-container {
+    text-align: center;
+    vertical-align: center;
+    margin-top: 80px;
+}
+
+.checkbox {
+    margin-right: .4rem;
+}
+
+.checkbox-container {
+    width: 25%;
+    text-align: left;
+}
+
+button {
+    width: 150px !important;
+    background-color: #4461CB;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    height: 40px
+}
+
+.text-input {
+    border-radius: 7px;
+    height: 40px
+}
+
+input {
+    background-color: #224957 !important;
+    color: white !important;
+    border: none;
+}
