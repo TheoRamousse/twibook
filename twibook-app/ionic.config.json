@@ -1,0 +1,7 @@
+{
+  "name": "twibook-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Tab 2
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tab 2</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <app-login-register-container>
+    <div class="form-container" #body>
+      <input class="text-input form-child" placeholder="Email" />
+      <br />
+      <input class="text-input form-child" placeholder="Prénom" />
+      <br />
+      <input class="text-input form-child" placeholder="Nom" />
+      <br />
+      <input class="text-input form-child" placeholder="Pseudo" />
+      <br />
+      <input type="date" class="neon text-input form-child" />
+      <br />
+      <input class="text-input form-child" type="password" placeholder="Mot de passe" />
+      <br />
+      <input class="text-input form-child" type="password" placeholder="Confirmer le mot de passe" />
+      <br />
+      <button class="form-child">S'INSCRIRE</button>
+    </div>
+  </app-login-register-container>
+</ion-content>
