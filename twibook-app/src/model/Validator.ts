@@ -72,12 +72,12 @@ function validateNewUser(id: string,
     model: string,
     brand: string) {
       if(id == null || id == ""){
-        throw new Error("-nickName- est invalide");
+        throw new Error("-id- est invalide");
       }
       if(model == null || model == ""){
-        throw new Error("-imageUrl- est invalide");
+        throw new Error("-model- est invalide");
       }
       if(brand == null || brand == ""){
-        throw new Error("-email- est invalide");
+        throw new Error("-brand- est invalide");
       }
     }
