@@ -1,8 +1,8 @@
 class Car {
   readonly id: string;
-  private model: string;
-  private brand: string;
-  private color: Color;
+  private _model: string;
+  private _brand: string;
+  private _color: Color;
 
   public constructor(id: string, model: string,
     brand: string,
@@ -11,8 +11,16 @@ class Car {
       validateNewCar(id, model, brand);
 
       this.id = id;
-      this.model = model;
-      this.brand = brand;
-      this.color = color;
+      this._model = model;
+      this._brand = brand;
+      this._color = color;
+  }
+
+  public isEqual(carToCompare: Car){
+    if(this._model == carToCompare._model
+      && this._brand == carToCompare._brand
+      && this._color == carToCompare._color)
+      return true;
+    return false;
   }
 }
