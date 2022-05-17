@@ -1,5 +1,6 @@
 class User {
   readonly id: string;
+  public cars: Array<string>
   public firstName: string;
   public lastName: string;
   public nickName: string;
@@ -20,6 +21,7 @@ class User {
      validateNewUser(id, firstName, lastName, nickName, imageUrl, email, hashedPwd);
 
      this.id = id;
+     this.cars = [];
      this.firstName = firstName;
      this.lastName = lastName;
      this.nickName = nickName;

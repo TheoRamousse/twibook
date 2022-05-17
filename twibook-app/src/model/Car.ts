@@ -1,5 +1,5 @@
 class Car {
-  readonly id: string
+  readonly id: string;
   private model: string;
   private brand: string;
   private color: Color;
