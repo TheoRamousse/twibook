@@ -82,3 +82,4 @@ baseline.json
 
 # Husky
 .husky/_
+/.metadata/
