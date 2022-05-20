@@ -44,7 +44,6 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<UserEntity> createUser(@RequestBody UserDTO user) {
         UserEntity createdEntity = repository.save(UserFactory.CreateEntity(user));
