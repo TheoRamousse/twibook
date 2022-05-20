@@ -3,6 +3,7 @@ package iut.uca.twibook.entity;
 import java.time.LocalDate;
 import java.util.Collection;
 
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -31,6 +32,7 @@ public class UserEntity extends IdEntity{
 	private LocalDate birthDate;
 
 	@Field("email")
+	@Indexed
 	private String email;
 
 	@Field("password")
