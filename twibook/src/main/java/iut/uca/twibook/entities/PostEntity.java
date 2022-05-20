@@ -1,4 +1,4 @@
-package iut.uca.twibook.entity;
+package iut.uca.twibook.entities;
 
 import java.time.LocalDateTime;
 import java.util.Collection;

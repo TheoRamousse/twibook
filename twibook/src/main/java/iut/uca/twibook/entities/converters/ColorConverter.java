@@ -1,6 +1,6 @@
-package iut.uca.twibook.entity.converters;
+package iut.uca.twibook.entities.converters;
 
-import iut.uca.twibook.entity.enumerations.Color;
+import iut.uca.twibook.entities.enumerations.Color;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.convert.ReadingConverter;
 import org.springframework.data.convert.WritingConverter;

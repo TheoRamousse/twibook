@@ -1,4 +1,4 @@
-package iut.uca.twibook.entity.enumerations;
+package iut.uca.twibook.entities.enumerations;
 
 public enum Color {
     RED,

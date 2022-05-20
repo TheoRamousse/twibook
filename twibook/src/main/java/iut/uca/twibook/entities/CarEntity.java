@@ -1,4 +1,4 @@
-package iut.uca.twibook.entity;
+package iut.uca.twibook.entities;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
