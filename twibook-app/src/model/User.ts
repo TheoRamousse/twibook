@@ -36,7 +36,7 @@ class User {
   }
 
   public set firstName(theFirstName: string){
-    if(this._firstName == null || this._firstName == "" || this._firstName.length > 50){
+    if (theFirstName == null || theFirstName == "" || theFirstName.length > 50){
       throw new Error("-firstName- est invalide");
     }
     this._firstName = theFirstName;
@@ -47,7 +47,7 @@ class User {
   }
 
   public set lastName(theLastName: string){
-    if(this._lastName == null || this._lastName == "" || this._lastName.length > 50){
+    if (theLastName == null || theLastName == "" || theLastName.length > 50){
       throw new Error("-LastName- est invalide");
     }
     this._lastName = theLastName;
@@ -58,7 +58,7 @@ class User {
   }
 
   public set nickName(theNickName: string){
-    if(this._nickName == null || this._nickName == "" || this._nickName.length > 50){
+    if (theNickName == null || theNickName == "" || theNickName.length > 50){
       throw new Error("-nickName- est invalide");
     }
     this._nickName = theNickName;
@@ -69,7 +69,7 @@ class User {
   }
 
   public set imageUrl(theImageUrl: string){
-    if(this._imageUrl == null || this._imageUrl == "" || this._imageUrl.length > 50){
+    if (theImageUrl == null || theImageUrl == "" || theImageUrl.length > 50){
       throw new Error("-imageUrl- est invalide");
     }
     this._imageUrl = theImageUrl;
@@ -83,7 +83,7 @@ class User {
     this._birthDate = theBirthDate;
   }
 
-  public addCars(carToAdd: Car){
+  public addCar(carToAdd: Car){
     this._cars.push(carToAdd);
   }
 
