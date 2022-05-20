@@ -1,6 +1,5 @@
 package iut.uca.twibook.controller;
 
-import iut.uca.twibook.Status;
 import iut.uca.twibook.dtos.UserDTO;
 import iut.uca.twibook.entities.UserEntity;
 import iut.uca.twibook.factories.UserFactory;
@@ -11,6 +10,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
