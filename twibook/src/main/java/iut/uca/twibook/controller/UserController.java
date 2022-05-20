@@ -8,18 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 
-@CrossOrigin(origins = "*")
+
 @RestController
-//@ExposesResourceFor(User.class)
+@CrossOrigin(origins = "http://localhost:9000")
 @RequestMapping(value = "/user", produces = "application/json")
 public class UserController {
 	@Autowired
 	private UserRepository repository;
+	
+	@GetMapping(value = "/user/{id}", consumes = {"application/xml"})
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<UserDTO> findById(@PathVariable String id) {
         Optional<UserEntity> entity = repository.findById(id);
@@ -32,6 +33,7 @@ public class UserController {
         }
     }
 
+	
     @RequestMapping(method = RequestMethod.GET, consumes = "application/json")
     public ResponseEntity<UserDTO> find(@PathVariable UserDTO user) {
         Optional<UserEntity> entity = repository.findById(user.getId());
@@ -44,6 +46,7 @@ public class UserController {
         }
     }
 
+    @PostMapping(value = "/user", consumes = {"application/xml"})
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<UserEntity> createUser(@RequestBody UserDTO user) {
         UserEntity createdEntity = repository.save(UserFactory.createEntity(user));

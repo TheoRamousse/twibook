@@ -17,7 +17,6 @@ import iut.uca.twibook.dtos.CommentDTO;
 import iut.uca.twibook.entities.CommentEntity;
 import iut.uca.twibook.factories.CommentFactory;
 import iut.uca.twibook.repositories.CommentRepository;
-import iut.uca.twibook.services.CommentService;
 
 @Controller
 @CrossOrigin(origins = "*")
@@ -25,8 +24,6 @@ import iut.uca.twibook.services.CommentService;
 @RequestMapping(value = "/comment", produces = "application/json")
 public class CommentController {
 
-	@Autowired
-	CommentService service;
 	
 	@Autowired
 	CommentRepository repository;
