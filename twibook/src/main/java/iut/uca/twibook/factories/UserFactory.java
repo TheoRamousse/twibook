@@ -4,7 +4,7 @@ import iut.uca.twibook.entities.UserEntity;
 import org.bson.types.ObjectId;
 
 public class UserFactory{
-    public static UserDTO CreateDTO(UserEntity user){
+    public static UserDTO createDTO(UserEntity user){
         UserDTO dto = new UserDTO();
         dto.setId(user.getId().toString());
         dto.setFirstName(user.getFirstName());
@@ -17,7 +17,7 @@ public class UserFactory{
         return dto;
     }
 
-    public static UserEntity CreateEntity(UserDTO user){
+    public static UserEntity createEntity(UserDTO user){
         UserEntity entity = new UserEntity();
         entity.setId(new ObjectId(user.getId()));
         entity.setFirstName(user.getFirstName());

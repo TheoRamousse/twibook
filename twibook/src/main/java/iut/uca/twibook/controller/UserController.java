@@ -25,7 +25,7 @@ public class UserController {
         Optional<UserEntity> entity = repository.findById(id);
 
         if (entity.isPresent()) {
-            return new ResponseEntity<>(UserFactory.CreateDTO(entity.get()), HttpStatus.OK);
+            return new ResponseEntity<>(UserFactory.createDTO(entity.get()), HttpStatus.OK);
         }
         else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -37,7 +37,7 @@ public class UserController {
         Optional<UserEntity> entity = repository.findById(user.getId());
 
         if (entity.isPresent()) {
-            return new ResponseEntity<>(UserFactory.CreateDTO(entity.get()), HttpStatus.OK);
+            return new ResponseEntity<>(UserFactory.createDTO(entity.get()), HttpStatus.OK);
         }
         else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -46,7 +46,7 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<UserEntity> createUser(@RequestBody UserDTO user) {
-        UserEntity createdEntity = repository.save(UserFactory.CreateEntity(user));
+        UserEntity createdEntity = repository.save(UserFactory.createEntity(user));
         return new ResponseEntity<>(createdEntity, HttpStatus.CREATED);
     }
 }

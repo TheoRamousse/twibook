@@ -36,7 +36,7 @@ public class CommentController {
         Optional<CommentEntity> entity = repository.findById(id);
 
         if (entity.isPresent()) {
-            return new ResponseEntity<>(CommentFactory.CreateDTO(entity.get()), HttpStatus.OK);
+            return new ResponseEntity<>(CommentFactory.createDTO(entity.get()), HttpStatus.OK);
         }
         else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -49,7 +49,7 @@ public class CommentController {
         Optional<CommentEntity> entity = repository.findById(user.getId());
 
         if (entity.isPresent()) {
-            return new ResponseEntity<>(CommentFactory.CreateDTO(entity.get()), HttpStatus.OK);
+            return new ResponseEntity<>(CommentFactory.createDTO(entity.get()), HttpStatus.OK);
         }
         else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -58,7 +58,7 @@ public class CommentController {
 
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<CommentEntity> createUser(@RequestBody CommentDTO user) {
-        CommentEntity createdEntity = repository.save(CommentFactory.CreateEntity(user));
+        CommentEntity createdEntity = repository.save(CommentFactory.createEntity(user));
         return new ResponseEntity<>(createdEntity, HttpStatus.CREATED);
     }
 	
