@@ -1,21 +1,37 @@
 package iut.uca.twibook.entities;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import java.time.LocalDateTime;
+import java.util.Collection;
+
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-@Document("Post")
+@Document("post")
 public class PostEntity extends IdEntity{
 
-    private String text;
-    private LocalDateTime publicationDate;
-    private String firstCommentText;
-    private String firstCommentUserImageUrl;
-    private String firstCommetnUserNickName;
+	@Field("text")
+	private String text;
+
+	@Field("publication_date")
+	private LocalDateTime publicationDate;
+
+	@Field("first_comment_text")
+	private String firstCommentText;
+
+	@Field("first_comment_user_image_url")
+	private String firstCommentUserImageUrl;
+
+	@Field("first_comment_user_nick_name")
+	private String firstCommentUserNickName;
+
+	@DBRef(lazy = true)
+	@Field("comments")
+	private Collection<CommentEntity> comments;
 
 }
-

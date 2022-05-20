@@ -10,7 +10,7 @@ public class UserFactory{
         dto.setFirstName(user.getFirstName());
         dto.setLastName(user.getLastName());
         dto.setNickName(user.getNickName());
-        dto.setImgUrl(user.getImgUrl());
+        dto.setImgUrl(user.getImageUrl());
         dto.setBirthDate(user.getBirthDate());
         dto.setEmail(user.getEmail());
         dto.setPassword(user.getEmail());
@@ -23,7 +23,7 @@ public class UserFactory{
         entity.setFirstName(user.getFirstName());
         entity.setLastName(user.getLastName());
         entity.setNickName(user.getNickName());
-        entity.setImgUrl(user.getImgUrl());
+        entity.setImageUrl(user.getImgUrl());
         entity.setBirthDate(user.getBirthDate());
         entity.setEmail(user.getEmail());
         entity.setPassword(user.getPassword());
