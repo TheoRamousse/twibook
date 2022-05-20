@@ -50,4 +50,10 @@ public class UserController {
         UserEntity createdEntity = repository.save(UserFactory.CreateEntity(user));
         return new ResponseEntity<>(createdEntity, HttpStatus.CREATED);
     }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        repository.deleteById(id.toString());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
