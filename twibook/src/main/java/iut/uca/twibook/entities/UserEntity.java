@@ -11,11 +11,11 @@ import java.time.LocalDate;
 @Document(collection = "TwibookUser")
 public class UserEntity extends IdEntity{
 
-    private String first_name;
-    private String last_name;
-    private String nick_name;
-    private String img_url;
-    private LocalDate birth_date;
+    private String firstName;
+    private String lastName;
+    private String nickName;
+    private String imgUrl;
+    private LocalDate birthDate;
     private String email;
     private String password;
 
