@@ -1,17 +1,14 @@
-package iut.uca.twibook.entities;
+package iut.uca.twibook.dtos;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
-@Document(collection = "TwibookUser")
-@Accessors(chain = true)
-public class UserEntity extends IdEntity{
+@Accessors
+public class UserDTO {
+    private String id;
     private String firstName;
     private String lastName;
     private String nickName;
@@ -19,7 +16,4 @@ public class UserEntity extends IdEntity{
     private LocalDate birthDate;
     private String email;
     private String password;
-
-
 }
-
