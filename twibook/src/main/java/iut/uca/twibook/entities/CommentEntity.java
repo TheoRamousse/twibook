@@ -12,9 +12,9 @@ import java.time.LocalDateTime;
 public class CommentEntity extends IdEntity{
 
     private String text;
-    private LocalDateTime publication_date;
-    private String user_nick_name;
-    private String user_image_url;
+    private LocalDateTime publicationDate;
+    private String user_nickName;
+    private String userImageUrl;
 
 }
 

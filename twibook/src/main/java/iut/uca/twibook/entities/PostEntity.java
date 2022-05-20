@@ -12,10 +12,10 @@ import java.time.LocalDateTime;
 public class PostEntity extends IdEntity{
 
     private String text;
-    private LocalDateTime publication_date;
-    private String first_comment_text;
-    private String first_comment_user_image_url;
-    private String first_commetn_user_nick_name;
+    private LocalDateTime publicationDate;
+    private String firstCommentText;
+    private String firstCommentUserImageUrl;
+    private String firstCommetnUserNickName;
 
 }
 
