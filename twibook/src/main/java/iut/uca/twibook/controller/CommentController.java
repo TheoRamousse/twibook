@@ -13,6 +13,7 @@ import iut.uca.twibook.dtos.CommentDTO;
 import iut.uca.twibook.entities.CommentEntity;
 import iut.uca.twibook.factories.CommentFactory;
 import iut.uca.twibook.repositories.CommentRepository;
+import iut.uca.twibook.services.CommentService;
 
 
 @RestController
@@ -20,6 +21,9 @@ import iut.uca.twibook.repositories.CommentRepository;
 @RequestMapping(value = "/comments")
 public class CommentController {
 
+	@Autowired
+	CommentService service;
+	
 	@Autowired
 	CommentRepository repository;
 
@@ -54,11 +58,11 @@ public class CommentController {
         CommentEntity createdEntity = repository.save(CommentFactory.createEntity(user));
         return new ResponseEntity<>(createdEntity, HttpStatus.CREATED);
     }
-    
+
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deleteComment(@PathVariable Long id) {
         repository.deleteById(id.toString());
         return new ResponseEntity<>(HttpStatus.OK);
     }
-	
+
 }
