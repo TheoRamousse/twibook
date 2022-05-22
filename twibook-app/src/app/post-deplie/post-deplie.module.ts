@@ -3,20 +3,22 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Tab3Page } from './tab3.page';
+import { PostDepliePage } from './post-deplie.page';
 import { PostComponentModule } from '../post/post.module';
+import { CommentComponentModule } from '../comment/comment.module';
 
-import { Tab3PageRoutingModule } from './tab3-routing.module';
+import { PostDepliePageRoutingModule } from './post-deplie-routing.module';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
+    CommentComponentModule,
     PostComponentModule,
-    RouterModule.forChild([{ path: '', component: Tab3Page }]),
-    Tab3PageRoutingModule,
+    RouterModule.forChild([{ path: '', component: PostDepliePage }]),
+    PostDepliePageRoutingModule,
   ],
-  declarations: [Tab3Page]
+  declarations: [PostDepliePage]
 })
-export class Tab3PageModule { }
+export class PostDepliePageModule { }
