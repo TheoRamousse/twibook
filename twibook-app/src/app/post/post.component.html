@@ -1,24 +1,29 @@
 <div class="text-center" style="width: 100%; text-align: center">
-  <mat-card class="mat-elevation-z8 card neonPost" >
+  <mat-card class="mat-elevation-z8 card neonPost">
     <mat-card-header>
-      <div mat-card-avatar class="profile-picture blueMotionImage"></div>
-      <mat-card-title class="textNeon">Pseudo</mat-card-title>
-      <mat-card-subtitle style="float: left;" class="textNeon">10/12/2021</mat-card-subtitle>
+      <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + currentPost.userImageUrl + ')'}"
+        class="profile-picture blueMotionImage">
+      </div>
+      <mat-card-title class="textNeon">{{currentPost.userNickName}}</mat-card-title>
+      <mat-card-subtitle style="float: left;" class="textNeon">{{currentPost.publicationDate.toLocaleString()}}
+      </mat-card-subtitle>
     </mat-card-header>
-    <div class="image-container">
-      <img src="/assets/images/post.jpg" alt="Photo of TUNING">
+    <div *ngIf="currentPost.imageUrl != ''" class="image-container">
+      <img src="{{currentPost.imageUrl}}" alt="Photo of TUNING">
     </div>
     <br /><br />
     <mat-card-content>
       <p>
-        Ca s'est passé prêt de chez vous ! Regardez moi cette magnifique voiture. A première vue on ne semble pas
-        disserner son modèle exact, mais un oeil aiguisé se rendra compte qu'il s'agit d'une superbe Audi S3 ;)
+        {{currentPost.text}}
       </p>
       <div *ngIf="isCommentVisible">
         <mat-divider></mat-divider>
         <br />
         <h2 class="top-comment">Top commentaire : </h2>
-        <app-comment [isUnderPost]="true" ></app-comment>
+        <app-comment [userImageUrl]="currentPost.firstCommentUserImageUrl"
+          [userNickName]="currentPost.firstCommentUserNickName"
+          [publicationDate]="currentPost.firstCommentPublicationDate" [text]="currentPost.firstCommentText"
+          [isUnderPost]="true"></app-comment>
       </div>
     </mat-card-content>
     <mat-card-actions *ngIf="isCommentVisible">

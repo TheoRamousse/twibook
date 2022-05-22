@@ -6,7 +6,10 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./comment.component.scss'],
 })
 export class CommentComponent implements OnInit {
-  @Input() isUnderPost: Boolean = true;
+  @Input() text: String;
+  @Input() userNickName: String;
+  @Input() userImageUrl: Boolean = true;
+  @Input() publicationDate: Boolean = true;
 
   constructor() { }
 

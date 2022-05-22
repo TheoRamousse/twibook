@@ -1,4 +1,7 @@
-class User {
+import { Car } from './Car'
+import { validateNewUser } from './Validator'
+
+export class User {
   private readonly _id: string;
   private readonly _cars: Array<Car>
   private _firstName: string;

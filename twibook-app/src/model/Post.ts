@@ -1,30 +1,44 @@
-class Post {
-   private readonly _id: string;
+import { validateNewPost } from './Validator'
+
+export class Post {
+  private readonly _id: string;
   private _text: string;
   private _userImageUrl: string;
   private _userNickName: string;
-   private readonly _publicationDate: Date;
-   private _firstCommentText: string
-   private _firstCommentUserImageUrl: string
-  private _firstCommentUserNickName: string
-  private _firstCommentPublicationDate: Date
+  private readonly _publicationDate: Date;
+  private readonly _firstCommentText: string
+  private readonly _firstCommentUserImageUrl: string
+  private readonly _firstCommentUserNickName: string
+  private readonly _firstCommentPublicationDate: Date
+  private readonly _idComments: Array<string>
+  private _imageUrl: string
 
-   public constructor(id: string,
+  public constructor(id: string,
     text: string,
+    imageUrl: string,
     publicationDate: Date,
+    userImageUrl: string,
+    userNickName: string,
+    firstCommentPublicationDate: Date,
     firstCommentText: string,
     firstCommentUserImageUrl: string,
-    firstCommentUserNickName: string) {
+    firstCommentUserNickName: string,
+    idComments: Array<string>) {
 
-      validateNewPost(id, text, firstCommentText, firstCommentUserImageUrl, firstCommentUserNickName);
+    validateNewPost(id, text, firstCommentText, firstCommentUserImageUrl, firstCommentUserNickName);
 
-      this._id = id;
-      this._text = text;
-      this._publicationDate = publicationDate;
-      this._firstCommentText = firstCommentText;
-      this._firstCommentUserImageUrl = firstCommentUserImageUrl;
-      this._firstCommentUserNickName = firstCommentUserNickName;
-   }
+    this._id = id;
+    this._text = text;
+    this._publicationDate = publicationDate;
+    this._firstCommentText = firstCommentText;
+    this._firstCommentUserImageUrl = firstCommentUserImageUrl;
+    this._firstCommentUserNickName = firstCommentUserNickName;
+    this._firstCommentPublicationDate = firstCommentPublicationDate
+    this._userNickName = userNickName
+    this._userImageUrl = userImageUrl
+    this._idComments = idComments
+    this._imageUrl = imageUrl
+  }
 
   public get text() {
     return this._text;
@@ -54,6 +68,14 @@ class Post {
     this._userNickName = theUserNickName;
   }
 
+  public get imageUrl() {
+    return this._imageUrl;
+  }
+
+  public set imageUrl(theImageUrl: string) {
+    this._imageUrl = theImageUrl;
+  }
+
 
   public get userImageUrl() {
     return this._userImageUrl;
@@ -67,19 +89,8 @@ class Post {
   }
 
 
-
-
-
-
   public get firstCommentText() {
     return this._firstCommentText;
-  }
-
-  public set firstCommentText(theFirstCommentText: string) {
-    if (theFirstCommentText == null || theFirstCommentText == "" || theFirstCommentText.length > 50) {
-      throw new Error("-firstCommentText- est invalide");
-    }
-    this._firstCommentText = theFirstCommentText;
   }
 
 
@@ -92,30 +103,22 @@ class Post {
     return this._firstCommentUserNickName;
   }
 
-  public set firstCommentUserNickName(theFirstCommentUserNickName: string) {
-    if (theFirstCommentUserNickName == null || theFirstCommentUserNickName == "" || theFirstCommentUserNickName.length > 50) {
-      throw new Error("-firstCommentUserNickName- est invalide");
-    }
-    this._firstCommentUserNickName = theFirstCommentUserNickName;
-  }
 
 
   public get firstCommentUserImageUrl() {
     return this._firstCommentUserImageUrl;
   }
 
-  public set firstCommentUserImageUrl(theFirstCommentUserImageUrl: string) {
-    if (theFirstCommentUserImageUrl == null || theFirstCommentUserImageUrl == "" || theFirstCommentUserImageUrl.length > 50) {
-      throw new Error("-firstCommentUserImageUrl- est invalide");
-    }
-    this._firstCommentUserImageUrl = theFirstCommentUserImageUrl;
+
+  public addComment(commentIdToAdd: string) {
+    this._idComments.push(commentIdToAdd);
   }
 
-
-
-
-
-
+  public removeComment(commentIdToRemove: string) {
+    this._idComments.forEach((element, index) => {
+      if (element == commentIdToRemove) this._idComments.splice(index, 1);
+    });
+  }
 
 
 
