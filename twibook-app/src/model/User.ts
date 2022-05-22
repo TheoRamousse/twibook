@@ -97,8 +97,8 @@ export class User {
     });
   }
 
-  public addPost(postId: String) {
-    this._cars.push(postId);
+  public addPost(postId: string) {
+    this._idPosts.push(postId);
   }
 
   public removePost(postId: String) {

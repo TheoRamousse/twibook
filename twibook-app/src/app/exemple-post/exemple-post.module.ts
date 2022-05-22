@@ -17,6 +17,6 @@ import { ExemplePostPageRoutingModule } from './exemple-post-routing.module';
     RouterModule.forChild([{ path: '', component: ExemplePostPage }]),
     ExemplePostPageRoutingModule,
   ],
-  declarations: [ExemplePostPage]
+  declarations: [ExemplePostPage],
 })
 export class ExemplePostPageModule { }
