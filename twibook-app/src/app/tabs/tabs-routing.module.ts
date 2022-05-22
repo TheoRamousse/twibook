@@ -12,12 +12,20 @@ const routes: Routes = [
         loadChildren: () => import('../connection/connection.module').then(m => m.ConnectionPageModule)
       },
       {
-        path: 'tab2',
-        loadChildren: () => import('../tab2/tab2.module').then(m => m.Tab2PageModule)
+        path: 'inscription',
+        loadChildren: () => import('../inscription/inscription.module').then(m => m.InscriptionPageModule)
       },
       {
-        path: 'tab3',
-        loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+        path: 'exemple-post',
+        loadChildren: () => import('../exemple-post/exemple-post.module').then(m => m.ExemplePostPageModule)
+      },
+      {
+        path: 'post-deplie',
+        loadChildren: () => import('../post-deplie/post-deplie.module').then(m => m.PostDepliePageModule)
+      },
+      {
+        path: 'edition-profile',
+        loadChildren: () => import('../edition-profile/edition-profile.module').then(m => m.EditionProfilePageModule)
       },
       {
         path: '',
@@ -36,4 +44,4 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)],
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }

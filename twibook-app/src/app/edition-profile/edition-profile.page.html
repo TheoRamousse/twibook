@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Edition profile
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background-image" [fullscreen]="true">
+  <div class="view-container text-center">
+    <div class="profile-container">
+      <div style="position: relative; width: 150px;
+    height: 150px; display: flex;
+  align-items: center;
+  justify-content: center; margin : auto">
+        <img style="position: absolute; filter: brightness(60%);" class="profile-picture blueMotionImage" src="/assets/images/post.jpg"
+          alt="Avatar">
+        <button style="z-index: 666;" mat-button>
+          <span style="font-size: 60px; color:white" class="button-depier material-icons">upload</span>
+        </button>
+      </div>
+      <br />
+      <input class="text-input form-child" placeholder="Pseudo" />
+      <br />
+      <input class="text-input form-child" placeholder="Prénom" />
+      <br />
+      <input class="text-input form-child" placeholder="Nom" />
+      <br />
+      <input type="date" class="text-input form-child" />
+      <br /><br /><br />
+      <button mat-button color="warn" class="form-child">ANNULER</button>
+      <button mat-button color="primary" class="form-child">ENREGISTRER</button>
+    </div>
+  </div>
+</ion-content>
