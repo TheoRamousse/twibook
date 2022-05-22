@@ -1,4 +1,6 @@
-class Comments {
+import { validateNewComment } from './Validator'
+
+export class Comments {
   private readonly _id: string;
   private _text: string;
   private readonly _publicationDate: Date;
@@ -11,13 +13,13 @@ class Comments {
     userNickName: string,
     userImageUrl: string) {
 
-      validateNewComment(id, text, userNickName, userImageUrl);
+    validateNewComment(id, text, userNickName, userImageUrl);
 
-      this._id = id;
-      this._text = text;
-      this._publicationDate = publicationDate;
-      this._userNickName = userNickName;
-      this._userImageUrl = userImageUrl;
+    this._id = id;
+    this._text = text;
+    this._publicationDate = publicationDate;
+    this._userNickName = userNickName;
+    this._userImageUrl = userImageUrl;
   }
 
   public get text() {
