@@ -15,7 +15,6 @@ export class Post {
 
   public constructor(id: string,
     text: string,
-    imageUrl: string,
     publicationDate: Date,
     userImageUrl: string,
     userNickName: string,
@@ -23,7 +22,8 @@ export class Post {
     firstCommentText: string,
     firstCommentUserImageUrl: string,
     firstCommentUserNickName: string,
-    idComments: Array<string>) {
+    idComments: Array<string>,
+    imageUrl: string) {
 
     validateNewPost(id, text, firstCommentText, firstCommentUserImageUrl, firstCommentUserNickName);
 
@@ -38,6 +38,10 @@ export class Post {
     this._userImageUrl = userImageUrl
     this._idComments = idComments
     this._imageUrl = imageUrl
+  }
+
+  public get id() {
+    return this._id;
   }
 
   public get text() {

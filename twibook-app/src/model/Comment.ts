@@ -1,6 +1,6 @@
 import { validateNewComment } from './Validator'
 
-export class Comments {
+export class Comment {
   private readonly _id: string;
   private _text: string;
   private readonly _publicationDate: Date;
@@ -20,6 +20,10 @@ export class Comments {
     this._publicationDate = publicationDate;
     this._userNickName = userNickName;
     this._userImageUrl = userImageUrl;
+  }
+
+  public get id() {
+    return this._id;
   }
 
   public get text() {
