@@ -1,17 +1,15 @@
-package iut.uca.twibook.entities;
+package iut.uca.twibook.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class IdEntity {
+public class idDTO {
 
-    @Id
     private ObjectId id;
 }
-

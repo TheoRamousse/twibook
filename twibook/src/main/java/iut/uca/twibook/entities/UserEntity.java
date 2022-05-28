@@ -1,7 +1,9 @@
 package iut.uca.twibook.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,6 +15,8 @@ import java.util.Collection;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Document(collection = "twibookUser")
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserEntity extends IdEntity {
 
     @Field("first_name")
@@ -27,8 +31,8 @@ public class UserEntity extends IdEntity {
     @Field("image_url")
     private String imageUrl;
 
-    @Field("birth_date")
-    private LocalDate birthDate;
+    //@Field("birth_date")
+    //private LocalDate birthDate;
 
     @Field("email")
     @Indexed
@@ -37,10 +41,13 @@ public class UserEntity extends IdEntity {
     @Field("password")
     private String password;
 
+    /*
     @DBRef(lazy = true)
     @Field("posts")
     private Collection<PostEntity> posts;
 
     @Field("cars")
     private Collection<CarEntity> cars;
+
+     */
 }

@@ -18,6 +18,9 @@ public class CarEntity extends IdEntity {
     @Field("manufacturer")
     private String manufacturer;
 
+    /*
     @Field("color")
     private Color color;
+
+     */
 }

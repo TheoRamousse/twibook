@@ -8,6 +8,7 @@ import org.springframework.data.convert.WritingConverter;
 import java.util.Arrays;
 
 public class ColorConverter {
+    /*
     @ReadingConverter
     public class PersonReadConverter implements Converter<Integer, Color> {
 
@@ -25,4 +26,6 @@ public class ColorConverter {
             return source.ordinal();
         }
     }
+
+     */
 }

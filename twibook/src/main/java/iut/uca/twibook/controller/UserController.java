@@ -2,23 +2,25 @@ package iut.uca.twibook.controller;
 
 import iut.uca.twibook.dtos.UserDTO;
 import iut.uca.twibook.entities.UserEntity;
-import iut.uca.twibook.factories.UserFactory;
 import iut.uca.twibook.repositories.UserRepository;
+import iut.uca.twibook.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
-
-@CrossOrigin(origins = "*")
 @RestController
-//@ExposesResourceFor(User.class)
-@RequestMapping(value = "/user", produces = "application/json")
 public class UserController {
 	@Autowired
 	private UserRepository repository;
+
+    @Autowired
+    private UserService userService;
+
+    /*
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<UserDTO> findById(@PathVariable String id) {
         Optional<UserEntity> entity = repository.findById(id);
@@ -31,6 +33,9 @@ public class UserController {
         }
     }
 
+     */
+
+    /*
     @RequestMapping(method = RequestMethod.GET, consumes = "application/json")
     public ResponseEntity<UserDTO> find(@PathVariable UserDTO user) {
         Optional<UserEntity> entity = repository.findById(user.getId());
@@ -43,9 +48,10 @@ public class UserController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
-    public ResponseEntity<UserEntity> createUser(@RequestBody UserDTO user) {
-        UserEntity createdEntity = repository.save(UserFactory.createEntity(user));
-        return new ResponseEntity<>(createdEntity, HttpStatus.CREATED);
+     */
+
+    @GetMapping("/users")
+    public ResponseEntity<List<UserDTO>> findUsers() {
+        return new ResponseEntity<>(userService.findUsers(), HttpStatus.OK);
     }
 }
