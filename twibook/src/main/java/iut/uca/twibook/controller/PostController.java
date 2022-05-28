@@ -43,7 +43,7 @@ public class PostController {
         PostEntity createdEntity = repository.save(entity);
         return new ResponseEntity<>(createdEntity, HttpStatus.CREATED);
     }
-    
+
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deletePost(@PathVariable Long id) {
         repository.deleteById(id.toString());
