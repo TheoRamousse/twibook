@@ -54,9 +54,15 @@ public class CommentController {
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = "application/json")
-    public ResponseEntity<CommentEntity> createUser(@RequestBody CommentDTO user) {
+    public ResponseEntity<CommentEntity> createComment(@RequestBody CommentDTO user) {
         CommentEntity createdEntity = repository.save(CommentFactory.createEntity(user));
         return new ResponseEntity<>(createdEntity, HttpStatus.CREATED);
+    }
+    
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteComment(@PathVariable Long id) {
+        repository.deleteById(id.toString());
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 	
 }

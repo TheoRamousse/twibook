@@ -14,6 +14,9 @@ public class UserFactory{
         dto.setBirthDate(user.getBirthDate());
         dto.setEmail(user.getEmail());
         dto.setPassword(user.getEmail());
+        dto.setPosts(user.getPosts());
+        dto.setCars(user.getCars());
+        dto.setId(user.getId().toString());
         return dto;
     }
 
@@ -27,6 +30,9 @@ public class UserFactory{
         entity.setBirthDate(user.getBirthDate());
         entity.setEmail(user.getEmail());
         entity.setPassword(user.getPassword());
+        entity.setCars(user.getCars());
+        entity.setPosts(user.getPosts());
+        entity.setId(new ObjectId(user.getId()));
         return entity;
     }
 }
