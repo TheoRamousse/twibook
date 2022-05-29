@@ -15,13 +15,13 @@
 
   <app-login-register-container>
     <div class="form-container" #body>
-      <input class="text-input form-child" placeholder="Identifiant" />
+      <input [(ngModel)]="identifiant" class="text-input form-child" placeholder="Identifiant" />
       <br />
-      <input class="text-input form-child" type="password" placeholder="Mot de passe" />
+      <input [(ngModel)]="password" class="text-input form-child" type="password" placeholder="Mot de passe" />
       <br />
       <button class="link">S'INSCRIRE</button>
       <br />
-      <button class="form-child">SE CONNECTER</button>
+      <button (click)="onTryLogin()" class="form-child">SE CONNECTER</button>
     </div>
   </app-login-register-container>
 </ion-content>

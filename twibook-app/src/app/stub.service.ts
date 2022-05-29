@@ -3,6 +3,8 @@ import { Post } from '../model/Post';
 import { Comment } from '../model/Comment';
 import { User } from '../model/User';
 import { PersistenceTemplateService } from './persistence-template.service';
+import { Car } from '../model/Car';
+import { Color } from '../model/Color';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +22,22 @@ export class StubService {
     new Comment("2", "Lorem ipsum dolor sit amet. Et vero omnis et earum iure aut tempora internos sed internos odio et nihil tempora.", new Date(Date.now()), "Toto", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWvHjxafZU25oIbo4hxp4XNCBzA3sYK5A6qjvbwcZIAW3u9_3dX0-hpzrXdegBggTURic&usqp=CAU"),
     new Comment("3", "Lorem ipsum dolor sit amet. Et vero omnis et earum iure aut tempora internos sed internos odio et nihil tempora.", new Date(Date.now()), "Toto", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWvHjxafZU25oIbo4hxp4XNCBzA3sYK5A6qjvbwcZIAW3u9_3dX0-hpzrXdegBggTURic&usqp=CAU")
   ];
+
+  private users = [
+    new User("1", "Jean", "Edward", "JeanEd", "https://asset1.replay.fr/photos/3d0/3d07f31980ca05886d33fc5c4123ab11.large.jpg", new Date(Date.now()), "babar@hotmail.fr", "vfnjchjnujjhoiudf", new Array(new Car("2", "206", "Peugeot", Color.Red)), new Array("1", "2", "3")),
+  ]
+
+  getUsers() {
+    return this.users;
+  }
+
+  getUserByIdentifiant(identifiant: string): User {
+    return this.users.find(element => element.email == identifiant || element.nickName == identifiant);
+  }
+
+  getUserById(id: string): User {
+    return this.users.find(element => element.id == id);
+  }
 
   getPosts() {
     return this.posts;

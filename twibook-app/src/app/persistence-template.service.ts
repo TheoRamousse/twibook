@@ -12,4 +12,7 @@ export abstract class PersistenceTemplateService {
   abstract getPosts: () => Array<Post>;
   abstract getPostById: (id: string) => Post;
   abstract getCommentById: (id: string) => Comment;
+  abstract getUserById: (id: string) => User;
+  abstract getUsers: () => Array<User>;
+  abstract getUserByIdentifiant: (identifiant: string) => User;
 }
