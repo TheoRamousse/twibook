@@ -18,14 +18,17 @@ export class User {
     lastName: string,
     nickName: string,
     imageUrl: string,
-    birthDate: Date,
+    birthDate: Date = null,
     email: string,
-    hashedPwd: string) {
+    hashedPwd: string,
+    cars: Car[] = [],
+    idPosts: string[] = []) {
 
     validateNewUser(id, firstName, lastName, nickName, imageUrl, email, hashedPwd);
 
     this._id = id;
-    this._cars = [];
+    this._cars = cars;
+    this._idPosts = idPosts;
     this._firstName = firstName;
     this._lastName = lastName;
     this._nickName = nickName;
@@ -70,6 +73,10 @@ export class User {
 
   public get imageUrl() {
     return this._imageUrl;
+  }
+
+  public get id() {
+    return this._id;
   }
 
   public set imageUrl(theImageUrl: string) {
