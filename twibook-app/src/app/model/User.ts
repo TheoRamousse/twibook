@@ -17,14 +17,14 @@ export class User {
     firstName: string,
     lastName: string,
     nickName: string,
-    imageUrl: string,
-    birthDate: Date = null,
     email: string,
     hashedPwd: string,
+    imageUrl: string = "",
+    birthDate: Date = null,
     cars: Car[] = [],
     idPosts: string[] = []) {
 
-    validateNewUser(id, firstName, lastName, nickName, imageUrl, email, hashedPwd);
+    validateNewUser(id, firstName, lastName, nickName, email, hashedPwd);
 
     this._id = id;
     this._cars = cars;

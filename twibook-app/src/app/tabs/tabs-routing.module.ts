@@ -9,23 +9,23 @@ const routes: Routes = [
     children: [
       {
         path: 'connection',
-        loadChildren: () => import('../connection/connection.module').then(m => m.ConnectionPageModule)
+        loadChildren: () => import('../views/connection/connection.module').then(m => m.ConnectionPageModule)
       },
       {
         path: 'inscription',
-        loadChildren: () => import('../inscription/inscription.module').then(m => m.InscriptionPageModule)
+        loadChildren: () => import('../views/inscription/inscription.module').then(m => m.InscriptionPageModule)
       },
       {
         path: 'exemple-post',
-        loadChildren: () => import('../exemple-post/exemple-post.module').then(m => m.ExemplePostPageModule)
+        loadChildren: () => import('../views/exemple-post/exemple-post.module').then(m => m.ExemplePostPageModule)
       },
       {
         path: 'post-deplie',
-        loadChildren: () => import('../post-deplie/post-deplie.module').then(m => m.PostDepliePageModule)
+        loadChildren: () => import('../views/post-deplie/post-deplie.module').then(m => m.PostDepliePageModule)
       },
       {
         path: 'edition-profile',
-        loadChildren: () => import('../edition-profile/edition-profile.module').then(m => m.EditionProfilePageModule)
+        loadChildren: () => import('../views/edition-profile/edition-profile.module').then(m => m.EditionProfilePageModule)
       },
       {
         path: '',

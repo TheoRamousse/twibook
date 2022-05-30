@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Post } from '../../model/Post'
-import { PersistenceTemplateService } from '../persistence-template.service';
-import { StubService } from '../stub.service';
+import { PersistenceTemplateService } from '../../services/persistence-template.service';
+import { StubService } from '../../services/stub.service';
 
 @Component({
   selector: 'app-exemple-post',

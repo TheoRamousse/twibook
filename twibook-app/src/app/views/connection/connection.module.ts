@@ -17,4 +17,4 @@ import { ConnectionPageRoutingModule } from './connection-routing.module';
   ],
   declarations: [ConnectionPage]
 })
-export class ConnectionPageModule {}
+export class ConnectionPageModule { }

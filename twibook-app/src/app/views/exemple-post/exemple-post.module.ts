@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ExemplePostPage } from './exemple-post.page';
-import { PostComponentModule } from '../post/post.module';
+import { PostComponentModule } from '../components/post/post.module';
 
 import { ExemplePostPageRoutingModule } from './exemple-post-routing.module';
 

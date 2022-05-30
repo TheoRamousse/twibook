@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PostDepliePage } from './post-deplie.page';
-import { PostComponentModule } from '../post/post.module';
-import { CommentComponentModule } from '../comment/comment.module';
+import { PostComponentModule } from '../components/post/post.module';
+import { CommentComponentModule } from '../components/comment/comment.module';
 
 import { PostDepliePageRoutingModule } from './post-deplie-routing.module';
 
