@@ -42,7 +42,6 @@ export function validateNewUser(id: string,
   firstName: string,
   lastName: string,
   nickName: string,
-  imageUrl: string,
   email: string,
   hashedPwd: string) {
   if (id == null || id == "" || id.length > 50) {
@@ -57,13 +56,10 @@ export function validateNewUser(id: string,
   if (nickName == null || nickName == "" || nickName.length > 30) {
     throw new Error("-nickName- est invalide");
   }
-  if (imageUrl == null || imageUrl == "" || imageUrl.length > 256) {
-    throw new Error("-imageUrl- est invalide");
-  }
   if (email == null || email == "" || email.length > 50) {
     throw new Error("-email- est invalide");
   }
-  if (hashedPwd == null || hashedPwd == "" || hashedPwd.length > 50) {
+  if (hashedPwd == null || hashedPwd == "" || hashedPwd.length > 200) {
     throw new Error("-hashedPwd- est invalide");
   }
 }
