@@ -54,7 +54,7 @@ public class UserController {
             default: return new ResponseEntity<>("User created", HttpStatus.CREATED);
         }
     }
-    
+
     @DeleteMapping (value = "/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable ObjectId id) {
         if(userService.deleteTire(id) == 1){
