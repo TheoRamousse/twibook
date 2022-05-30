@@ -21,6 +21,8 @@
       <br />
       <button class="link">S'INSCRIRE</button>
       <br />
+      <p *ngIf="errorMessage != null" style="color: red !important;">{{errorMessage}}</p>
+      <br />
       <button (click)="onTryLogin()" class="form-child">SE CONNECTER</button>
     </div>
   </app-login-register-container>

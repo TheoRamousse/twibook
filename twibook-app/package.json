@@ -11,6 +11,9 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "browser": {
+    "crypto": false
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^13.3.8",
@@ -33,6 +36,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.1.0",
     "@fortawesome/free-solid-svg-icons": "^6.1.0",
     "@ionic/angular": "^6.0.0",
+    "bcryptjs": "^2.4.3",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
