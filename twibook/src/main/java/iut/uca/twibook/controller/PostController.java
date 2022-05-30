@@ -80,6 +80,7 @@ public class PostController {
         else {
             postDTOList = mapper.toListDTO(postService.getPosts());
         }
+    }
 
         if (postDTOList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
