@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="iut.uca.twibook.entities.IdEntity"/>
+    <fullyQualifiedTypeName name="org.bson.types.ObjectId"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="iut.uca.twibook.services.CommentService"/>
+    <fullyQualifiedTypeName name="iut.uca.twibook.repositories.CommentRepository"/>
+    <fullyQualifiedTypeName name="iut.uca.twibook.entities.CommentEntity"/>
+    <fullyQualifiedTypeName name="iut.uca.twibook.dtos.CommentDTO"/>
+    <fullyQualifiedTypeName name="iut.uca.twibook.factories.CommentFactory"/>
+</qualifiedTypeNameHistroy>
