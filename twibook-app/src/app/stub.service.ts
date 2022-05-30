@@ -24,7 +24,7 @@ export class StubService {
   ];
 
   private users = [
-    new User("1", "Jean", "Edward", "JeanEd", "https://asset1.replay.fr/photos/3d0/3d07f31980ca05886d33fc5c4123ab11.large.jpg", new Date(Date.now()), "babar@hotmail.fr", "vfnjchjnujjhoiudf", new Array(new Car("2", "206", "Peugeot", Color.Red)), new Array("1", "2", "3")),
+    new User("1", "Jean", "Edward", "toto", "https://asset1.replay.fr/photos/3d0/3d07f31980ca05886d33fc5c4123ab11.large.jpg", new Date(Date.now()), "babar@hotmail.fr", this.escapeRegExp("$2a$10$xjD./9EDofxXrh28Gk27FeV3BXPqn3B.5ZooMi3XMmyqJA2hGUu2a"), new Array(new Car("2", "206", "Peugeot", Color.Red)), new Array("1", "2", "3")),
   ]
 
   getUsers() {
@@ -49,5 +49,9 @@ export class StubService {
 
   getCommentById(id: string): Comment {
     return this.comments.find(element => element.id == id)
+  }
+
+  escapeRegExp(string) {
+    return string.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '\\$&'); // $& means the whole matched string
   }
 }

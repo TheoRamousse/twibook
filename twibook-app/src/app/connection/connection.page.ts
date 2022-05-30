@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { PersistenceTemplateService } from '../persistence-template.service';
 import { StubService } from '../stub.service';
+import * as bcrypt from 'bcryptjs';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-connection',
@@ -15,18 +17,25 @@ export class ConnectionPage {
 
   private identifiant: string
   private password: string
+  private errorMessage: string = null
 
-  constructor(pers: PersistenceTemplateService) {
+  constructor(pers: PersistenceTemplateService, private router: Router) {
     this.pers = pers
   }
 
   onTryLogin() {
+
     var result = this.pers.getUserByIdentifiant(this.identifiant)
+    const salt = bcrypt.genSaltSync(10);
+    var passHashed = bcrypt.hashSync(this.password, 10);
     if (result == null) {
-      alert("Identifiant inconnu")
+      this.errorMessage = "Identifiant inconnu"
     }
-    else if (result.hashedPassword != this.password) {
-      alert("Mot de passe incorrect")
+    else if (passHashed != this.password) {
+      this.errorMessage = "Mot de passe incorrect"
+    }
+    else{
+      this.router.navigate(['/tabs/inscription']);
     }
   }
 
