@@ -62,10 +62,4 @@ public class UserController {
         }
         return new ResponseEntity("Tire not found", HttpStatus.NOT_FOUND);
     }
-    
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        repository.deleteById(id.toString());
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 }
