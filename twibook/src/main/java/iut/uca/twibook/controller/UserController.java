@@ -1,5 +1,6 @@
 package iut.uca.twibook.controller;
 
+import iut.uca.twibook.Status;
 import iut.uca.twibook.dtos.UserDTO;
 import iut.uca.twibook.entities.UserEntity;
 import iut.uca.twibook.factories.UserFactory;
@@ -64,7 +65,7 @@ public class UserController {
         }
         return new ResponseEntity("User not found", HttpStatus.NOT_FOUND);
     }
-    
+
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         repository.deleteById(id.toString());

@@ -1,17 +1,13 @@
 package iut.uca.twibook.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import iut.uca.twibook.dtos.CommentDTO;
 import iut.uca.twibook.entities.CommentEntity;
@@ -19,10 +15,10 @@ import iut.uca.twibook.factories.CommentFactory;
 import iut.uca.twibook.repositories.CommentRepository;
 import iut.uca.twibook.services.CommentService;
 
-@Controller
-@CrossOrigin(origins = "*")
+
 @RestController
-@RequestMapping(value = "/comment", produces = "application/json")
+@CrossOrigin(origins = "http://localhost:9000")
+@RequestMapping(value = "/comments")
 public class CommentController {
 
     @Autowired
