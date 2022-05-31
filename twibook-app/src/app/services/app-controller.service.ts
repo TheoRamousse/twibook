@@ -34,6 +34,10 @@ export class AppControllerService {
     this.pers.addNewUser(new User("0", firstName, lastName, nickName, email, hashedPassword));
   }
 
+  public getCommentById(id: string){
+    return this.pers.getCommentById(id)
+  }
+
   public get user() {
     return this.connectedUser;
   }

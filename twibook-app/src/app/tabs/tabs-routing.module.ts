@@ -20,10 +20,6 @@ const routes: Routes = [
         loadChildren: () => import('../views/exemple-post/exemple-post.module').then(m => m.ExemplePostPageModule)
       },
       {
-        path: 'post-deplie',
-        loadChildren: () => import('../views/post-deplie/post-deplie.module').then(m => m.PostDepliePageModule)
-      },
-      {
         path: 'edition-profile',
         loadChildren: () => import('../views/edition-profile/edition-profile.module').then(m => m.EditionProfilePageModule)
       },

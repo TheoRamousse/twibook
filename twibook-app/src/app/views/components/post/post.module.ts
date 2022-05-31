@@ -3,15 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { PostComponent } from './post.component';
-import { CommentComponentModule } from '../comment/comment.module'
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CommentComponentModule } from '../comment/comment.module';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from "@angular/material/button";
 
 
 @NgModule({
-    imports: [CommonModule, FormsModule, IonicModule, CommentComponentModule, MatCardModule, FontAwesomeModule, MatButtonModule, MatDividerModule],
+    imports: [CommonModule, FormsModule, IonicModule, MatCardModule, MatButtonModule, MatDividerModule, CommentComponentModule],
     declarations: [PostComponent],
     exports: [PostComponent]
 })
