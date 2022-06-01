@@ -16,4 +16,7 @@ export abstract class PersistenceTemplateService {
   abstract getUsers(): Array<User>;
   abstract getUserByIdentifiant(identifiant: string): User;
   abstract addNewUser(user: User): void;
+  abstract addNewComment(comment: Comment): Comment;
+  abstract addNewPost(post: Post): void;
+  abstract updatePost(post: Post): void;
 }
