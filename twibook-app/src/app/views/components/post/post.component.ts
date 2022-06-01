@@ -10,17 +10,18 @@ import { AppControllerService } from '../../../services/app-controller.service'
 })
 export class PostComponent implements OnInit {
   private comments: Array<Comment> = []
-  private NbCommentsToLoad = 1
+  private NbCommentsToLoad = 10
   private pageNumber = 1
   private loadMoreVisibility = "visible"
   @Input() currentPost: Post
   private isCommentVisible: Boolean = true;
+  private textComment: string = "";
 
   constructor(private controlleur: AppControllerService) {
-   }
+  }
 
 
-  private onLoadNextComments(){
+  private onLoadNextComments() {
     var idsNewComments = this.paginator(this.currentPost.idComments, this.pageNumber, this.NbCommentsToLoad)
 
     idsNewComments.forEach(el => this.comments.push(this.controlleur.getCommentById(el)))
@@ -29,14 +30,21 @@ export class PostComponent implements OnInit {
   }
 
   private paginator(items: Array<string>, current_page: number, per_page_items: number): Array<string> {
-	let page = current_page || 1,
-	per_page = per_page_items || 1,
-	offset = (page - 1) * per_page,
+    let page = current_page || 1,
+      per_page = per_page_items || 1,
+      offset = (page - 1) * per_page,
 
-	paginatedItems = items.slice(offset).slice(0, per_page_items)
+      paginatedItems = items.slice(offset).slice(0, per_page_items)
 
-	return paginatedItems
-}
+    return paginatedItems
+  }
+
+  private onCommentPosted() {
+    var newComment = new Comment("0", this.textComment, new Date(Date.now()), this.controlleur.user.nickName, this.controlleur.user.imageUrl)
+    this.controlleur.addNewComment(this.currentPost, newComment)
+    this.comments.push(newComment)
+    this.textComment = ""
+  }
 
   ngOnInit() {
     this.onLoadNextComments()

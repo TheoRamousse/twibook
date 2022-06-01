@@ -1,7 +1,7 @@
 import { validateNewComment } from './Validator'
 
 export class Comment {
-  private readonly _id: string;
+  private _id: string;
   private _text: string;
   private readonly _publicationDate: Date;
   private _userNickName: string;
@@ -24,6 +24,10 @@ export class Comment {
 
   public get id() {
     return this._id;
+  }
+
+  public set id(newValue: string) {
+    this._id = newValue
   }
 
   public get text() {

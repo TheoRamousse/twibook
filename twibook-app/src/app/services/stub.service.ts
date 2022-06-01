@@ -10,6 +10,34 @@ import { Color } from '../model/Color';
   providedIn: 'root'
 })
 export class StubService extends PersistenceTemplateService {
+
+  private getNextCommentId(): string {
+    var maxId = 0;
+    this.comments.forEach(comment => {
+      if (Number(comment.id) > maxId) {
+        maxId = Number(comment.id);
+      }
+    });
+    return (maxId + 1).toString()
+  }
+
+  addNewComment(comment: Comment): Comment {
+    comment.id = this.getNextCommentId()
+    this.comments.push(comment)
+    return comment
+  }
+  addNewPost(post: Post): void {
+    this.posts.push(post)
+  }
+
+  updatePost(post: Post): void {
+    this.posts.forEach(p => {
+      if (p.id == post.id) {
+        p = post
+      }
+    })
+  }
+
   private posts = [
     new Post("1", "Ceci est un post de test, le texte fournit n'a donc aucun intérêt ;)", new Date(Date.now()), "https://ultimatecourses.com/assets/category/angular-2052c478f3fcf0adc1c1c5aad5a4d9fe46a896ccda52ee6b8383b687b0c61042.svg", "Toto", new Date(Date.now()), "C'est vrai que ce post n'a aucun intérêt !!!", "uneAutreImage", "Titi", new Array("1", "2", "3"), "https://img4.autodeclics.com/photos/11/324255/hd-diapo-jacky-tuning---photos-de-cr%C3%A9ations-extr%C3%AAmes-plus-ou-moins-r%C3%A9ussies.jpg"),
     new Post("2", "Lorem ipsum dolor sit amet. Et vero omnis et earum iure aut tempora internos sed internos odio et nihil tempora. Eos aperiam optio vel velit tempore est inventore dolores id sunt expedita et magnam voluptatum et consectetur asperiores qui iusto adipisci.", new Date(Date.now()), "https://www.loremipzum.com/img/logo.webp", "Inspecteur Gadget", new Date(Date.now()), "C'est vrai que ce post n'a aucun intérêt !!!", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWvHjxafZU25oIbo4hxp4XNCBzA3sYK5A6qjvbwcZIAW3u9_3dX0-hpzrXdegBggTURic&usqp=CAU", "Tutu", new Array("1", "2", "3"), "https://img4.autodeclics.com/photos/11/324255/hd-diapo-jacky-tuning---photos-de-cr%C3%A9ations-extr%C3%AAmes-plus-ou-moins-r%C3%A9ussies.jpg"),

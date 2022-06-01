@@ -13,6 +13,7 @@ export class User {
   private readonly _hashedPwd: string;
   private readonly _idPosts: Array<string>
 
+
   public constructor(id: string,
     firstName: string,
     lastName: string,

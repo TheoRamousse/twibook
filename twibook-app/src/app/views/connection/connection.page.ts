@@ -17,16 +17,17 @@ export class ConnectionPage {
   }
 
   onTryLogin() {
+    console.log(this.password)
     try {
       this.controlleur.tryConnect(this.identifiant, this.password)
       this.errorMessage = ""
-      this.router.navigate(['TODO']);
+      this.router.navigate(['tabs/exemple-post']);
     } catch (error) {
       this.errorMessage = error.message
     }
   }
 
-  onNavigateRegister(){
+  onNavigateRegister() {
     this.router.navigate(['tabs/inscription'])
   }
 }
