@@ -5,6 +5,7 @@ import iut.uca.twibook.dtos.PostDTO;
 import iut.uca.twibook.entities.UserEntity;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -50,5 +51,8 @@ public class PostService {
 		return repository.removeById(postToDelete);
 	}
 
+	public List<PostEntity> findAllPagined(Integer page, Integer nbElementsPerPage){
+		return repository.findAll(PageRequest.of(page, nbElementsPerPage)).getContent();
+	}
 
 }

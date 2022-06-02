@@ -36,7 +36,7 @@ public class PostController {
         return new ResponseEntity<>(mapper.toDTO(postService.findById(id)), HttpStatus.OK);
     }
 
-	@GetMapping
+	/*@GetMapping
     public ResponseEntity<List<PostDTO>> getPosts() {
         List<PostDTO> posts = mapper.toListDTO(postService.getPosts());
 
@@ -47,6 +47,8 @@ public class PostController {
             return new ResponseEntity<>(posts, HttpStatus.OK);
         }
     }
+
+	 */
 
     @PostMapping
     public ResponseEntity<String> createPost(@RequestBody PostDTO post) {
@@ -68,15 +70,22 @@ public class PostController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PostEntity>> getPostsPagined(@RequestParam(required = false) Integer nbElementsPerPage, @RequestParam(required = false) Integer page) {
+    public ResponseEntity<List<PostDTO>> getPostsPagined(@RequestParam(required = false) Integer nbElementsPerPage, @RequestParam(required = false) Integer page) {
 
-        Page<PostEntity> postEntities = repository.findAll(PageRequest.of(page, nbElementsPerPage));
+        List<PostDTO> postDTOList;
 
-        if (postEntities.isEmpty()) {
+        if(nbElementsPerPage != null && page != null){
+            postDTOList = mapper.toListDTO(postService.findAllPagined(page, nbElementsPerPage));
+        }
+        else {
+            postDTOList = mapper.toListDTO(postService.getPosts());
+        }
+
+        if (postDTOList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         else {
-            return new ResponseEntity<>(postEntities.getContent(), HttpStatus.OK);
+            return new ResponseEntity<>(postDTOList, HttpStatus.OK);
         }
     }
 
