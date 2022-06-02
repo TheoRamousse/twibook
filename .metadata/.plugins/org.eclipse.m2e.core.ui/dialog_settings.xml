@@ -2,7 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
-			<item value="C:\Users\Mbouvard\Desktop\Cours\twibook\twibook"/>
+			<item value="C:\Users\Mbouvard\Desktop\Cours\twibook"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

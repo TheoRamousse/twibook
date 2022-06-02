@@ -23,8 +23,8 @@
           <h2 class="top-comment">Top commentaire : </h2>
           <app-comment [userImageUrl]="currentPost.firstCommentUserImageUrl"
             [userNickName]="currentPost.firstCommentUserNickName"
-            [publicationDate]="currentPost.firstCommentPublicationDate" [text]="currentPost.firstCommentText"
-            [isUnderPost]="true"></app-comment>
+            [publicationDate]="currentPost.firstCommentPublicationDate" 
+            [text]="currentPost.firstCommentText"></app-comment>
         </div>
       </mat-card-content>
       <mat-card-actions>
@@ -43,6 +43,9 @@
         placeholder="Votre commentaire ici" />
       <button (click)="onCommentPosted()">Poster</button>
     </div>
+    <pre>
+      toto
+      </pre>
     <div *ngFor="let comment of comments">
       <app-comment [text]="comment.text" [userNickName]="comment.userNickName" [userImageUrl]="comment.userImageUrl"
         [publicationDate]="comment.publicationDate"></app-comment>
