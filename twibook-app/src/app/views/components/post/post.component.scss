@@ -1,0 +1,37 @@
+.profile-picture {
+  background-size: cover;
+}
+
+.neonPost {
+  border-color: #47c7f9;
+  border-width: 50%;
+  box-shadow: 0px 0px 10px 5px #47c7f9;
+}
+
+.card {
+  max-width: 800px;
+  display: inline-block;
+  text-align: left;
+}
+
+mat-divider {
+  border-top-width: 1px;
+  border-color: #47c7f9;
+}
+
+mat-card-actions {
+  text-align: center;
+}
+
+.image-container {
+  width: 100%;
+  text-align: center;
+}
+
+.top-comment {
+  color: white;
+}
+
+.button-depier {
+  color: white;
+}
