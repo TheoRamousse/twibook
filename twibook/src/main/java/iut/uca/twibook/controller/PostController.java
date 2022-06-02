@@ -3,7 +3,9 @@ package iut.uca.twibook.controller;
 import java.util.List;
 import java.util.Optional;
 
-import iut.uca.twibook.entities.CommentEntity;
+import iut.uca.twibook.Status;
+import iut.uca.twibook.mappers.PostMapper;
+import iut.uca.twibook.services.PostService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,33 +23,48 @@ import iut.uca.twibook.repositories.PostRepository;
 @CrossOrigin(origins = "http://localhost:9000")
 @RequestMapping(value = "/posts")
 public class PostController {
-	@Autowired
-	PostRepository repository;
+
+    @Autowired
+    PostService postService;
+
+    @Autowired
+    PostMapper mapper;
 
 	@GetMapping(value = "/{id}")
-    public ResponseEntity<PostDTO> findById(@PathVariable String id) {
-        Optional<PostEntity> entity = repository.findById(id);
+    public ResponseEntity<PostDTO> findById(@PathVariable ObjectId id) {
 
-        if (entity.isPresent()) {
-            return new ResponseEntity<>(PostFactory.createDTO(entity.get()), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.toDTO(postService.findById(id)), HttpStatus.OK);
+    }
+
+	@GetMapping
+    public ResponseEntity<List<PostDTO>> getPosts() {
+        List<PostDTO> posts = mapper.toListDTO(postService.getPosts());
+
+        if (posts.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(posts, HttpStatus.OK);
         }
     }
 
     @PostMapping
-    public ResponseEntity<PostEntity> createPost(@RequestBody PostDTO post) {
-        PostEntity entity = PostFactory.createEntity(post);
-        entity.setId(new ObjectId());
-        PostEntity createdEntity = repository.save(entity);
-        return new ResponseEntity<>(createdEntity, HttpStatus.CREATED);
+    public ResponseEntity<String> createPost(@RequestBody PostDTO post) {
+        Status response = postService.createPost(mapper.toEntity(post));
+
+        switch (response) {
+            case UPDATED: return new ResponseEntity<>("Post updated", HttpStatus.OK);
+
+            default: return new ResponseEntity<>("Post created", HttpStatus.CREATED);
+        }
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deletePost(@PathVariable Long id) {
-        repository.deleteById(id.toString());
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<String> deletePost(@PathVariable ObjectId id) {
+        if(postService.deletePost(id) == 1){
+            return new ResponseEntity<>("Post deleted", HttpStatus.OK);
+        }
+        return new ResponseEntity("Post not found", HttpStatus.NOT_FOUND);
     }
 
     @GetMapping

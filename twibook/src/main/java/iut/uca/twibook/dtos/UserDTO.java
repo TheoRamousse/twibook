@@ -27,8 +27,8 @@ public class UserDTO {
     private LocalDate birthDate;
     private String email;
     private String password;
-    private Collection<PostEntity> posts;
-    private Collection<CarEntity> cars;
+    private Collection<PostDTO> posts;
+    private Collection<CarDTO> cars;
 
 }
 

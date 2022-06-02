@@ -11,7 +11,6 @@ public interface ObjectIdMapper {
 	default String toString(ObjectId value) {
 		return value != null ? value.toHexString() : null;	
 	}
-	
 	default ObjectId toobjectId(String value) {
 		return value != null ? new ObjectId(value) : null;
 	}
