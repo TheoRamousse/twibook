@@ -10,6 +10,7 @@ export class CommentComponent implements OnInit {
   @Input() userNickName: String;
   @Input() userImageUrl: Boolean = true;
   @Input() publicationDate: Boolean = true;
+  @Input() isUnderPost: Boolean = false
 
   constructor() { }
 

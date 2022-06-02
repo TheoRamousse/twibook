@@ -20,9 +20,13 @@ export class ConnectionPage {
     try {
       this.controlleur.tryConnect(this.identifiant, this.password)
       this.errorMessage = ""
-      this.router.navigate(['/tabs/inscription']);
+      this.router.navigate(['TODO']);
     } catch (error) {
       this.errorMessage = error.message
     }
+  }
+
+  onNavigateRegister(){
+    this.router.navigate(['tabs/inscription'])
   }
 }

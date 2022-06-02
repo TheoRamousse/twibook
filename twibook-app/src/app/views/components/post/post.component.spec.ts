@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { PostComponent } from './post.component';
+import { PostDeplieComponent } from './post-deplie.component';
 
-describe('PostComponent', () => {
-  let component: PostComponent;
-  let fixture: ComponentFixture<PostComponent>;
+describe('PostDeplieComponent', () => {
+  let component: PostDeplieComponent;
+  let fixture: ComponentFixture<PostDeplieComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PostComponent ],
+      declarations: [ PostDeplieComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PostComponent);
+    fixture = TestBed.createComponent(PostDeplieComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

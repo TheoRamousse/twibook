@@ -22,7 +22,7 @@ export class Post {
     firstCommentText: string,
     firstCommentUserImageUrl: string,
     firstCommentUserNickName: string,
-    idComments: Array<string>,
+    idComments: Array<string> = [],
     imageUrl: string) {
 
     validateNewPost(id, text, firstCommentText, firstCommentUserImageUrl, firstCommentUserNickName);
@@ -116,6 +116,10 @@ export class Post {
 
   public addComment(commentIdToAdd: string) {
     this._idComments.push(commentIdToAdd);
+  }
+
+  public get idComments(){
+    return  this._idComments
   }
 
   public removeComment(commentIdToRemove: string) {
