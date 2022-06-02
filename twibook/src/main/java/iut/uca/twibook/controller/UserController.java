@@ -26,7 +26,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    private final UserMapper mapper = UserMapper.INSTANCE;
+    @Autowired
+    private UserMapper mapper;
 
 	@GetMapping(value = "/{id}")
     public ResponseEntity<UserDTO> findById(@PathVariable ObjectId id) {
