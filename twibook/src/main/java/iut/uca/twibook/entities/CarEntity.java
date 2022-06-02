@@ -5,7 +5,8 @@ import lombok.EqualsAndHashCode;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.awt.*;
+import iut.uca.twibook.entities.enumerations.Color;
+
 
 @Data
 @EqualsAndHashCode(callSuper = false)
