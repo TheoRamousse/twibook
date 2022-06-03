@@ -23,8 +23,8 @@
           <h2 class="top-comment">Top commentaire : </h2>
           <app-comment [userImageUrl]="currentPost.firstCommentUserImageUrl"
             [userNickName]="currentPost.firstCommentUserNickName"
-            [publicationDate]="currentPost.firstCommentPublicationDate" [text]="currentPost.firstCommentText"
-            [isUnderPost]="true"></app-comment>
+            [publicationDate]="currentPost.firstCommentPublicationDate" 
+            [text]="currentPost.firstCommentText"></app-comment>
         </div>
       </mat-card-content>
       <mat-card-actions>
@@ -37,16 +37,18 @@
       </mat-card-actions>
     </mat-card>
   </div>
+  
   <div *ngIf="!isCommentVisible">
-    <div>
-      <input (change)="textComment=$event.target.value" [value]="textComment" class="text-input form-child"
-        placeholder="Votre commentaire ici" />
+    <div class="monOrientation monMargin">
+      <input (change)="textComment=$event.target.value" [value]="textComment" 
+      class="text-input form-child monMarginInput" placeholder="Votre commentaire ici" />
       <button (click)="onCommentPosted()">Poster</button>
     </div>
     <div *ngFor="let comment of comments">
       <app-comment [text]="comment.text" [userNickName]="comment.userNickName" [userImageUrl]="comment.userImageUrl"
         [publicationDate]="comment.publicationDate"></app-comment>
     </div>
+    
   </div>
   <div *ngIf="!isCommentVisible" style="display: flex;
   justify-content: center;">
