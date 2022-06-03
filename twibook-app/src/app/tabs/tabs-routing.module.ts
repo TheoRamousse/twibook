@@ -16,8 +16,8 @@ const routes: Routes = [
         loadChildren: () => import('../views/inscription/inscription.module').then(m => m.InscriptionPageModule)
       },
       {
-        path: 'exemple-post',
-        loadChildren: () => import('../views/exemple-post/exemple-post.module').then(m => m.ExemplePostPageModule)
+        path: 'timeline',
+        loadChildren: () => import('../views/timeline/timeline.module').then(m => m.TimelinePageModule)
       },
       {
         path: 'edition-profile',

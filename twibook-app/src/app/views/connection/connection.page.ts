@@ -21,7 +21,7 @@ export class ConnectionPage {
     try {
       this.controlleur.tryConnect(this.identifiant, this.password)
       this.errorMessage = ""
-      this.router.navigate(['tabs/exemple-post']);
+      this.router.navigate(['tabs/timeline']);
     } catch (error) {
       this.errorMessage = error.message
     }
