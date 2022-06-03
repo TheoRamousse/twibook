@@ -49,7 +49,7 @@ public class UserService{
         return response;
     }
 
-    public Long deleteTire(ObjectId userToDelete) {
+    public Long deleteUser(ObjectId userToDelete) {
         return repository.removeById(userToDelete);
     }
 }
