@@ -12,7 +12,7 @@ public class PostFactory {
 	public static PostDTO createDTO(PostEntity entity){
         PostDTO dto = new PostDTO();
 
-        dto.setComments(entity.getComments());
+        //dto.setComments(entity.getComments());
         dto.setFirstCommentText(entity.getFirstCommentText());
         dto.setFirstCommentUserImageUrl(entity.getFirstCommentUserImageUrl());
         dto.setFirstCommentUserNickName(entity.getFirstCommentUserNickName());
@@ -25,7 +25,7 @@ public class PostFactory {
 	 public static PostEntity createEntity(PostDTO post){
 	        PostEntity entity = new PostEntity();
 
-	        entity.setComments(post.getComments());
+	        //entity.setComments(post.getComments());
 	        entity.setFirstCommentText(post.getFirstCommentText());
 	        entity.setFirstCommentUserImageUrl(post.getFirstCommentUserImageUrl());
 	        entity.setFirstCommentUserNickName(post.getFirstCommentUserNickName());

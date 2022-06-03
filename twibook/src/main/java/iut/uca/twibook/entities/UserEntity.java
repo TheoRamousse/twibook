@@ -17,7 +17,7 @@ import java.util.Collection;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-//@Document(collection = "twibookUser")
+@Document(collection = "twibookUser")
 public class UserEntity {
 
     @Id

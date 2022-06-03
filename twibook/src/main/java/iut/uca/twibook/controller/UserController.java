@@ -26,7 +26,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    private final UserMapper mapper = UserMapper.INSTANCE;
+    @Autowired
+    private UserMapper mapper;
 
 	@GetMapping(value = "/{id}")
     public ResponseEntity<UserDTO> findById(@PathVariable ObjectId id) {
@@ -34,19 +35,20 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserEntity>> getUsers() {
-        List<UserEntity> userEntities = userService.getUsers();
+    public ResponseEntity<List<UserDTO>> getUsers() {
 
-        if(userEntities.isEmpty()){
+        List<UserDTO> userDTOList = mapper.toListDTO(userService.getUsers());
+
+        if(userDTOList.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(userEntities, HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(userDTOList, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<String> createUser(@RequestBody UserEntity user) {
+    public ResponseEntity<String> createUser(@RequestBody UserDTO user) {
 
-        Status response = userService.createUser(user);
+        Status response = userService.createUser(mapper.toEntity(user));
 
         switch (response) {
             case UPDATED: return new ResponseEntity<>("User updated", HttpStatus.OK);
@@ -54,12 +56,12 @@ public class UserController {
             default: return new ResponseEntity<>("User created", HttpStatus.CREATED);
         }
     }
-    
+
     @DeleteMapping (value = "/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable ObjectId id) {
-        if(userService.deleteTire(id) == 1){
-            return new ResponseEntity<>("Tire deleted", HttpStatus.OK);
+        if(userService.deleteUser(id) == 1){
+            return new ResponseEntity<>("User deleted", HttpStatus.OK);
         }
-        return new ResponseEntity("Tire not found", HttpStatus.NOT_FOUND);
+        return new ResponseEntity("User not found", HttpStatus.NOT_FOUND);
     }
 }
