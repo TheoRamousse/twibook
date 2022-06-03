@@ -2,20 +2,15 @@ package iut.uca.twibook.controller;
 
 import iut.uca.twibook.Status;
 import iut.uca.twibook.dtos.UserDTO;
-import iut.uca.twibook.entities.UserEntity;
-import iut.uca.twibook.factories.UserFactory;
 import iut.uca.twibook.mappers.UserMapper;
-import iut.uca.twibook.repositories.UserRepository;
 import iut.uca.twibook.services.UserService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 
 
@@ -64,11 +59,5 @@ public class UserController {
             return new ResponseEntity<>("User deleted", HttpStatus.OK);
         }
         return new ResponseEntity("User not found", HttpStatus.NOT_FOUND);
-    }
-
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        repository.deleteById(id.toString());
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

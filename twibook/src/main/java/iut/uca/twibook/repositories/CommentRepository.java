@@ -1,7 +1,6 @@
 package iut.uca.twibook.repositories;
 
 import iut.uca.twibook.entities.CommentEntity;
-import iut.uca.twibook.entities.PostEntity;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

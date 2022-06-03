@@ -1,13 +1,10 @@
 package iut.uca.twibook.dtos;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Collection;
-
-
-import iut.uca.twibook.entities.CommentEntity;
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.time.LocalDate;
+import java.util.Collection;
 
 @Data
 @Accessors

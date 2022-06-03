@@ -2,7 +2,6 @@ package iut.uca.twibook.services;
 
 import iut.uca.twibook.Status;
 import iut.uca.twibook.entities.CommentEntity;
-import iut.uca.twibook.entities.PostEntity;
 import iut.uca.twibook.repositories.CommentRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;

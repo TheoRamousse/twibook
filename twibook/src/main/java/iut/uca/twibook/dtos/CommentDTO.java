@@ -1,10 +1,9 @@
 package iut.uca.twibook.dtos;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.time.LocalDate;
 
 
 @Data

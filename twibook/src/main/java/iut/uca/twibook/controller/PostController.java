@@ -1,23 +1,16 @@
 package iut.uca.twibook.controller;
 
-import java.util.List;
-import java.util.Optional;
-
 import iut.uca.twibook.Status;
+import iut.uca.twibook.dtos.PostDTO;
 import iut.uca.twibook.mappers.PostMapper;
 import iut.uca.twibook.services.PostService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import iut.uca.twibook.dtos.PostDTO;
-import iut.uca.twibook.entities.PostEntity;
-import iut.uca.twibook.factories.PostFactory;
-import iut.uca.twibook.repositories.PostRepository;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:9000")
@@ -36,7 +29,8 @@ public class PostController {
         return new ResponseEntity<>(mapper.toDTO(postService.findById(id)), HttpStatus.OK);
     }
 
-	/*@GetMapping
+	/*
+	@GetMapping
     public ResponseEntity<List<PostDTO>> getPosts() {
         List<PostDTO> posts = mapper.toListDTO(postService.getPosts());
 
@@ -47,7 +41,6 @@ public class PostController {
             return new ResponseEntity<>(posts, HttpStatus.OK);
         }
     }
-
 	 */
 
     @PostMapping
@@ -80,7 +73,6 @@ public class PostController {
         else {
             postDTOList = mapper.toListDTO(postService.getPosts());
         }
-    }
 
         if (postDTOList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -89,8 +81,4 @@ public class PostController {
             return new ResponseEntity<>(postDTOList, HttpStatus.OK);
         }
     }
-
-
-
-
 }

@@ -1,7 +1,6 @@
 package iut.uca.twibook.mappers;
 
 import iut.uca.twibook.dtos.PostDTO;
-import iut.uca.twibook.entities.CommentEntity;
 import iut.uca.twibook.entities.PostEntity;
 import org.mapstruct.Mapper;
 import org.springframework.web.context.annotation.ApplicationScope;
