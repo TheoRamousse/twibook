@@ -37,19 +37,18 @@
       </mat-card-actions>
     </mat-card>
   </div>
+  
   <div *ngIf="!isCommentVisible">
-    <div>
-      <input (change)="textComment=$event.target.value" [value]="textComment" class="text-input form-child"
-        placeholder="Votre commentaire ici" />
+    <div class="monOrientation monMargin">
+      <input (change)="textComment=$event.target.value" [value]="textComment" 
+      class="text-input form-child monMarginInput" placeholder="Votre commentaire ici" />
       <button (click)="onCommentPosted()">Poster</button>
     </div>
-    <pre>
-      toto
-      </pre>
     <div *ngFor="let comment of comments">
       <app-comment [text]="comment.text" [userNickName]="comment.userNickName" [userImageUrl]="comment.userImageUrl"
         [publicationDate]="comment.publicationDate"></app-comment>
     </div>
+    
   </div>
   <div *ngIf="!isCommentVisible" style="display: flex;
   justify-content: center;">
