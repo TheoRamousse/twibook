@@ -10,7 +10,7 @@ import { AppControllerService } from '../../../services/app-controller.service'
 })
 export class PostComponent implements OnInit {
   private comments: Array<Comment> = []
-  private NbCommentsToLoad = 10
+  private NbCommentsToLoad = 2
   private pageNumber = 1
   private loadMoreVisibility = "visible"
   @Input() currentPost: Post
