@@ -4,14 +4,14 @@ import { PersistenceTemplateService } from '../../services/persistence-template.
 import { StubService } from '../../services/stub.service';
 
 @Component({
-  selector: 'app-exemple-post',
-  templateUrl: 'exemple-post.page.html',
-  styleUrls: ['exemple-post.page.scss'],
+  selector: 'app-timeline',
+  templateUrl: 'timeline.page.html',
+  styleUrls: ['timeline.page.scss'],
   providers: [
     { provide: PersistenceTemplateService, useClass: StubService },
   ]
 })
-export class ExemplePostPage {
+export class TimelinePage {
   post: Post
   constructor(pers: PersistenceTemplateService) {
     this.post = pers.getPostById("1");
