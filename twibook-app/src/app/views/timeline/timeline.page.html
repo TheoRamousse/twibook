@@ -13,5 +13,9 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-post [currentPost]="post"></app-post>
+  <div *ngFor="let el of posts">
+    <app-post [currentPost]="el"></app-post>
+  </div>
+
+  <button (click)="onLoadNextPosts()">Charger plus</button>
 </ion-content>

@@ -12,9 +12,21 @@ import { StubService } from '../../services/stub.service';
   ]
 })
 export class TimelinePage {
-  post: Post
-  constructor(pers: PersistenceTemplateService) {
-    this.post = pers.getPostById("1");
+  private posts: Array<Post> = []
+  private NbPostsToLoad = 2
+  private pageNumber = 1
+  private loadMoreVisibility = "visible"
+
+  constructor(private pers: PersistenceTemplateService) {
+  }
+
+  private onLoadNextPosts() {
+    this.posts.push(...this.pers.getPostsPagined(this.pageNumber, this.NbPostsToLoad))
+    this.pageNumber += 1
+  }
+
+  ngOnInit() {
+    this.onLoadNextPosts()
   }
 
 }

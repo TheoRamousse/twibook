@@ -10,6 +10,7 @@ import { Comment } from '../model/Comment';
 export abstract class PersistenceTemplateService {
 
   abstract getPosts(): Array<Post>;
+  abstract getPostsPagined(current_page: number, per_page_items: number): Array<Post>;
   abstract getPostById(id: string): Post;
   abstract getCommentById(id: string): Comment;
   abstract getUserById(id: string): User;

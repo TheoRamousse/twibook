@@ -86,4 +86,14 @@ export class StubService extends PersistenceTemplateService {
   addNewUser(user: User) {
     this.users.push(user);
   }
+
+  getPostsPagined(current_page: number, per_page_items: number): Array<Post> {
+    let page = current_page || 1,
+      per_page = per_page_items || 1,
+      offset = (page - 1) * per_page,
+
+      paginatedItems = this.posts.slice(offset).slice(0, per_page_items)
+
+    return paginatedItems
+  }
 }
