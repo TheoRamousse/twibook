@@ -1,30 +1,50 @@
-<ion-tabs>
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <title>NAVBAR</title>
+    <link rel="stylesheet" href="tabs.page.scss" type="text/css">
+  </head> -->
 
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="connection">
-      <ion-icon name="triangle"></ion-icon>
-      <ion-label>Connexion</ion-label>
-    </ion-tab-button>
 
-    <ion-tab-button tab="inscription">
-      <ion-icon name="ellipse"></ion-icon>
-      <ion-label>Inscription</ion-label>
-    </ion-tab-button>
+<div class="naviguation">
+  <ul>
+    <li [ngClass]="isActiveAcceuil ? 'list active' : 'list'">
+      <a (click)="navigateToAcceuil()">
+        <span class="icon">
+          <ion-icon name="home-outline"></ion-icon>
+        </span>
+        <span class="text">Home</span>
+      </a>
+    </li>
+    <li [ngClass]="isActiveInscription ? 'list active' : 'list'">
+      <a (click)="navigateToInscription()">
+        <span class="icon">
+          <ion-icon name="home-outline"></ion-icon>
+        </span>
+        <span class="text">Inscription</span>
+      </a>
+    </li>
+    <li [ngClass]="isActivePost ? 'list active' : 'list'">
+      <a (click)="navigateToPost()">
+        <span class="icon">
+          <ion-icon name="chatbubble-outline"></ion-icon>
+        </span>
+        <span class="text">Posts</span>
+      </a>
+    </li>
+    <li [ngClass]="isActiveSetting ? 'list active' : 'list'">
+      <a (click)="navigateToSetting()">
+        <span class="icon">
+          <ion-icon name="settings-outline"></ion-icon>
+        </span>
+        <span class="text">Profil</span>
+      </a>
+    </li>
+    <div class="indicator">
+    </div>
+  </ul>
+</div>
 
-    <ion-tab-button tab="timeline">
-      <ion-icon name="square"></ion-icon>
-      <ion-label>Exemple Post</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="post-deplie">
-      <ion-icon name="triangle"></ion-icon>
-      <ion-label>Post deplie</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="edition-profile">
-      <ion-icon name="square"></ion-icon>
-      <ion-label>Edition profile</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-
-</ion-tabs>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<!-- </html> -->
