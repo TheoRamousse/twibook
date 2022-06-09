@@ -34,7 +34,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/connection',
+    redirectTo: '/tabs/connection',
     pathMatch: 'full'
   }
 ];
