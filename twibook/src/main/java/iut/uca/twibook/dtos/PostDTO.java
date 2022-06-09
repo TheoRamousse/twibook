@@ -12,6 +12,7 @@ public class PostDTO {
 
 	private String id;
 	private String text;
+	private String postImage;
 	private LocalDate publicationDate;
 	private String firstCommentText;
 	private String firstCommentUserImageUrl;

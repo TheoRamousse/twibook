@@ -23,6 +23,9 @@ public class PostEntity{
 	@Field("text")
 	private String text;
 
+	@Field("post_image")
+	private String postImage;
+
 	@Field("publication_date")
 	private LocalDate publicationDate;
 
