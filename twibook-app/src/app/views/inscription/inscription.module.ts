@@ -7,6 +7,7 @@ import { InscriptionPage } from './inscription.page';
 import { LoginRegisterContainerComponentModule } from '../login-register-container/login-register-container.module';
 
 import { InscriptionPageRoutingModule } from './inscription-routing.module';
+import { TabsPageModule } from 'src/app/tabs/tabs.module';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { InscriptionPageRoutingModule } from './inscription-routing.module';
     FormsModule,
     LoginRegisterContainerComponentModule,
     InscriptionPageRoutingModule,
+    TabsPageModule
   ],
   declarations: [InscriptionPage]
 })
