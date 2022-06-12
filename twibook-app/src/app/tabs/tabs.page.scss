@@ -79,93 +79,6 @@ body{
     opacity: 1;
     transform: translateY(10px);
 }
-@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900');
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-.dimension{
-    height: 17%;
-    background-color:transparent;
-    align-items: flex-end;
-}
-
-body{
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    min-height: 100vh;
-    background: var(--clr) ;
-}
-
-.naviguation{
-    position: relative;
-    width: 30%;
-    height: 70px;
-    background: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-}
-
-.naviguation ul{
-    display: flex;
-    width: 350px;
-}
-
-.naviguation ul li{
-    position: relative;
-    list-style: none;
-    width: 70px;
-    height: 70px;
-    z-index: 1;
-}
-
-.naviguation ul li a{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-    font-weight: 500;
-}
-
-.naviguation ul li a .icon{
-    position: relative;
-    display: block;
-    line-height: 75px;
-    font-size: 1.5em;
-    text-align: center;
-    transition: 0.5s;
-    color: var(--clr);
-}
-
-.naviguation ul li.active a .icon {
-    transform: translateY(-32px);
-}
-
-.naviguation ul li a .text {
-    position: absolute;
-    color: var(--clr);
-    font-weight: 400;
-    font-size: 0.75em;
-    letter-spacing: 0.05em;
-    transition: 0.5s;
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-.naviguation ul li.active a .text {
-    opacity: 1;
-    transform: translateY(10px);
-}
 
 .indicator{
     position: absolute;
@@ -214,6 +127,7 @@ body{
 .naviguation ul li:nth-child(4).active ~ .indicator{
     transform: translateX(calc(70px * 3));
 }
+
 .naviguation ul li:nth-child(5).active ~ .indicator{
     transform: translateX(calc(70px * 4));
 }
