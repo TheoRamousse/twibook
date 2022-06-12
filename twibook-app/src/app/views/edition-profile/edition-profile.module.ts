@@ -11,7 +11,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
 import { EditionProfilePageRoutingModule } from './edition-profile-routing.module';
-import { TabsPageModule } from 'src/app/tabs/tabs.module';
 @NgModule({
   imports: [
     IonicModule,
@@ -24,7 +23,6 @@ import { TabsPageModule } from 'src/app/tabs/tabs.module';
     PostComponentModule,
     RouterModule.forChild([{ path: '', component: EditionProfilePage }]),
     EditionProfilePageRoutingModule,
-    TabsPageModule
   ],
   declarations: [EditionProfilePage]
 })
