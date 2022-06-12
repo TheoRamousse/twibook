@@ -8,15 +8,26 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: '',
-        redirectTo: '/connection',
-        pathMatch: 'full'
-      }
+        path: 'connection',
+        loadChildren: () => import('../views/connection/connection.module').then(m => m.ConnectionPageModule)
+      },
+      {
+        path: 'inscription',
+        loadChildren: () => import('../views/inscription/inscription.module').then(m => m.InscriptionPageModule)
+      },
+      {
+        path: 'edition-profile',
+        loadChildren: () => import('../views/edition-profile/edition-profile.module').then(m => m.EditionProfilePageModule)
+      },
+      {
+        path: 'post',
+        loadChildren: () => import('../views/components/post/post.module').then(m => m.PostComponentModule)
+      },
     ]
   },
   {
     path: '',
-    redirectTo: '/connection',
+    redirectTo: '/tabs/connection',
     pathMatch: 'full'
   }
 ];
