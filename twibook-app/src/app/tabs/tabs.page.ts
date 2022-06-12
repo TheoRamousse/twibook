@@ -18,7 +18,7 @@ export class TabsPage {
     this.isActiveSetting = false;
     this.isActivePost = false;
     this.isActiveInscription = true;
-    this.router.navigateByUrl('/inscription')
+    this.router.navigateByUrl('/tabs/inscription')
   }
 
   navigateToPost(){
@@ -26,7 +26,7 @@ export class TabsPage {
     this.isActiveSetting = false;
     this.isActivePost = true;
     this.isActiveInscription = false;
-    this.router.navigateByUrl('/post')
+    this.router.navigateByUrl('/tabs/post')
   }
 
   navigateToAcceuil(){
@@ -34,7 +34,7 @@ export class TabsPage {
     this.isActiveSetting = false;
     this.isActivePost = false;
     this.isActiveInscription = false;
-    this.router.navigateByUrl('/connection')
+    this.router.navigateByUrl('/tabs/connection')
   }
 
   navigateToSetting(){
@@ -42,7 +42,7 @@ export class TabsPage {
     this.isActiveSetting = true;
     this.isActivePost = false;
     this.isActiveInscription = false;
-    this.router.navigateByUrl('/setting')
+    this.router.navigateByUrl('/tabs/setting')
   }
 
 }
