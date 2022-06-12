@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ConnectionPage } from './connection.page';
 import { LoginRegisterContainerComponentModule } from '../login-register-container/login-register-container.module';
-import { TabsPageModule } from 'src/app/tabs/tabs.module';
 
 import { ConnectionPageRoutingModule } from './connection-routing.module';
 
@@ -15,7 +14,6 @@ import { ConnectionPageRoutingModule } from './connection-routing.module';
     FormsModule,
     LoginRegisterContainerComponentModule,
     ConnectionPageRoutingModule,
-    TabsPageModule
   ],
   declarations: [ConnectionPage]
 })
