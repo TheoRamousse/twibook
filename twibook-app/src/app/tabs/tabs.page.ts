@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AppControllerService } from '../services/app-controller.service';
 
 @Component({
   selector: 'app-tabs',
@@ -11,13 +12,15 @@ export class TabsPage {
   isActiveSetting = false;
   isActivePost = false;
   isActiveInscription = false;
-  constructor( public router: Router)  {}
+  isActiveDeco = false;
+  constructor( public router: Router,private controller: AppControllerService)  {}
 
   navigateToInscription(){
     this.isActiveAcceuil = false;
     this.isActiveSetting = false;
     this.isActivePost = false;
     this.isActiveInscription = true;
+    this.isActiveDeco=false;
     this.router.navigateByUrl('/tabs/inscription')
   }
 
@@ -26,6 +29,7 @@ export class TabsPage {
     this.isActiveSetting = false;
     this.isActivePost = true;
     this.isActiveInscription = false;
+    this.isActiveDeco=false;
     this.router.navigateByUrl('/tabs/post')
   }
 
@@ -34,6 +38,7 @@ export class TabsPage {
     this.isActiveSetting = false;
     this.isActivePost = false;
     this.isActiveInscription = false;
+    this.isActiveDeco=false;
     this.router.navigateByUrl('/tabs/connection')
   }
 
@@ -42,7 +47,17 @@ export class TabsPage {
     this.isActiveSetting = true;
     this.isActivePost = false;
     this.isActiveInscription = false;
+    this.isActiveDeco=false;
     this.router.navigateByUrl('/tabs/edition-profile')
+  }
+
+  deconnexion(){
+    this.isActiveDeco=true;
+    this.isActiveAcceuil = false;
+    this.isActiveSetting = false;
+    this.isActivePost = false;
+    this.isActiveInscription = false;
+    this.controller.logout();
   }
 
 }
