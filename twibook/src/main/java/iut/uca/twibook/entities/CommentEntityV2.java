@@ -16,6 +16,8 @@ import java.time.LocalDateTime;
 @Document("comment")
 public class CommentEntityV2 {
 
+    public static final String SCHEMA_VERSION = "2";
+
     @Field("_id")
     private ObjectId id;
 
@@ -31,6 +33,7 @@ public class CommentEntityV2 {
     @Field("user_image_url")
     private String userImageUrl;
 
-    public static final String SCHEMA_VERSION = "2";
+    @Field("schema_version")
+    private String schemaVersion;
 
 }
