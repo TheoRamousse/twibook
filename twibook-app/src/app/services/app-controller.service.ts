@@ -46,10 +46,12 @@ export class AppControllerService {
   }
 
   public get user() {
-    var result = JSON.parse(localStorage.getItem(LocalStorageKeys.user))
-    if (result._id == null) {
+    var userAsString = localStorage.getItem(LocalStorageKeys.user)
+    if (userAsString == null) {
       return null
     }
+
+    var result = JSON.parse(userAsString)
     return new User(result._id, result._firstName, result._lastName, result._nickName, result._email, result._hashedPwd, result._imageUrl, result._birthDate, result._cars, result._idPosts);
   }
 
@@ -57,5 +59,9 @@ export class AppControllerService {
     var commentReturned = this.pers.addNewComment(newComment)
     referencedPost.idComments.push(commentReturned.id)
     this.pers.updatePost(referencedPost)
+  }
+
+  public getPostsPagined(page: number, count: number): Array<Post> {
+    return this.pers.getPostsPagined(page, count)
   }
 }

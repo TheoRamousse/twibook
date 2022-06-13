@@ -17,8 +17,11 @@ export class ConnectionPage {
   }
 
   onTryLogin() {
-    console.log(this.password)
+    console.log(this.identifiant);
+    console.log(this.password);
+
     try {
+      debugger;
       this.controlleur.tryConnect(this.identifiant, this.password)
       this.errorMessage = ""
       this.router.navigate(['tabs/timeline']);

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../auth/services/auth.guard';
 import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
       },
       {
         path: 'timeline',
-        loadChildren: () => import('../views/timeline/timeline.module').then(m => m.TimelinePageModule)
+        loadChildren: () => import('../views/timeline/timeline.module').then(m => m.TimelinePageModule),
+        canActivate: [AuthGuard]
       },
       {
         path: 'edition-profile',
