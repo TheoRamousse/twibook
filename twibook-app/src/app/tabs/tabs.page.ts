@@ -42,7 +42,7 @@ export class TabsPage {
     this.isActiveSetting = true;
     this.isActivePost = false;
     this.isActiveInscription = false;
-    this.router.navigateByUrl('/tabs/setting')
+    this.router.navigateByUrl('/tabs/edition-profile')
   }
 
 }
