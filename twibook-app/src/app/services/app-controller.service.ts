@@ -57,8 +57,21 @@ export class AppControllerService {
 
   public addNewComment(referencedPost: Post, newComment: Comment) {
     var commentReturned = this.pers.addNewComment(newComment)
+
+    if (referencedPost.idComments.length == 0) {
+      referencedPost.firstCommentPublicationDate = newComment.publicationDate
+      referencedPost.firstCommentText = newComment.text
+      referencedPost.firstCommentUserImageUrl = newComment.userImageUrl
+      referencedPost.firstCommentUserNickName = newComment.userNickName
+    }
+
     referencedPost.idComments.push(commentReturned.id)
+
     this.pers.updatePost(referencedPost)
+  }
+
+  public addNewPost(post: Post) {
+    this.pers.addNewPost(post)
   }
 
   public getPostsPagined(page: number, count: number): Array<Post> {

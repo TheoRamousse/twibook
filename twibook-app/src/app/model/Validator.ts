@@ -17,24 +17,12 @@ export function validateNewComment(id: string,
 }
 
 export function validateNewPost(id: string,
-  text: string,
-  firstCommentText: string,
-  firstCommentUserImageUrl: string,
-  firstCommentUserNickName: string) {
+  text: string) {
   if (id == null || id == "" || id.length > 50) {
     throw new Error("-id- est invalide");
   }
   if (text == null || text == "" || text.length > 512) {
     throw new Error("-text- est invalide");
-  }
-  if (firstCommentText == null || firstCommentText == "" || firstCommentText.length > 512) {
-    throw new Error("-firstCommentText- est invalide");
-  }
-  if (firstCommentUserImageUrl == null || firstCommentUserImageUrl == "" || firstCommentUserImageUrl.length > 256) {
-    throw new Error("-first_comment_user_image_url- est invalide");
-  }
-  if (firstCommentUserNickName == null || firstCommentUserNickName == "" || firstCommentUserNickName.length > 30) {
-    throw new Error("-first_comment_user_nick_name- est invalide");
   }
 }
 

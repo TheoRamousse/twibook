@@ -20,11 +20,13 @@
         <div *ngIf="isCommentVisible">
           <mat-divider></mat-divider>
           <br />
-          <h2 class="top-comment">Top commentaire : </h2>
-          <app-comment [userImageUrl]="currentPost.firstCommentUserImageUrl"
-            [userNickName]="currentPost.firstCommentUserNickName"
-            [publicationDate]="currentPost.firstCommentPublicationDate" [text]="currentPost.firstCommentText">
-          </app-comment>
+          <div *ngIf="currentPost.firstCommentUserNickName != undefined">
+            <h2 class="top-comment">Top commentaire : </h2>
+            <app-comment [userImageUrl]="currentPost.firstCommentUserImageUrl"
+              [userNickName]="currentPost.firstCommentUserNickName"
+              [publicationDate]="currentPost.firstCommentPublicationDate" [text]="currentPost.firstCommentText">
+            </app-comment>
+          </div>
         </div>
       </mat-card-content>
       <mat-card-actions>
