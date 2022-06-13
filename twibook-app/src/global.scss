@@ -26,146 +26,135 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 
-@font-face {
-    font-family: 'Material Icons';
-    font-style: normal;
-    font-weight: 400;
-    src: url(https://example.com/MaterialIcons-Regular.eot);
-    /* For IE6-8 */
-    src: local('Material Icons'),
-        local('MaterialIcons-Regular'),
-        url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
-        url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
-        url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
-}
 
 .material-icons {
-    font-family: 'Material Icons';
-    font-weight: normal;
-    font-style: normal;
-    font-size: 24px;
-    /* Preferred icon size */
-    display: inline-block;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
 
-    /* Support for all WebKit browsers. */
-    -webkit-font-smoothing: antialiased;
-    /* Support for Safari and Chrome. */
-    text-rendering: optimizeLegibility;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
 
-    /* Support for Firefox. */
-    -moz-osx-font-smoothing: grayscale;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
 
-    /* Support for IE. */
-    font-feature-settings: 'liga';
+  /* Support for IE. */
+  font-feature-settings: 'liga';
 }
 
 .card {
-    background-color:rgba(166,11,177,0.25);
-    backdrop-filter: blur(5px);
+  background-color: rgba(166, 11, 177, 0.25);
+  backdrop-filter: blur(5px);
 }
 
 p {
-    color: white !important;
+  color: white !important;
 }
 
 mat-card-title {
-    color: #EBF9FE ;
+  color: #EBF9FE;
 }
 
 mat-card-subtitle {
-    color: #EBF9FE ;
+  color: #EBF9FE;
 }
 
 .neon {
-    color: #224957;
-    text-shadow:
-        0 0 7px #224957,
-        0 0 10px #224957,
-        0 0 42px rgb(221, 0, 255),
-        0 0 73px rgb(221, 0, 255),
-        0 0 100px rgb(221, 0, 255);
-    animation: lumiere 1s infinite linear;
+  color: #224957;
+  text-shadow:
+    0 0 7px #224957,
+    0 0 10px #224957,
+    0 0 42px rgb(221, 0, 255),
+    0 0 73px rgb(221, 0, 255),
+    0 0 100px rgb(221, 0, 255);
+  animation: lumiere 1s infinite linear;
 }
 
 ion-content {
-    --background: no-repeat center center url("/assets/images/bg.jpg");
-    margin: 0;
-    width: 100%;
-    height: 100%;
+  --background: no-repeat center center url("/assets/images/bg.jpg");
+  margin: 0;
+  width: 100%;
+  height: 100%;
 }
 
 
 button {
-    width: 150px;
-    background-color: #64076A;
-    color: white;
-    border-radius: 10px;
-    border: none;
-    height: 40px;
+  width: 150px;
+  background-color: #64076A;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  height: 40px;
 }
 
 input {
-    background-color: #A60BB1;
-    color: white ;
-    width: 300px;
-    margin-top: 30px;
-    border-color: #FB00FF;
-    border-width: 50%;
-    box-shadow: 0px 0px 20px 1px #FB00FF;
+  background-color: #A60BB1;
+  color: white;
+  width: 300px;
+  margin-top: 30px;
+  border-color: #FB00FF;
+  border-width: 50%;
+  box-shadow: 0px 0px 20px 1px #FB00FF;
 }
 
 
 ::placeholder {
-    color: white;
-  }
+  color: white;
+}
 
 
 
 .text-input {
-    border-radius: 10px;
-    height: 40px;
+  border-radius: 10px;
+  height: 40px;
 }
 
 
 
 
-.blueMotionImage{
-    border-color: #5c2af0;
-    border-width: 50%;
-    box-shadow: 0px 0px 10px 5px #5c2af0;
-  }
+.blueMotionImage {
+  border-color: #5c2af0;
+  border-width: 50%;
+  box-shadow: 0px 0px 10px 5px #5c2af0;
+}
 
 
 :root {
-    --shadow-color: #A60BB1;
-    --shadow-color-light: #0008FF;
-  }
+  --shadow-color: #A60BB1;
+  --shadow-color-light: #0008FF;
+}
 
-  .textNeon {
-    color: white;
-    animation: neon 3s infinite;
-  }
+.textNeon {
+  color: white;
+}
 
-  @keyframes neon {
-    0% {
-      text-shadow: -1px -1px 1px var(--shadow-color-light), -1px 1px 1px var(--shadow-color-light), 1px -1px 1px var(--shadow-color-light), 1px 1px 1px var(--shadow-color-light),
+@keyframes neon {
+  0% {
+    text-shadow: -1px -1px 1px var(--shadow-color-light), -1px 1px 1px var(--shadow-color-light), 1px -1px 1px var(--shadow-color-light), 1px 1px 1px var(--shadow-color-light),
       0 0 3px var(--shadow-color-light), 0 0 10px var(--shadow-color-light), 0 0 20px var(--shadow-color-light),
       0 0 30px var(--shadow-color), 0 0 40px var(--shadow-color), 0 0 50px var(--shadow-color), 0 0 70px var(--shadow-color), 0 0 100px var(--shadow-color), 0 0 200px var(--shadow-color);
-    }
-    50% {
-      text-shadow: -1px -1px 1px var(--shadow-color-light), -1px 1px 1px var(--shadow-color-light), 1px -1px 1px var(--shadow-color-light), 1px 1px 1px var(--shadow-color-light),
+  }
+
+  50% {
+    text-shadow: -1px -1px 1px var(--shadow-color-light), -1px 1px 1px var(--shadow-color-light), 1px -1px 1px var(--shadow-color-light), 1px 1px 1px var(--shadow-color-light),
       0 0 5px var(--shadow-color-light), 0 0 15px var(--shadow-color-light), 0 0 25px var(--shadow-color-light),
       0 0 40px var(--shadow-color), 0 0 50px var(--shadow-color), 0 0 60px var(--shadow-color), 0 0 80px var(--shadow-color), 0 0 110px var(--shadow-color), 0 0 210px var(--shadow-color);
-    }
-    100% {
-      text-shadow: -1px -1px 1px var(--shadow-color-light), -1px 1px 1px var(--shadow-color-light), 1px -1px 1px var(--shadow-color-light), 1px 1px 1px var(--shadow-color-light),
+  }
+
+  100% {
+    text-shadow: -1px -1px 1px var(--shadow-color-light), -1px 1px 1px var(--shadow-color-light), 1px -1px 1px var(--shadow-color-light), 1px 1px 1px var(--shadow-color-light),
       0 0 3px var(--shadow-color-light), 0 0 10px var(--shadow-color-light), 0 0 20px var(--shadow-color-light),
       0 0 30px var(--shadow-color), 0 0 40px var(--shadow-color), 0 0 50px var(--shadow-color), 0 0 70px var(--shadow-color), 0 0 100px var(--shadow-color), 0 0 200px var(--shadow-color);
-    }
   }
+}
