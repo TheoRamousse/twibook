@@ -10,7 +10,6 @@ import { LocalStorageKeys } from '../model/LocalStorageKeys';
   providedIn: 'root',
 })
 export class AppControllerService {
-  private connectedUser: User = null;
 
   constructor(private pers: PersistenceTemplateService) { }
 
@@ -20,16 +19,17 @@ export class AppControllerService {
       throw new Error("Identifiant inconnu")
     }
 
-    bcrypt.compare(password, userFound.hashedPassword, (err, result) => {
-      if (result) {
-        localStorage.setItem(LocalStorageKeys.user, JSON.stringify(userFound))
-        return
-      }
-    });
+    var result = bcrypt.compareSync(password, userFound.hashedPassword);
 
-    if (this.user == null) {
+    if (result) {
+      debugger;
+      localStorage.setItem(LocalStorageKeys.user, JSON.stringify(userFound))
+      return
+    }
+    else {
       throw new Error("Mot de passe incorrect")
     }
+
   }
 
   public logout() {
@@ -76,5 +76,9 @@ export class AppControllerService {
 
   public getPostsPagined(page: number, count: number): Array<Post> {
     return this.pers.getPostsPagined(page, count)
+  }
+
+  public getUserByNickName(nickName: string): User {
+    return this.pers.getUserByIdentifiant(nickName)
   }
 }
