@@ -7,6 +7,12 @@
     font-family: 'Poppins', sans-serif;
 }
 
+.dimension{
+    height: 13%;
+    background-color:transparent;
+    align-items: flex-end;
+}
+
 body{
     display: flex;
     justify-content: center;
@@ -17,9 +23,9 @@ body{
 
 .naviguation{
     position: relative;
-    width: 100%;
+    width: 30%;
     height: 70px;
-    background: #fff;
+    background: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
