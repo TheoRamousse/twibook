@@ -17,6 +17,6 @@ public class PostDTO {
 	private String firstCommentText;
 	private String firstCommentUserImageUrl;
 	private String firstCommentUserNickName;
-	private Collection<CommentDTO> comments;
+	private Collection<String> comments;
 	
 }
