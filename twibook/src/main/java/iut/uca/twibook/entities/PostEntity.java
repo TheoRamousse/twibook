@@ -38,8 +38,7 @@ public class PostEntity{
 	@Field("first_comment_user_nick_name")
 	private String firstCommentUserNickName;
 
-	@DBRef(lazy = true)
 	@Field("comments")
-	private Collection<CommentEntity> comments;
+	private Collection<String> comments;
 
 }
