@@ -1,14 +1,13 @@
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-    <title>NAVBAR</title>
-    <link rel="stylesheet" href="tabs.page.scss" type="text/css">
-  </head> -->
   <ion-content>
 <ion-tabs >
   <ion-tab-bar slot="bottom" class = "dimension">
 
-  <div class="naviguation">
+  <div class="naviguation box">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <div class="content">
     <ul>
       <li [ngClass]="isActiveAcceuil ? 'list active' : 'list'">
         <a (click)="navigateToAcceuil()">
