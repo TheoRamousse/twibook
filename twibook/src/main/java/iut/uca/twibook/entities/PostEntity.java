@@ -38,7 +38,7 @@ public class PostEntity{
 	@Field("first_comment_user_nick_name")
 	private String firstCommentUserNickName;
 
-	@Field("comments")
+	@Field("id_comments")
 	private Collection<String> comments;
 
 }
