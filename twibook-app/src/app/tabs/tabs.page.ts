@@ -30,7 +30,7 @@ export class TabsPage {
     this.isActivePost = true;
     this.isActiveInscription = false;
     this.isActiveDeco=false;
-    this.router.navigateByUrl('/tabs/post')
+    this.router.navigateByUrl('/tabs/timeline')
   }
 
   navigateToAcceuil(){
