@@ -10,7 +10,6 @@ import { LocalStorageKeys } from '../model/LocalStorageKeys';
   providedIn: 'root',
 })
 export class AppControllerService {
-  private connectedUser: User = null;
 
   constructor(private pers: PersistenceTemplateService) { }
 
@@ -20,16 +19,17 @@ export class AppControllerService {
       throw new Error("Identifiant inconnu")
     }
 
-    bcrypt.compare(password, userFound.hashedPassword, (err, result) => {
-      if (result) {
-        localStorage.setItem(LocalStorageKeys.user, JSON.stringify(userFound))
-        return
-      }
-    });
+    var result = bcrypt.compareSync(password, userFound.hashedPassword);
 
-    if (this.user == null) {
+    if (result) {
+      debugger;
+      localStorage.setItem(LocalStorageKeys.user, JSON.stringify(userFound))
+      return
+    }
+    else {
       throw new Error("Mot de passe incorrect")
     }
+
   }
 
   public logout() {
@@ -46,16 +46,39 @@ export class AppControllerService {
   }
 
   public get user() {
-    var result = JSON.parse(localStorage.getItem(LocalStorageKeys.user))
-    if (result._id == null) {
+    var userAsString = localStorage.getItem(LocalStorageKeys.user)
+    if (userAsString == null) {
       return null
     }
+
+    var result = JSON.parse(userAsString)
     return new User(result._id, result._firstName, result._lastName, result._nickName, result._email, result._hashedPwd, result._imageUrl, result._birthDate, result._cars, result._idPosts);
   }
 
   public addNewComment(referencedPost: Post, newComment: Comment) {
     var commentReturned = this.pers.addNewComment(newComment)
+
+    if (referencedPost.idComments.length == 0) {
+      referencedPost.firstCommentPublicationDate = newComment.publicationDate
+      referencedPost.firstCommentText = newComment.text
+      referencedPost.firstCommentUserImageUrl = newComment.userImageUrl
+      referencedPost.firstCommentUserNickName = newComment.userNickName
+    }
+
     referencedPost.idComments.push(commentReturned.id)
+
     this.pers.updatePost(referencedPost)
+  }
+
+  public addNewPost(post: Post) {
+    this.pers.addNewPost(post)
+  }
+
+  public getPostsPagined(page: number, count: number): Array<Post> {
+    return this.pers.getPostsPagined(page, count)
+  }
+
+  public getUserByNickName(nickName: string): User {
+    return this.pers.getUserByIdentifiant(nickName)
   }
 }

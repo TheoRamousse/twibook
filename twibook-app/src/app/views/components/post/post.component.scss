@@ -8,16 +8,16 @@
   box-shadow: 0px 0px 10px 5px #47c7f9;
 }
 
-.monOrientation{
+.monOrientation {
   text-align: center;
   justify-content: center;
 }
 
-.monMargin{
+.monMargin {
   margin: 1%;
 }
 
-.monMarginInput{
+.monMarginInput {
   margin-right: 1%;
 }
 
@@ -48,4 +48,9 @@ mat-card-actions {
 
 .button-depier {
   color: white;
+}
+
+.under-post-container {
+  justify-content: center;
+  width: 50%;
 }
