@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../auth/services/auth.guard';
 import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
@@ -16,12 +17,13 @@ const routes: Routes = [
         loadChildren: () => import('../views/inscription/inscription.module').then(m => m.InscriptionPageModule)
       },
       {
-        path: 'edition-profile',
-        loadChildren: () => import('../views/edition-profile/edition-profile.module').then(m => m.EditionProfilePageModule)
+        path: 'timeline',
+        loadChildren: () => import('../views/timeline/timeline.module').then(m => m.TimelinePageModule),
+        canActivate: [AuthGuard]
       },
       {
-        path: 'post',
-        loadChildren: () => import('../views/exemple-post/exemple-post.module').then(m => m.ExemplePostPageModule)
+        path: 'edition-profile',
+        loadChildren: () => import('../views/edition-profile/edition-profile.module').then(m => m.EditionProfilePageModule)
       },
     ]
   },

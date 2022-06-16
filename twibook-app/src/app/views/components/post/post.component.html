@@ -20,11 +20,13 @@
         <div *ngIf="isCommentVisible">
           <mat-divider></mat-divider>
           <br />
-          <h2 class="top-comment">Top commentaire : </h2>
-          <app-comment [userImageUrl]="currentPost.firstCommentUserImageUrl"
-            [userNickName]="currentPost.firstCommentUserNickName"
-            [publicationDate]="currentPost.firstCommentPublicationDate" [text]="currentPost.firstCommentText"
-            [isUnderPost]="true"></app-comment>
+          <div *ngIf="currentPost.firstCommentUserNickName != undefined">
+            <h2 class="top-comment">Top commentaire : </h2>
+            <app-comment [userImageUrl]="currentPost.firstCommentUserImageUrl"
+              [userNickName]="currentPost.firstCommentUserNickName"
+              [publicationDate]="currentPost.firstCommentPublicationDate" [text]="currentPost.firstCommentText">
+            </app-comment>
+          </div>
         </div>
       </mat-card-content>
       <mat-card-actions>
@@ -39,20 +41,23 @@
   </div>
   <div *ngIf="!isCommentVisible">
     <div>
-      <input (change)="textComment=$event.target.value" [value]="textComment" class="text-input form-child"
-        placeholder="Votre commentaire ici" />
-      <button (click)="onCommentPosted()">Poster</button>
-    </div>
-    <div *ngFor="let comment of comments">
-      <app-comment [text]="comment.text" [userNickName]="comment.userNickName" [userImageUrl]="comment.userImageUrl"
-        [publicationDate]="comment.publicationDate"></app-comment>
-    </div>
-  </div>
-  <div *ngIf="!isCommentVisible" style="display: flex;
-  justify-content: center;">
-    <button style="display: inline-block; text-align: center;" [style.visibility]="loadMoreVisibility"
-      (click)="onLoadNextComments()">Charger plus</button>
+      <div class="monOrientation monMargin">
+        <input (change)="textComment=$event.target.value" [value]="textComment"
+          class="text-input form-child monMarginInput" placeholder="Votre commentaire ici" />
+        <button (click)="onCommentPosted()">Poster</button>
+      </div>
+      <div *ngFor="let comment of comments">
+        <app-comment [text]="comment.text" [userNickName]="comment.userNickName" [userImageUrl]="comment.userImageUrl"
+          [publicationDate]="comment.publicationDate" class="under-post-container"></app-comment>
+      </div>
 
+    </div>
+    <div style="display: flex;
+    justify-content: center;">
+      <a style="display: inline-block; text-align: center;" [style.visibility]="loadMoreVisibility"
+        (click)="onLoadNextComments()">Charger plus</a>
+
+    </div>
   </div>
 </div>
 

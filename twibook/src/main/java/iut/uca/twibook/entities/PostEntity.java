@@ -1,25 +1,33 @@
 package iut.uca.twibook.entities;
 
-import java.time.LocalDateTime;
-import java.util.Collection;
-
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.time.LocalDate;
+import java.util.Collection;
+
 @Data
-@EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
+@AllArgsConstructor
 @Document("post")
-public class PostEntity extends IdEntity{
+public class PostEntity{
+
+	@Field("_id")
+	private ObjectId id;
 
 	@Field("text")
 	private String text;
 
+	@Field("post_image")
+	private String postImage;
+
 	@Field("publication_date")
-	private LocalDateTime publicationDate;
+	private LocalDate publicationDate;
 
 	@Field("first_comment_text")
 	private String firstCommentText;
@@ -30,8 +38,7 @@ public class PostEntity extends IdEntity{
 	@Field("first_comment_user_nick_name")
 	private String firstCommentUserNickName;
 
-	@DBRef(lazy = true)
-	@Field("comments")
-	private Collection<CommentEntity> comments;
+	@Field("id_comments")
+	private Collection<String> comments;
 
 }

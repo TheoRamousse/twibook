@@ -1,12 +1,15 @@
 package iut.uca.twibook.dtos;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.experimental.Accessors;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Collection;
 
 @Data
-@Accessors
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserDTO {
     private String id;
     private String firstName;
@@ -16,4 +19,9 @@ public class UserDTO {
     private LocalDate birthDate;
     private String email;
     private String password;
+    private Collection<PostDTO> posts;
+    private Collection<CarDTO> cars;
+
 }
+
+

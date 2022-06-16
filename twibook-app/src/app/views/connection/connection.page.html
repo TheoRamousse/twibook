@@ -9,7 +9,7 @@
       <br />
       <input [(ngModel)]="password" class="text-input form-child" type="password" placeholder="Mot de passe" />
       <br />
-      <button class="link">S'INSCRIRE</button>
+      <button (click)="onNavigateRegister()" class="link">S'INSCRIRE</button>
       <br />
       <p *ngIf="errorMessage != null" style="color: red !important;">{{errorMessage}}</p>
       <br />

@@ -1,16 +1,21 @@
 package iut.uca.twibook.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.awt.*;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
+@AllArgsConstructor
 @Document("car")
-public class CarEntity extends IdEntity {
+public class CarEntity {
+
+    @Field("_id")
+    private ObjectId id;
 
     @Field("model")
     private String model;
@@ -19,5 +24,5 @@ public class CarEntity extends IdEntity {
     private String manufacturer;
 
     @Field("color")
-    private Color color;
+    private Integer color;
 }

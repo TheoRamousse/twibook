@@ -1,7 +1,10 @@
 package iut.uca.twibook.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,9 +14,14 @@ import java.time.LocalDate;
 import java.util.Collection;
 
 @Data
-@EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
+@AllArgsConstructor
 @Document(collection = "twibookUser")
-public class UserEntity extends IdEntity {
+public class UserEntity {
+
+    @Id
+    @Field("_id")
+    private ObjectId id;
 
     @Field("first_name")
     private String firstName;

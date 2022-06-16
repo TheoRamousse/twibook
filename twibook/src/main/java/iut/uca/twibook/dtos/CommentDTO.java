@@ -1,9 +1,9 @@
 package iut.uca.twibook.dtos;
 
-import java.time.LocalDateTime;
-
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.time.LocalDate;
 
 
 @Data
@@ -11,7 +11,7 @@ import lombok.experimental.Accessors;
 public class CommentDTO {
 	private String id;
 	private String text;
-    private LocalDateTime publicationDate;
+    private LocalDate publicationDate;
     private String user_nickName;
     private String userImageUrl;
 }
