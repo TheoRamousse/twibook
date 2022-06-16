@@ -1,4 +1,4 @@
- <ion-header [translucent]="true">
+<ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       Inscription
@@ -15,19 +15,26 @@
 
   <app-login-register-container>
     <div class="form-container" #body>
-      <input class="text-input form-child" placeholder="Email" />
+      <input (change)="email=$event.target.value" [value]="email" class="text-input form-child" placeholder="Email" />
       <br />
-      <input class="text-input form-child" placeholder="Prénom" />
+      <input (change)="firstName=$event.target.value" [value]="firstName" class="text-input form-child"
+        placeholder="Prénom" />
       <br />
-      <input class="text-input form-child" placeholder="Nom" />
+      <input (change)="lastName=$event.target.value" [value]="lastName" class="text-input form-child"
+        placeholder="Nom" />
       <br />
-      <input class="text-input form-child" placeholder="Pseudo"/>
+      <input (change)="nickName=$event.target.value" [value]="nickName" class="text-input form-child"
+        placeholder="Pseudo" />
       <br />
-      <input class="text-input form-child" type="password" placeholder="Mot de passe" />
+      <input (change)="password=$event.target.value" [value]="password" class="text-input form-child" type="password"
+        placeholder="Mot de passe" />
       <br />
-      <input class="text-input form-child" type="password" placeholder="Confirmer le mot de passe" />
+      <input (change)="passwordConfirmation=$event.target.value" [value]="passwordConfirmation"
+        class="text-input form-child" type="password" placeholder="Confirmer le mot de passe" />
       <br />
-      <button class="form-child">S'INSCRIRE</button>
+      <p *ngIf="errorMessage != null" style="color: red !important;">{{errorMessage}}</p>
+      <br />
+      <button (click)="onSubmit()" class="form-child">S'INSCRIRE</button>
     </div>
   </app-login-register-container>
 </ion-content>

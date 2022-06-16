@@ -1,31 +1,32 @@
 import { validateNewPost } from './Validator'
 
+
 export class Post {
   private readonly _id: string;
   private _text: string;
   private _userImageUrl: string;
   private _userNickName: string;
   private readonly _publicationDate: Date;
-  private readonly _firstCommentText: string
-  private readonly _firstCommentUserImageUrl: string
-  private readonly _firstCommentUserNickName: string
-  private readonly _firstCommentPublicationDate: Date
-  private readonly _idComments: Array<string>
-  private _imageUrl: string
+  private _firstCommentText?: string
+  private _firstCommentUserImageUrl?: string
+  private _firstCommentUserNickName?: string
+  private _firstCommentPublicationDate?: Date
+  private _idComments: Array<string>
+  private _imageUrl?: string
 
   public constructor(id: string,
     text: string,
     publicationDate: Date,
     userImageUrl: string,
     userNickName: string,
-    firstCommentPublicationDate: Date,
-    firstCommentText: string,
-    firstCommentUserImageUrl: string,
-    firstCommentUserNickName: string,
-    idComments: Array<string> = [],
-    imageUrl: string) {
+    firstCommentPublicationDate?: Date,
+    firstCommentText?: string,
+    firstCommentUserImageUrl?: string,
+    firstCommentUserNickName?: string,
+    imageUrl?: string,
+    idComments: Array<string> = []) {
 
-    validateNewPost(id, text, firstCommentText, firstCommentUserImageUrl, firstCommentUserNickName);
+    validateNewPost(id, text);
 
     this._id = id;
     this._text = text;
@@ -118,8 +119,8 @@ export class Post {
     this._idComments.push(commentIdToAdd);
   }
 
-  public get idComments(){
-    return  this._idComments
+  public get idComments() {
+    return this._idComments
   }
 
   public removeComment(commentIdToRemove: string) {
@@ -128,6 +129,26 @@ export class Post {
     });
   }
 
+
+  public set firstCommentText(text: string) {
+    this._firstCommentText = text
+  }
+
+
+  public set firstCommentPublicationDate(date: Date) {
+    this._firstCommentPublicationDate = date
+  }
+
+
+  public set firstCommentUserNickName(nickName: string) {
+    this._firstCommentUserNickName = nickName
+  }
+
+
+
+  public set firstCommentUserImageUrl(imageUrl: string) {
+    this._firstCommentUserImageUrl = imageUrl
+  }
 
 
 }
