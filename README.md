@@ -41,8 +41,9 @@ Pour la relation entre un utilisateur et ses voitures, nous auront une relation 
 
 ### Patron NoSQL implémenté
 
-Nous avons également implémenté le patron NoSQL "Schema Versioning". Ce patron permet d'ajouter un numéro de version aux différents documents de la base. Ce numéro de version permettra de modifier les documents qui seront dans un numéro de version inférieur de la version courante dans le but qu'ils aient la même structure que les noueaux documents insérés.
-Le patron facilite donc grandement les migrations en diminuant le temps d'exécution de celle-ci.
+Nous avons également implémenté le patron NoSQL "Schema Versioning". Ce patron permet d'ajouter un numéro de version aux différents documents de la base. Ce numéro de version permettra de modifier les documents qui seront dans un numéro de version inférieur de la version courante dans le but qu'ils aient la même structure que les noueaux documents insérés. Le patron facilite donc grandement les migrations en diminuant le temps d'exécution de celle-ci.
+
+L'intégralité de nos documents ont donc un champ "schema_version" de type string qui contient la version actuelle du document.
 
 
 
