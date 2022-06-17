@@ -7,6 +7,10 @@ import { AppControllerService } from '../../services/app-controller.service';
 import { WINDOW } from "../../services/window.service";
 import { DOCUMENT } from '@angular/common';
 import { IonContent } from '@ionic/angular';
+import { CameraService } from '../../services/camera.service';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import { defineCustomElements } from '@ionic/pwa-elements/loader'
+import { from, Observable, observable, PartialObserver, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-timeline',
@@ -21,14 +25,17 @@ export class TimelinePage {
   private posts: Array<Post> = []
   private NbPostsToLoad = 2
   private pageNumber = 1
-  private urlImage = ""
+  private urlImage: SafeUrl
   private text = ""
+  private subscription: Subscription
+  private base64ToSaveAsImageUrl: string
 
   @ViewChild(IonContent) content: IonContent;
 
   isLoading = false
 
-  constructor(private controlleur: AppControllerService, private router: Router, @Inject(WINDOW) private window: Window, @Inject(DOCUMENT) private document: Document) {
+  constructor(private _sanitizer: DomSanitizer, public cameraService: CameraService, private controlleur: AppControllerService, private router: Router, @Inject(WINDOW) private window: Window, @Inject(DOCUMENT) private document: Document) {
+    defineCustomElements(window);
   }
 
   @HostListener('scroll', ['$event'])
@@ -56,11 +63,26 @@ export class TimelinePage {
   }
 
   onPostSent() {
-    var newPost = new Post("0", this.text, new Date(Date.now()), this.controlleur.user!.imageUrl, this.controlleur.user!.nickName, undefined, undefined, undefined, undefined, this.urlImage)
+    var newPost = new Post("0", this.text, new Date(Date.now()), this.controlleur.user!.imageUrl, this.controlleur.user!.nickName, undefined, undefined, undefined, undefined, this.base64ToSaveAsImageUrl)
     this.controlleur.addNewPost(newPost)
     this.posts = [newPost].concat(this.posts)
     this.text = ""
     this.urlImage = ""
+  }
+
+  onOpenCamera() {
+    var sanitizerTmp = this._sanitizer
+    var imageTmp: SafeResourceUrl
+    var self = this;
+
+    this.cameraService.addNewToGalleryAndGet().then(function (base64) {
+      self.base64ToSaveAsImageUrl = base64
+      self.urlImage = sanitizerTmp.bypassSecurityTrustUrl(base64);
+    })
+
+
+
+
   }
 
 }

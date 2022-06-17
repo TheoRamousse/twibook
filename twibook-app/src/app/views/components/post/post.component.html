@@ -10,7 +10,7 @@
         </mat-card-subtitle>
       </mat-card-header>
       <div *ngIf="currentPost.imageUrl != ''" class="image-container">
-        <img src="{{currentPost.imageUrl}}" alt="Photo of TUNING">
+        <img [src]="imageUrl" alt="Photo of TUNING">
       </div>
       <br /><br />
       <mat-card-content>
