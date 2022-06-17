@@ -15,7 +15,8 @@
 
   <mat-card class="mat-elevation-z8 card neonPost">
     <mat-card-content>
-      <input (change)="urlImage=$event.target.value" [value]="urlImage" type="text" placeholder="URL de l'image" />
+      <button (click)="onOpenCamera()">Prendre une photo</button>
+      <img [hidden]="urlImage == undefined" [src]="urlImage" alt="" />
       <textarea (change)="text=$event.target.value" [value]="text" placeholder="Votre texte"></textarea>
     </mat-card-content>
     <mat-card-actions>
