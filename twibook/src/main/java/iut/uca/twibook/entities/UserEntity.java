@@ -1,5 +1,6 @@
 package iut.uca.twibook.entities;
 
+import iut.uca.twibook.dtos.CarDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -45,10 +47,11 @@ public class UserEntity {
     @Field("password")
     private String password;
 
-    @DBRef(lazy = true)
     @Field("posts")
-    private Collection<PostEntity> posts;
+    private List<String> posts;
 
     @Field("cars")
-    private Collection<CarEntity> cars;
+    private List<CarEntity> cars;
+
+    public static final String SCHEMA_VERSION = "1";
 }

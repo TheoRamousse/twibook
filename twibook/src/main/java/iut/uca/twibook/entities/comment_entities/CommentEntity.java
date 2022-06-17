@@ -1,4 +1,4 @@
-package iut.uca.twibook.entities;
+package iut.uca.twibook.entities.comment_entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,6 +15,8 @@ import java.time.LocalDate;
 @Document("comment")
 public class CommentEntity {
 
+	public static final String SCHEMA_VERSION = "1";
+
 	@Field("_id")
 	private ObjectId id;
 
@@ -30,4 +32,6 @@ public class CommentEntity {
 	@Field("user_image_url")
 	private String userImageUrl;
 
+	@Field("schema_version")
+	private String schemaVersion;
 }

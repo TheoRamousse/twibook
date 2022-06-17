@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Collection;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -15,12 +15,12 @@ public class UserDTO {
     private String firstName;
     private String lastName;
     private String nickName;
-    private String imgUrl;
+    private String imageUrl;
     private LocalDate birthDate;
     private String email;
     private String password;
-    private Collection<PostDTO> posts;
-    private Collection<CarDTO> cars;
+    private List<String> posts;
+    private List<CarDTO> cars;
 
 }
 

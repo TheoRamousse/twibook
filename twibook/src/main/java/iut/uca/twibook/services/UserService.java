@@ -25,6 +25,15 @@ public class UserService{
         return userEntity;
     }
 
+    public UserEntity findByNickName(String nickName){
+        UserEntity userEntity = repository.findByNickName(nickName);
+        if(userEntity == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
+        }
+        return userEntity;
+    }
+
+
     public List<UserEntity> getUsers(){
         return repository.findAll();
     }
@@ -35,7 +44,6 @@ public class UserService{
         UserEntity userToUpdate = repository.findByEmail(userEntity.getEmail());
 
         if(userToUpdate == null) {
-            userEntity.setId(new ObjectId());
 
             response = Status.CREATED;
         }

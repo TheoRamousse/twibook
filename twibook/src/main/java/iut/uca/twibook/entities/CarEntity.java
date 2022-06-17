@@ -25,4 +25,6 @@ public class CarEntity {
 
     @Field("color")
     private Integer color;
+
+    public static final String SCHEMA_VERSION = "1";
 }

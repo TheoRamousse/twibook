@@ -10,7 +10,11 @@ public interface UserRepository extends MongoRepository<UserEntity, String> {
 
     UserEntity findById(ObjectId id);
 
-    UserEntity findByEmail(String email);
+    UserEntity findByNickName(String email);
+
+    boolean existsByEmail(String email);
+
+    UserEntity findByEmail(String id);
 
     Long removeById(ObjectId _id);
 }

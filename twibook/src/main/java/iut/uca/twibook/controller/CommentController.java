@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import iut.uca.twibook.dtos.CommentDTO;
 import java.util.List;
 
 
@@ -33,7 +34,7 @@ public class CommentController {
 	@GetMapping
     public ResponseEntity<List<CommentDTO>> getComments() {
 
-        List<CommentDTO> commentDTOList = mapper.toListDTO(commentService.getComments());
+        List<CommentDTO> commentDTOList = mapper.toListDTOwithV2(commentService.getComments());
 
         if (commentDTOList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -45,7 +46,7 @@ public class CommentController {
 
     @PostMapping
     public ResponseEntity<String> createComment(@RequestBody CommentDTO comment) {
-        Status response = commentService.createComment(mapper.toEntity(comment));
+        Status response = commentService.createComment(mapper.toEntityV2(comment));
 
         switch (response) {
             case UPDATED: return new ResponseEntity<>("Comment updated", HttpStatus.OK);
