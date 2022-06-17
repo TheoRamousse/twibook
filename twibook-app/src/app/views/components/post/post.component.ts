@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Post } from '../../../model/Post'
 import { Comment } from '../../../model/Comment'
 import { AppControllerService } from '../../../services/app-controller.service'
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-post',
@@ -16,8 +17,9 @@ export class PostComponent implements OnInit {
   @Input() currentPost: Post
   private isCommentVisible: Boolean = true;
   private textComment: string = "";
+  private imageUrl: SafeUrl = this._sanitizer.bypassSecurityTrustUrl("");
 
-  constructor(private controlleur: AppControllerService) {
+  constructor(private _sanitizer: DomSanitizer, private controlleur: AppControllerService) {
   }
 
 
@@ -47,6 +49,7 @@ export class PostComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.imageUrl = this._sanitizer.bypassSecurityTrustUrl(this.currentPost.imageUrl);
     this.onLoadNextComments()
   }
 
