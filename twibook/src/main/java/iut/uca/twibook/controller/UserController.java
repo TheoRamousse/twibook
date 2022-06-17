@@ -32,7 +32,7 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserDTO>> getUsers(@RequestParam String nickName) {
+    public ResponseEntity<List<UserDTO>> getUsers(@RequestParam(required = false) String nickName) {
 
         if(nickName != null) {
             return new ResponseEntity<>(mapper.toListDTO(Collections.singletonList(userService.findByNickName(nickName))), HttpStatus.OK);
