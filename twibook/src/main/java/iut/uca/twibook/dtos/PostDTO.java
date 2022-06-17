@@ -1,5 +1,8 @@
 package iut.uca.twibook.dtos;
 
+import lombok.Data;
+import lombok.experimental.Accessors;
+
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
