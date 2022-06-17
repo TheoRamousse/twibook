@@ -1,8 +1,11 @@
 package iut.uca.twibook.services;
 
 import iut.uca.twibook.Status;
-import iut.uca.twibook.entities.CommentEntity;
-import iut.uca.twibook.repositories.CommentRepository;
+import iut.uca.twibook.entities.comment_entities.CommentEntity;
+import iut.uca.twibook.entities.comment_entities.CommentEntityV2;
+import iut.uca.twibook.mappers.CommentMapper;
+import iut.uca.twibook.repositories.comment_repositories.CommentRepository;
+import iut.uca.twibook.repositories.comment_repositories.CommentRepositoryV2;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,29 +20,55 @@ public class CommentService {
     @Autowired
     CommentRepository repository;
 
-    public CommentEntity findById(ObjectId id){
+    @Autowired
+    CommentRepositoryV2 repositoryV2;
+
+    @Autowired
+    CommentMapper commentMapper;
+
+    public CommentEntityV2 findById(ObjectId id){
         CommentEntity commentEntity = repository.findById(id);
-        if(commentEntity == null){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Comment not found");
-        }
-        return commentEntity;
-    }
+        CommentEntityV2 commentEntityV2;
 
-    public List<CommentEntity> getComments(){
-        return repository.findAll();
-    }
-
-    public Status createComment(CommentEntity commentEntity){
-        Status response;
-
-        if(commentEntity.getId() == null) {
-
-            response = Status.CREATED;
+        if(commentEntity != null) {
+            commentEntityV2 = commentMapper.toCurrentVersion(commentEntity);
         }
         else {
+            commentEntityV2 = repositoryV2.findById(id);
+        }
+
+        if(commentEntityV2 == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Comment not found");
+        }
+
+        return commentEntityV2;
+    }
+
+    public List<CommentEntityV2> getComments(){
+        List<CommentEntity> commentEntityList = repository.findAll();
+        List<CommentEntityV2> commentEntityV2List = repositoryV2.findAll();
+        List<CommentEntityV2> temporaryList;
+
+        if(!commentEntityList.isEmpty()) {
+            temporaryList = commentMapper.toCurrentVersion(commentEntityList);
+            temporaryList.removeAll(commentEntityV2List);
+            commentEntityV2List.addAll(temporaryList);
+        }
+
+        return commentEntityV2List;
+    }
+
+    public Status createComment(CommentEntityV2 commentEntityV2){
+        Status response;
+
+        if(commentEntityV2.getId() != null && repositoryV2.existsById(commentEntityV2.getId().toString())) {
             response = Status.UPDATED;
         }
-        repository.save(commentEntity);
+        else {
+            response = Status.CREATED;
+            commentEntityV2.setSchemaVersion("2");
+        }
+        repositoryV2.save(commentEntityV2);
         return response;
     }
 

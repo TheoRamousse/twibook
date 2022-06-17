@@ -7,7 +7,7 @@ import org.springframework.web.context.annotation.ApplicationScope;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {ObjectIdMapper.class, PostMapper.class, CarMapper.class})
+@Mapper(componentModel = "spring", uses = {ObjectIdMapper.class, CarMapper.class})
 @ApplicationScope
 public interface UserMapper {
 

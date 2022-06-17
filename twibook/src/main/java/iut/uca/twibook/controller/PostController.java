@@ -1,5 +1,7 @@
 package iut.uca.twibook.controller;
 
+import java.util.List;
+
 import iut.uca.twibook.Status;
 import iut.uca.twibook.dtos.PostDTO;
 import iut.uca.twibook.mappers.PostMapper;
@@ -10,7 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import iut.uca.twibook.dtos.PostDTO;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:9000")
@@ -28,20 +30,6 @@ public class PostController {
 
         return new ResponseEntity<>(mapper.toDTO(postService.findById(id)), HttpStatus.OK);
     }
-
-	/*
-	@GetMapping
-    public ResponseEntity<List<PostDTO>> getPosts() {
-        List<PostDTO> posts = mapper.toListDTO(postService.getPosts());
-
-        if (posts.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        else {
-            return new ResponseEntity<>(posts, HttpStatus.OK);
-        }
-    }
-	 */
 
     @PostMapping
     public ResponseEntity<String> createPost(@RequestBody PostDTO post) {

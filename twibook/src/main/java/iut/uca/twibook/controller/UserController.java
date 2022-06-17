@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 
@@ -31,7 +32,11 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserDTO>> getUsers() {
+    public ResponseEntity<List<UserDTO>> getUsers(@RequestParam String nickName) {
+
+        if(nickName != null) {
+            return new ResponseEntity<>(mapper.toListDTO(Collections.singletonList(userService.findByNickName(nickName))), HttpStatus.OK);
+        }
 
         List<UserDTO> userDTOList = mapper.toListDTO(userService.getUsers());
 

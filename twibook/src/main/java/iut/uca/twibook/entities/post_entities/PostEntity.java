@@ -1,21 +1,22 @@
-package iut.uca.twibook.entities;
+package iut.uca.twibook.entities.post_entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.time.LocalDate;
-import java.util.Collection;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Document("post")
 public class PostEntity{
+
+	public static final String SCHEMA_VERSION = "1";
 
 	@Field("_id")
 	private ObjectId id;
@@ -38,7 +39,9 @@ public class PostEntity{
 	@Field("first_comment_user_nick_name")
 	private String firstCommentUserNickName;
 
-	@Field("id_comments")
-	private Collection<String> comments;
+	@Field("comments")
+	private List<String> comments;
 
+	@Field("schema_version")
+	private String schemaVersion;
 }
