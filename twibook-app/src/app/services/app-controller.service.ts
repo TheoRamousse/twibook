@@ -5,6 +5,8 @@ import { PersistenceTemplateService } from './persistence-template.service';
 import { Post } from '../model/Post';
 import { Comment } from '../model/Comment';
 import { LocalStorageKeys } from '../model/LocalStorageKeys';
+import { Observable } from 'rxjs';
+import { PostFromApi } from '../model/PostFromApi';
 
 @Injectable({
   providedIn: 'root',
@@ -14,21 +16,23 @@ export class AppControllerService {
   constructor(private pers: PersistenceTemplateService) { }
 
   public tryConnect(id: string, password: string) {
-    var userFound = this.pers.getUserByIdentifiant(id)
-    if (userFound == null) {
-      throw new Error("Identifiant inconnu")
-    }
+    this.pers.getUserByIdentifiant(id).subscribe(userFound => {
+      if (userFound == null) {
+        throw new Error("Identifiant inconnu")
+      }
 
-    var result = bcrypt.compareSync(password, userFound.hashedPassword);
+      var result = bcrypt.compareSync(password, userFound.hashedPassword);
 
-    if (result) {
-      debugger;
-      localStorage.setItem(LocalStorageKeys.user, JSON.stringify(userFound))
-      return
-    }
-    else {
-      throw new Error("Mot de passe incorrect")
-    }
+      if (result) {
+        debugger;
+        localStorage.setItem(LocalStorageKeys.user, JSON.stringify(userFound))
+        return
+      }
+      else {
+        throw new Error("Mot de passe incorrect")
+      }
+
+    })
 
   }
 
@@ -37,6 +41,7 @@ export class AppControllerService {
   }
 
   public registerUser(email: string, password: string, nickName: string, firstName: string, lastName: string) {
+    debugger
     var hashedPassword = bcrypt.hashSync(password, 10);
     this.pers.addNewUser(new User("0", firstName, lastName, nickName, email, hashedPassword));
   }
@@ -56,29 +61,30 @@ export class AppControllerService {
   }
 
   public addNewComment(referencedPost: Post, newComment: Comment) {
-    var commentReturned = this.pers.addNewComment(newComment)
+    debugger
+    this.pers.addNewComment(newComment).subscribe(commentReturned => {
+      if (referencedPost.idComments.length == 0) {
+        referencedPost.firstCommentPublicationDate = newComment.publicationDate
+        referencedPost.firstCommentText = newComment.text
+        referencedPost.firstCommentUserImageUrl = newComment.userImageUrl
+        referencedPost.firstCommentUserNickName = newComment.userNickName
+      }
 
-    if (referencedPost.idComments.length == 0) {
-      referencedPost.firstCommentPublicationDate = newComment.publicationDate
-      referencedPost.firstCommentText = newComment.text
-      referencedPost.firstCommentUserImageUrl = newComment.userImageUrl
-      referencedPost.firstCommentUserNickName = newComment.userNickName
-    }
+      referencedPost.idComments.push(commentReturned.id)
 
-    referencedPost.idComments.push(commentReturned.id)
-
-    this.pers.updatePost(referencedPost)
+      this.pers.updatePost(referencedPost)
+    })
   }
 
   public addNewPost(post: Post) {
     this.pers.addNewPost(post)
   }
 
-  public getPostsPagined(page: number, count: number): Array<Post> {
+  public getPostsPagined(page: number, count: number): Observable<Array<PostFromApi>> {
     return this.pers.getPostsPagined(page, count)
   }
 
-  public getUserByNickName(nickName: string): User {
+  public getUserByNickName(nickName: string): Observable<User> {
     return this.pers.getUserByIdentifiant(nickName)
   }
 }

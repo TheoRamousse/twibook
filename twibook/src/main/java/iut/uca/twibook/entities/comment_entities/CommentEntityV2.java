@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -18,6 +19,7 @@ public class CommentEntityV2 {
 
     public static final String SCHEMA_VERSION = "2";
 
+    @Id
     @Field("_id")
     private ObjectId id;
 
@@ -25,7 +27,7 @@ public class CommentEntityV2 {
     private String text;
 
     @Field("publication_date")
-    private LocalDateTime publicationDate;
+    private LocalDate publicationDate;
 
     @Field("user_nick_name")
     private String userNickName;

@@ -44,22 +44,24 @@ export class InscriptionPage {
       this.errorMessage = "Les mots de passe ne correspondent pas";
     }
 
-    else if (this.password.length < 8) {
-      this.errorMessage = "Le mot de passe doit contenir au moins 8 caractères";
-    }
-
     //check complexity password
     else if (!this.checkPasswordComplexity(this.password)) {
-    }
-    else if (this.controlleur.getUserByNickName(this.email) != null) {
-      this.errorMessage = "Ce pseudo est déjà utilisé";
+      this.errorMessage = "Le mot de passe n'est pas assez complexe";
     }
     else {
-      this.controlleur.registerUser(this.email, this.password, this.nickName, this.firstName, this.lastName);
-      this.errorMessage = "";
-      this.router.navigate(['tabs/connection']);
+      this.controlleur.getUserByNickName(this.nickName).subscribe(user => {
+        this.errorMessage = "Ce pseudo est déjà utilisé";
+      }, error => {
+        if (error.status == 404) {
+          this.controlleur.registerUser(this.email, this.password, this.nickName, this.firstName, this.lastName);
+          this.errorMessage = "";
+          this.router.navigate(['tabs/connection']);
+        }
+        else {
+          this.errorMessage = "Une erreur est survenue";
+        }
+      })
     }
-
 
   }
 }

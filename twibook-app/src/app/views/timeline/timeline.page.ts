@@ -23,8 +23,8 @@ import { from, Observable, observable, PartialObserver, Subscription } from 'rxj
 @Directive({ selector: '[trackScroll]' })
 export class TimelinePage {
   private posts: Array<Post> = []
-  private NbPostsToLoad = 2
-  private pageNumber = 1
+  private NbPostsToLoad = 4
+  private pageNumber = 0
   private urlImage: SafeUrl
   private text = ""
   private subscription: Subscription
@@ -46,6 +46,7 @@ export class TimelinePage {
       scrollElement.scrollTop ===
       scrollElement.scrollHeight - scrollElement.clientHeight
     ) {
+      debugger
       this.isLoading = true;
       this.onLoadNextPosts();
       this.isLoading = false;
@@ -53,15 +54,21 @@ export class TimelinePage {
   }
 
 
-  private onLoadNextPosts() {
-    this.posts.push(...this.controlleur.getPostsPagined(this.pageNumber, this.NbPostsToLoad))
-    this.pageNumber += 1
+  private async onLoadNextPosts() {
+    var result = this.controlleur.getPostsPagined(this.pageNumber, this.NbPostsToLoad).subscribe(results => {
+
+      this.posts.push(...results.map(result => {
+        return new Post(result.id, result.text, result.publicationDate, result.userImageUrl, result.userNickName, result.firstCommentPublicationDate, result.firstCommentText, result.firstCommentUserImageUrl, result.firstCommentUserNickName, result.postImage)
+      }))
+      this.pageNumber += 1
+    })
+
   }
 
   ngOnInit() {
     this.onLoadNextPosts()
   }
-
+  cd
   onPostSent() {
     var newPost = new Post("0", this.text, new Date(Date.now()), this.controlleur.user!.imageUrl, this.controlleur.user!.nickName, undefined, undefined, undefined, undefined, this.base64ToSaveAsImageUrl)
     this.controlleur.addNewPost(newPost)

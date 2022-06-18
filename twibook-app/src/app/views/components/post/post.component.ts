@@ -23,10 +23,14 @@ export class PostComponent implements OnInit {
   }
 
 
-  private onLoadNextComments() {
+  private async onLoadNextComments() {
     var idsNewComments = this.paginator(this.currentPost.idComments, this.pageNumber, this.NbCommentsToLoad)
 
-    idsNewComments.forEach(el => this.comments.push(this.controlleur.getCommentById(el)))
+    idsNewComments.forEach(async el => {
+      this.controlleur.getCommentById(el).subscribe(comment => {
+        this.comments.push(comment)
+      })
+    })
     this.pageNumber += 1
     this.loadMoreVisibility = this.paginator(this.currentPost.idComments, this.pageNumber, this.NbCommentsToLoad).length == 0 ? "hidden" : "visible"
   }
