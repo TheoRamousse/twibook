@@ -27,7 +27,7 @@ export class PostComponent implements OnInit {
     var idsNewComments = this.paginator(this.currentPost.idComments, this.pageNumber, this.NbCommentsToLoad)
 
     idsNewComments.forEach(async el => {
-      this.controlleur.getCommentById(el).subscribe(function (comment) {
+      this.controlleur.getCommentById(el).subscribe(comment => {
         this.comments.push(comment)
       })
     })
