@@ -14,6 +14,9 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+/***
+ * Service de commentaire permattant de séparer le traitement métier des couches controller et repository.
+ */
 @Service
 public class CommentService {
 
@@ -26,6 +29,11 @@ public class CommentService {
     @Autowired
     CommentMapper commentMapper;
 
+    /***
+     * Cette méthode permet de récupérer un commentaire à partir de son Id
+     * @param id L'Id du commentaire à récupérer.
+     * @return Retourne le commentaire dans son intégralité ou renvoie une erreur 404 si le commentaire n'est pas trouvé.
+     */
     public CommentEntityV2 findById(ObjectId id){
         CommentEntity commentEntity = repository.findById(id);
         CommentEntityV2 commentEntityV2;
@@ -44,6 +52,10 @@ public class CommentService {
         return commentEntityV2;
     }
 
+    /***
+     * Cette méthode permet de récupérer l'ensemble des commentaires présents en base.
+     * @return Retourne l'ensemble des utilisateurs convertis dans la version la plus recente.
+     */
     public List<CommentEntityV2> getComments(){
         List<CommentEntity> commentEntityList = repository.findAll();
         List<CommentEntityV2> commentEntityV2List = repositoryV2.findAll();
@@ -58,7 +70,14 @@ public class CommentService {
         return commentEntityV2List;
     }
 
-    public class EntityAndCodeResult{
+    /***
+     * Cette méthode permet d'ajouter ou de modifier un commentaire si l'Id a été renseigné.
+     * @param commentEntityV2 Le commentaire à ajouter ou modifier.
+     * @return Retourne si le commentaire a été créé ou modifié.
+     */
+    public Status createComment(CommentEntityV2 commentEntityV2){
+
+        public class EntityAndCodeResult{
         private Status status;
         private CommentEntityV2 entity;
 
@@ -89,6 +108,11 @@ public class CommentService {
         return new EntityAndCodeResult(response ,repositoryV2.save(commentEntityV2));
     }
 
+    /***
+     * Cette méthode permet de supprimer un commentaire à partir de son Id.
+     * @param commentToDelete L'Id du commentaire à supprimer.
+     * @return Retourne un long indiquant si le commentaire a bien été supprimé ou non.
+     */
     public Long deleteComment(ObjectId commentToDelete) {
         return repository.removeById(commentToDelete);
     }

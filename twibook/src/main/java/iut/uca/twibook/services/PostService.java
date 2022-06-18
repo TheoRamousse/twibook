@@ -36,6 +36,11 @@ public class PostService {
 	@Autowired
 	private CommentRepositoryV2 commentRepositoryV2;
 
+	/***
+	 * Cette méthode permet de récupérer un post à partir de son Id.
+	 * @param id L'Id du post à récupérer.
+	 * @return Retourne l'ensemble du post ou une 404 si il n'est pas trouvé.
+	 */
 	public PostEntityV2 findById(ObjectId id){
 		PostEntity postEntity = repository.findById(id);
 		PostEntityV2 postEntityV2;
@@ -53,6 +58,10 @@ public class PostService {
 		return postEntityV2;
 	}
 
+	/***
+	 * Cette méthode permet de récupérer l'ensemble des posts présents en base
+	 * @return Retourne l'ensemble des posts convertis dans la version la plus recente.
+	 */
 	public List<PostEntity> getPosts(){
 		List<PostEntity> postEntityList = repository.findAll();
 		List<PostEntityV2> postEntityV2List = repositoryV2.findAll();
@@ -67,6 +76,12 @@ public class PostService {
 		return repository.findAll();
 	}
 
+	/***
+	 * Cette méthode permet d'ajouter ou de modifier un post si l'Id a été renseigné.
+	 * @param postEntity Le post à ajouter ou modifier.
+	 * @return Retourne si le post a été créé ou modifié.
+	 */
+	public Status createPost(PostEntity postEntity){
 	public class EntityAndCodeResult{
 		private Status status;
 		private PostEntity entity;
@@ -99,10 +114,21 @@ public class PostService {
 		return new EntityAndCodeResult(response, repository.save(postEntity));
 	}
 
+	/***
+	 * Cette méthode permet de supprimer un post à partir de son Id.
+	 * @param postToDelete L'Id du post à supprimer.
+	 * @return Retourne un long indiquant si le post a bien été supprimé ou non.
+	 */
 	public Long deletePost(ObjectId postToDelete) {
 		return repository.removeById(postToDelete);
 	}
 
+	/***
+	 * Cette méthode permet de récupérer des posts sous la forme de page.
+	 * @param page Le numéro de la page.
+	 * @param nbElementsPerPage Le nombre d'éléments que la page va contenir.
+	 * @return Retourne une liste de post.
+	 */
 	public List<PostEntity> findAllPagined(Integer page, Integer nbElementsPerPage){
 		return repository.findAll(PageRequest.of(page, nbElementsPerPage)).getContent();
 	}
