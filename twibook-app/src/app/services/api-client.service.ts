@@ -6,65 +6,89 @@ import { PersistenceTemplateService } from './persistence-template.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors/value-accessor';
+import { Observable } from 'rxjs';
+import { PostFromApi } from '../model/PostFromApi';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ApiClientService extends PersistenceTemplateService {
-  getPostsPagined(current_page: number, per_page_items: number): Post[] {
-    throw new Error('Method not implemented.');
-  }
 
   constructor(private http: HttpClient) {
     super()
   }
 
 
-  getPosts(): Post[] {
-    let value: Post[] = null;
-    this.http.get<Post[]>(environment.apiUrl+'posts').subscribe(posts => value=posts);
-    return value;
+  override getPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(environment.apiUrl + 'posts')
   }
-  getPostById(id: string): Post {
-    let value: Post = null;
+  override getPostById(id: string): Observable<Post> {
 
-    this.http.get<Post>(environment.apiUrl+'posts/'+id);
-    return value;
+    return this.http.get<Post>(environment.apiUrl + 'posts/' + id)
   }
-  getCommentById(id: string): Comment {
-    let value: Comment = null;
-    this.http.get<Comment>(environment.apiUrl+'comments/'+id).subscribe(comment => value=comment);
-    return value;
+  override getCommentById(id: string): Observable<Comment> {
+    return this.http.get<Comment>(environment.apiUrl + 'comments/' + id)
   }
-  getUserById(id: string): User {
-    let value: User = null;
-    this.http.get<User>(environment.apiUrl+'users/'+id).subscribe(user => value=user);
-    return value;
+  override getUserById(id: string): Observable<User> {
+    return this.http.get<User>(environment.apiUrl + 'users/' + id)
   }
-  getUsers(): User[] {
-    let value: User[] = null;
-    this.http.get<User[]>(environment.apiUrl+'users').subscribe(users => value=users);
-    return value;
+  override getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(environment.apiUrl + 'users')
   }
-  getUserByIdentifiant(identifiant: string): User {
-    let value: User = null;
-    this.http.get<User>(environment.apiUrl+'users?nickName='+identifiant).subscribe(user => value=user);
-    return value;
+
+  override getPostsPagined(current_page: number, per_page_items: number): Observable<PostFromApi[]> {
+    return this.http.get<Array<PostFromApi>>(environment.apiUrl + 'posts?page=' + current_page + '&nbElementsPerPage=' + per_page_items)
   }
-  addNewUser(user: User): void {
-    this.http.post(environment.apiUrl+'users/',user);
+
+
+  override getUserByIdentifiant(identifiant: string): Observable<User> {
+    return this.http.get<User>(environment.apiUrl + 'users?nickName=' + identifiant)
   }
-  addNewComment(comment: Comment): Comment {
-    let value: Comment = null;
-    this.http.post<Comment>(environment.apiUrl+'comments/',comment).subscribe(c => value = c);
-    return value;
+  override addNewUser(user: User): void {
+    debugger
+    const headers = { 'content-type': 'application/json' }
+    this.http.post(environment.apiUrl + 'users', {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      id: user.id,
+      nickName: user.nickName,
+      email: user.email,
+      hashedPassword: user.hashedPassword,
+      birthDate: null,
+      posts: [],
+      cars: [],
+      imageUrl: user.imageUrl,
+
+    }, { 'headers': headers }).subscribe()
   }
-  addNewPost(post: Post): void {
-    this.http.post(environment.apiUrl+'posts/',post);
+  override addNewComment(comment: Comment): Observable<Comment> {
+    debugger
+    const headers = { 'content-type': 'application/json' }
+    return this.http.post<Comment>(environment.apiUrl + 'comments/', {
+      id: comment.id,
+      text: comment.text,
+      publicationDate: comment.publicationDate,
+      userNickName: comment.userNickName,
+      userImageUrl: comment.userImageUrl,
+    }, { 'headers': headers });
   }
-  updatePost(post: Post): void {
-    this.http.put(environment.apiUrl+'posts/',post);
+  override addNewPost(post: Post): void {
+    const headers = { 'content-type': 'application/json' }
+    this.http.post(environment.apiUrl + 'posts/', {
+      id: post.id,
+      text: post.text,
+      postImage: post.imageUrl,
+      publicationDate: post.publicationDate,
+      firstCommentText: post.firstCommentText,
+      firstCommentUserImageUrl: post.firstCommentUserImageUrl,
+      firstCommentUserNickName: post.firstCommentUserNickName,
+      comments: post.idComments
+
+    }, { 'headers': headers }).subscribe();
+  }
+  override updatePost(post: Post): void {
+    this.http.post(environment.apiUrl + 'posts/', post).subscribe();
   }
 
 }

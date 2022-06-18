@@ -16,7 +16,7 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:9000")
+@CrossOrigin
 @RequestMapping(value = "/users")
 public class UserController {
 
@@ -48,7 +48,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<String> createUser(@RequestBody UserDTO user) {
-
+        user.setId((new ObjectId()).toString());
         Status response = userService.createUser(mapper.toEntity(user));
 
         switch (response) {

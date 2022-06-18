@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import iut.uca.twibook.dtos.PostDTO;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:9000")
+@CrossOrigin
 @RequestMapping(value = "/posts")
 public class PostController {
 
@@ -33,6 +33,9 @@ public class PostController {
 
     @PostMapping
     public ResponseEntity<String> createPost(@RequestBody PostDTO post) {
+        if(post.getId() == null || post.getId() == "0") {
+            post.setId(new ObjectId().toString());
+        }
         Status response = postService.createPost(mapper.toEntity(post));
 
         switch (response) {

@@ -39,6 +39,14 @@ export class User {
     this._hashedPwd = hashedPwd;
   }
 
+  public get cars(): Car[] {
+    return this._cars;
+  }
+
+  public get posts(): string[] {
+    return this._idPosts;
+  }
+
   public get firstName() {
     return this._firstName;
   }
@@ -50,7 +58,7 @@ export class User {
     this._firstName = theFirstName;
   }
 
-  public get lastname() {
+  public get lastName() {
     return this._lastName;
   }
 
