@@ -2,7 +2,12 @@
   <div class="text-center" style="width: 100%; text-align: center">
     <mat-card class="mat-elevation-z8 card neonPost">
       <mat-card-header>
-        <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + currentPost.userImageUrl + ')'}"
+        <div *ngIf="currentPost.userImageUrl != null" mat-card-avatar
+          [ngStyle]="{'background-image': 'url(' + currentPost.userImageUrl + ')'}"
+          class="profile-picture blueMotionImage">
+        </div>
+        <div *ngIf="currentPost.userImageUrl == null" mat-card-avatar
+          [ngStyle]="{'background-image': 'url(../../../assets/images/utilisateur.png)'}"
           class="profile-picture blueMotionImage">
         </div>
         <mat-card-title class="textNeon">{{currentPost.userNickName}}</mat-card-title>

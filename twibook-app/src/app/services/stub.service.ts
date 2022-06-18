@@ -5,6 +5,8 @@ import { User } from '../model/User';
 import { PersistenceTemplateService } from './persistence-template.service';
 import { Car } from '../model/Car';
 import { Color } from '../model/Color';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { PostFromApi } from '../model/PostFromApi';
 
 @Injectable({
   providedIn: 'root'
@@ -21,10 +23,10 @@ export class StubService extends PersistenceTemplateService {
     return (maxId + 1).toString()
   }
 
-  addNewComment(comment: Comment): Comment {
+  addNewComment(comment: Comment): Observable<Comment> {
     comment.id = this.getNextCommentId()
     this.comments.push(comment)
-    return comment
+    return new BehaviorSubject<Comment>(comment)
   }
   addNewPost(post: Post): void {
     this.posts.push(post)
@@ -55,28 +57,28 @@ export class StubService extends PersistenceTemplateService {
     new User("1", "Jean", "Edward", "toto", "babar@hotmail.fr", "$2a$10$h.BaJZk.I3yCZkW2H2qPAeIaouZYxS06kOyQvCEOfD/C3VBqM1JUq", "https://asset1.replay.fr/photos/3d0/3d07f31980ca05886d33fc5c4123ab11.large.jpg", new Date(Date.now()), new Array(new Car("2", "206", "Peugeot", Color.Red)), new Array("1", "2", "3")),
   ]
 
-  override getUsers() {
-    return this.users;
+  override getUsers(): Observable<User[]> {
+    return new BehaviorSubject<User[]>(this.users);
   }
 
-  getUserByIdentifiant(identifiant: string): User {
-    return this.users.find(element => element.email == identifiant || element.nickName == identifiant);
+  override getUserByIdentifiant(identifiant: string): Observable<User> {
+    return new BehaviorSubject<User>(this.users.find(element => element.email == identifiant || element.nickName == identifiant)!);
   }
 
-  getUserById(id: string): User {
-    return this.users.find(element => element.id == id);
+  override getUserById(id: string): Observable<User> {
+    return new BehaviorSubject<User>(this.users.find(element => element.id == id)!);
   }
 
-  getPosts() {
-    return this.posts;
+  override getPosts(): Observable<Post[]> {
+    return new BehaviorSubject<Post[]>(this.posts);
   }
 
-  getPostById(id: string): Post {
-    return this.posts.find(element => element.id == id)
+  override getPostById(id: string): Observable<Post> {
+    return new BehaviorSubject<Post>(this.posts.find(element => element.id == id)!);
   }
 
-  getCommentById(id: string): Comment {
-    return this.comments.find(element => element.id == id)
+  override getCommentById(id: string): Observable<Comment> {
+    return new BehaviorSubject<Comment>(this.comments.find(element => element.id == id)!)
   }
 
   escapeRegExp(string) {
@@ -87,13 +89,15 @@ export class StubService extends PersistenceTemplateService {
     this.users.push(user);
   }
 
-  getPostsPagined(current_page: number, per_page_items: number): Array<Post> {
+  override getPostsPagined(current_page: number, per_page_items: number): Observable<Array<PostFromApi>> {
     let page = current_page || 1,
       per_page = per_page_items || 1,
       offset = (page - 1) * per_page,
 
       paginatedItems = this.posts.slice(offset).slice(0, per_page_items)
 
-    return paginatedItems
+    return new BehaviorSubject<PostFromApi[]>(paginatedItems.map(post => {
+      return new PostFromApi(post);
+    }))
   }
 }

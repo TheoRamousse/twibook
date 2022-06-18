@@ -9,7 +9,7 @@ import org.springframework.web.context.annotation.ApplicationScope;
 import java.util.List;
 
 @ApplicationScope
-@Mapper(componentModel = "spring" , uses = { ObjectIdMapper.class, DateMapper.class })
+@Mapper(componentModel = "spring" , uses = { ObjectIdMapper.class})
 public interface CommentMapper {
 
     CommentEntity toEntity(CommentDTO commentDTO);

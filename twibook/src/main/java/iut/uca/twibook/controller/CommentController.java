@@ -15,7 +15,7 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:9000")
+@CrossOrigin
 @RequestMapping(value = "/comments")
 public class CommentController {
 
@@ -46,6 +46,8 @@ public class CommentController {
 
     @PostMapping
     public ResponseEntity<String> createComment(@RequestBody CommentDTO comment) {
+        comment.setId(new ObjectId().toString());
+
         Status response = commentService.createComment(mapper.toEntityV2(comment));
 
         switch (response) {
