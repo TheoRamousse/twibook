@@ -31,6 +31,12 @@ public class UserController {
         return new ResponseEntity<>(mapper.toDTO(userService.findById(id)), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/nickname/{nickName}")
+    public ResponseEntity<UserDTO> getUserByNickName(@PathVariable String nickName) {
+
+        return new ResponseEntity<>(mapper.toDTO(userService.findByNickName(nickName)), HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<List<UserDTO>> getUsers(@RequestParam(required = false) String nickName) {
 
