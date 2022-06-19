@@ -54,7 +54,7 @@ export class ApiClientService extends PersistenceTemplateService {
       id: user.id,
       nickName: user.nickName,
       email: user.email,
-      hashedPassword: user.hashedPassword,
+      password: user.hashedPassword,
       birthDate: null,
       posts: [],
       cars: [],
