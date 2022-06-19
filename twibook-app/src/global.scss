@@ -110,20 +110,54 @@ button {
   height: 40px;
 }
 
-input {
-  background-color: #A60BB1;
-  color: white;
-  width: 300px;
-  margin-top: 30px;
-  border-color: #FB00FF;
-  border-width: 50%;
-  box-shadow: 0px 0px 20px 1px #FB00FF;
+
+
+.inputBox{
+  position: relative;
+  margin-left: 43%;
+  width: 250px;
+}
+
+.inputBox input{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: #1d2b3a;
+  border-radius: 5px;
+  outline: none;
+  color: #fff;
+  font-size: 1em;
+}
+
+.inputBox span{
+  position: absolute;
+  left: 0;
+  padding: 10px;
+  pointer-events: none;
+  font-size: 1em;
+  color: rgba(255,255,255,0.25);
+  text-transform: uppercase;
+  transition: 0.5s;
+}
+
+.inputBox input:valid ~ span,
+.inputBox input:focus ~ span{
+  color: #FB00FF;
+  transform: translateX(10px) translateY(-7px);
+  font-size: 0.65em;
+  padding: 0 10px;
+  background: #1d2b3a;
+  border-left: 1px solid #FB00FF;
+  border-right: 1px solid #FB00FF;
+  letter-spacing: 0.2em;
 }
 
 
-::placeholder {
-  color: white;
+.inputBox input:valid, 
+.inputBox input:focus {
+  border: 1px solid #FB00FF;
 }
+
 
 
 

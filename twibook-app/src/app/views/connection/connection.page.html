@@ -5,16 +5,26 @@
 
   <app-login-register-container>
     <div class="form-container" #body>
-      <input [(ngModel)]="identifiant" class="text-input form-child" placeholder="Identifiant" />
+      <div class="inputBox">
+        <input [(ngModel)]="identifiant" class="text-input form-child" required="required" type="text" />
+        <span>Identifiant</span>
+      </div>
       <br />
-      <input [(ngModel)]="password" class="text-input form-child" type="password" placeholder="Mot de passe" />
+      <div class="inputBox">
+        <input [(ngModel)]="password" class="text-input form-child" type="password" required="required"/>
+        <span>Mot de passe</span>
+      </div>
       <br />
-      <button (click)="onNavigateRegister()" class="link">S'INSCRIRE</button>
+      <button (click)="onNavigateRegister()" class="link annulMargin">S'INSCRIRE</button>
       <br />
       <p *ngIf="errorMessage != null" style="color: red !important;">{{errorMessage}}</p>
       <br />
-      <button (click)="onTryLogin()" class="form-child">SE CONNECTER</button>
+      
     </div>
+      <a (click)="onTryLogin()" style="--clr2:#FB00FF" >
+        <span>SE CONNECTER</span>
+        <i></i>
+      </a>
   </app-login-register-container>
   <app-tabs></app-tabs>
 </ion-content>

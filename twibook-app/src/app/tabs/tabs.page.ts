@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
+  user = this.controller
   isActiveAcceuil = true;
   isActiveSetting = false;
   isActivePost = false;
