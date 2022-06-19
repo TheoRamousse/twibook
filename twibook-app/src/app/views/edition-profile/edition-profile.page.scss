@@ -51,3 +51,75 @@
     text-align: center;
 }
 
+a{
+    position: relative;
+    background: #444;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+    padding: 10px 30px;
+    transition: 0.5s;
+}
+
+a:hover{
+    letter-spacing: 0.25em;
+    background: var(--clr2);
+    color: var(--clr2);
+    box-shadow: 0 0 35px var(--clr2);
+}
+
+a::before{
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: #1d2b3a;
+}
+
+a span{
+    position: relative;
+    z-index: 1;
+}
+
+a i{
+    position: absolute;
+    inset: 0;
+    display: block;
+}
+
+a i::before{
+    content: '';
+    position: absolute;
+    top: -3.5px;
+    right: 80%;
+    width: 10px;
+    height: 5px;
+    border: 2px solid var(--clr2);
+    background: #1d2b3a;
+    transition: 0.5s;
+}
+
+a:hover i::before{
+    width: 20px;
+    right: 20%;
+}
+
+a i::after{
+    content: '';
+    position: absolute;
+    bottom: -3.5px;
+    left: 80%;
+    width: 10px;
+    height: 5px;
+    border: 2px solid var(--clr2);
+    background: #1d2b3a;
+    transform: translateX(-50%);
+    transition: 0.5s;
+}
+
+a:hover i::after{
+    width: 20px;
+    left: 20%;
+}
+    

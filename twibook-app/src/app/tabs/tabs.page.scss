@@ -8,7 +8,7 @@
 }
 
 .dimension{
-    height: 17%;
+    height: 19%;
     background-color:transparent;
     align-items: flex-end;
 }
@@ -24,7 +24,7 @@ body{
 .naviguation{
     position: relative;
     width: 30%;
-    height: 70px;
+    height: 7px;
     background: transparent;
     display: flex;
     justify-content: center;
@@ -33,6 +33,7 @@ body{
 }
 
 .naviguation ul{
+  //margin-left: 23%;
     display: flex;
     width: 350px;
 }
@@ -155,68 +156,68 @@ body{
     padding: 30px;
   }
   
-  .box span{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-    box-sizing: border-box;
+  // .box span{
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 100%;
+  //   display: block;
+  //   box-sizing: border-box;
     
-  }
+  // }
   
-  .box span:nth-child(1)
-  {
-    transform:rotate(0deg);
-  }
+  // .box span:nth-child(1)
+  // {
+  //   transform:rotate(0deg);
+  // }
   
-  .box span:nth-child(2)
-  {
+  // .box span:nth-child(2)
+  // {
 
-    transform:rotate(90deg);
-  }
+  //   transform:rotate(90deg);
+  // }
   
-  .box span:nth-child(3)
-  {
-    margin-left: 50%;
-    transform:rotate(180deg);
-  }
+  // .box span:nth-child(3)
+  // {
+  //   margin-left: 50%;
+  //   transform:rotate(180deg);
+  // }
   
-  .box span:nth-child(4)
-  {
+  // .box span:nth-child(4)
+  // {
 
-    transform:rotate(270deg);
-  }
+  //   transform:rotate(270deg);
+  // }
   
-  .box span:before
-  {
-    content: '';
-    position: absolute;
-    width:100%;
-    height: 2px;
-    background: #50dfdb;
-    animation: animate 4s linear infinite;
-  }
+  // .box span:before
+  // {
+  //   content: '';
+  //   position: absolute;
+  //   width:100%;
+  //   height: 2px;
+  //   background: #50dfdb;
+  //   animation: animate 4s linear infinite;
+  // }
   
-  @keyframes animate {
-    0% {
-    transform:scaleX(0);
-    transform-origin: left;
-    }
-    50%
-    {
-      transform:scaleX(1);
-    transform-origin: left;
-    }
-    50.1%
-    {
-      transform:scaleX(1);
-    transform-origin: right;  
-    }
-    100%
-    {
-      transform:scaleX(0);
-    transform-origin: right;
-    }
-  } 
+  // @keyframes animate {
+  //   0% {
+  //   transform:scaleX(0);
+  //   transform-origin: left;
+  //   }
+  //   50%
+  //   {
+  //     transform:scaleX(1);
+  //   transform-origin: left;
+  //   }
+  //   50.1%
+  //   {
+  //     transform:scaleX(1);
+  //   transform-origin: right;  
+  //   }
+  //   100%
+  //   {
+  //     transform:scaleX(0);
+  //   transform-origin: right;
+  //   }
+  // } 

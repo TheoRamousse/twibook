@@ -1,30 +1,46 @@
 
 
-<ion-content [fullscreen]="true">
+<ion-content padding class="background-image" [fullscreen]="true">
 
 
   <app-login-register-container>
     <div class="form-container" #body>
-      <input (change)="email=$event.target.value" [value]="email" class="text-input form-child" placeholder="Email" />
+      <div class="inputBox">
+        <input (change)="email=$event.target.value" [value]="email" class="text-input form-child"  required="required" type="email"/>
+        <span>Email</span>
+      </div>
       <br />
-      <input (change)="firstName=$event.target.value" [value]="firstName" class="text-input form-child"
-        placeholder="Prénom" />
+      <div class="inputBox">
+        <input (change)="firstName=$event.target.value" [value]="firstName" class="text-input form-child"  required="required" type="text"/>
+        <span>Prénom</span>
+      </div>
       <br />
-      <input (change)="lastName=$event.target.value" [value]="lastName" class="text-input form-child"
-        placeholder="Nom" />
+      <div class="inputBox">
+        <input (change)="lastName=$event.target.value" [value]="lastName" class="text-input form-child"  required="required" type="text"/>
+        <span>Nom</span>
+      </div>
       <br />
-      <input (change)="nickName=$event.target.value" [value]="nickName" class="text-input form-child"
-        placeholder="Pseudo" />
+      <div class="inputBox">
+        <input (change)="nickName=$event.target.value" [value]="nickName" class="text-input form-child"  required="required" type="text"/>
+        <span>Pseudo</span>
+      </div>
       <br />
-      <input (change)="password=$event.target.value" [value]="password" class="text-input form-child" type="password"
-        placeholder="Mot de passe" />
+      <div class="inputBox">
+        <input (change)="password=$event.target.value" [value]="password" class="text-input form-child" type="password"  required="required"/>
+        <span>Mot de passe</span>
+      </div>
       <br />
-      <input (change)="passwordConfirmation=$event.target.value" [value]="passwordConfirmation"
-        class="text-input form-child" type="password" placeholder="Confirmer le mot de passe" />
-      <br />
+      <div class="inputBox">
+        <input (change)="passwordConfirmation=$event.target.value" [value]="passwordConfirmation"
+        class="text-input form-child" type="password"  required="required"/>
+        <span>Confirmer le mot de passe</span>
+      </div>
       <p *ngIf="errorMessage != null" style="color: red !important;">{{errorMessage}}</p>
       <br />
-      <button (click)="onSubmit()" class="form-child">S'INSCRIRE</button>
     </div>
+    <a (click)="onSubmit()" style="--clr2:#FB00FF" >
+      <span>S'INSCRIRE</span>
+      <i></i>
+    </a>
   </app-login-register-container>
 </ion-content>

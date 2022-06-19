@@ -7,12 +7,12 @@
   <mat-card class="mat-elevation-z8 card neonPost">
     <mat-card-content>
       <input class="" (change)="urlImage=$event.target.value" [value]="urlImage" type="text" placeholder="URL de l'image" />
-      <br />
+      <br /><br />
       <textarea class="" (change)="text=$event.target.value" [value]="text" placeholder="Votre texte"></textarea>
     </mat-card-content>
-    <br />
+    <br /><br />
     <mat-card-actions>
-      <button class="" (click)="onPostSent()" mat-button>Envoyer</button>
+      <button class="monPadding" (click)="onPostSent()" mat-button>Envoyer</button>
     </mat-card-actions>
   </mat-card>
   </div>
