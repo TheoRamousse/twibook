@@ -7,6 +7,7 @@ import { Car } from '../model/Car';
 import { Color } from '../model/Color';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { PostFromApi } from '../model/PostFromApi';
+import { UserFromApi } from '../model/UserFromApi';
 
 @Injectable({
   providedIn: 'root'
@@ -23,21 +24,35 @@ export class StubService extends PersistenceTemplateService {
     return (maxId + 1).toString()
   }
 
+  private getNextPostId(): string {
+    var maxId = 0;
+    this.posts.forEach(post => {
+      if (Number(post.id) > maxId) {
+        maxId = Number(post.id);
+      }
+    });
+    return (maxId + 1).toString()
+  }
+
   addNewComment(comment: Comment): Observable<Comment> {
     comment.id = this.getNextCommentId()
     this.comments.push(comment)
     return new BehaviorSubject<Comment>(comment)
   }
-  addNewPost(post: Post): void {
+  addNewPost(post: Post): Observable<PostFromApi> {
+    post.id = this.getNextPostId()
     this.posts.push(post)
+    return new BehaviorSubject<PostFromApi>(new PostFromApi(post))
   }
 
-  updatePost(post: Post): void {
+  updatePost(post: Post): Observable<PostFromApi> {
     this.posts.forEach(p => {
       if (p.id == post.id) {
         p = post
       }
     })
+
+    return new BehaviorSubject<PostFromApi>(new PostFromApi(post))
   }
 
   private posts = [
@@ -61,8 +76,8 @@ export class StubService extends PersistenceTemplateService {
     return new BehaviorSubject<User[]>(this.users);
   }
 
-  override getUserByIdentifiant(identifiant: string): Observable<User> {
-    return new BehaviorSubject<User>(this.users.find(element => element.email == identifiant || element.nickName == identifiant)!);
+  override getUserByIdentifiant(identifiant: string): Observable<UserFromApi> {
+    return new BehaviorSubject<UserFromApi>(new UserFromApi(this.users.find(element => element.email == identifiant || element.nickName == identifiant)!));
   }
 
   override getUserById(id: string): Observable<User> {

@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors/value-accessor';
 import { Observable } from 'rxjs';
 import { PostFromApi } from '../model/PostFromApi';
+import { UserFromApi } from '../model/UserFromApi';
 
 @Injectable({
   providedIn: 'root'
@@ -42,8 +43,8 @@ export class ApiClientService extends PersistenceTemplateService {
   }
 
 
-  override getUserByIdentifiant(identifiant: string): Observable<User> {
-    return this.http.get<User>(environment.apiUrl + 'users?nickName=' + identifiant)
+  override getUserByIdentifiant(identifiant: string): Observable<UserFromApi> {
+    return this.http.get<UserFromApi>(environment.apiUrl + 'users/nickName/' + identifiant)
   }
   override addNewUser(user: User): void {
     debugger
@@ -73,9 +74,9 @@ export class ApiClientService extends PersistenceTemplateService {
       userImageUrl: comment.userImageUrl,
     }, { 'headers': headers });
   }
-  override addNewPost(post: Post): void {
+  override addNewPost(post: Post): Observable<PostFromApi> {
     const headers = { 'content-type': 'application/json' }
-    this.http.post(environment.apiUrl + 'posts/', {
+    return this.http.post<PostFromApi>(environment.apiUrl + 'posts/', {
       id: post.id,
       text: post.text,
       postImage: post.imageUrl,
@@ -85,10 +86,10 @@ export class ApiClientService extends PersistenceTemplateService {
       firstCommentUserNickName: post.firstCommentUserNickName,
       comments: post.idComments
 
-    }, { 'headers': headers }).subscribe();
+    }, { 'headers': headers });
   }
-  override updatePost(post: Post): void {
-    this.http.post(environment.apiUrl + 'posts/', post).subscribe();
+  override updatePost(post: Post): Observable<PostFromApi> {
+    return this.http.post<PostFromApi>(environment.apiUrl + 'posts/', post);
   }
 
 }

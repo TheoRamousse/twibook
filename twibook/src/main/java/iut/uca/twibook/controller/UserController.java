@@ -48,7 +48,9 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<String> createUser(@RequestBody UserDTO user) {
-        user.setId((new ObjectId()).toString());
+        if(user.getId() == null || user.getId() == "0") {
+            user.setId((new ObjectId()).toString());
+        }
         Status response = userService.createUser(mapper.toEntity(user));
 
         switch (response) {

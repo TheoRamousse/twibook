@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import * as bcrypt from 'bcryptjs';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { AppControllerService } from '../../services/app-controller.service';
+import { LocalStorageKeys } from '../../model/LocalStorageKeys';
 
 @Component({
   selector: 'app-connection',
@@ -17,14 +18,29 @@ export class ConnectionPage {
   }
 
   onTryLogin() {
+    var self = this
 
-    try {
-      this.controlleur.tryConnect(this.identifiant, this.password)
-      this.errorMessage = ""
-      this.router.navigate(['tabs/timeline']);
-    } catch (error) {
-      this.errorMessage = error.message
-    }
+    this.controlleur.tryConnect(this.identifiant, this.password).subscribe(userFound => {
+      if (userFound == null) {
+        this.errorMessage = "Identifiant inconnu"
+      }
+
+      var result = bcrypt.compareSync(self.password, userFound.password);
+
+      if (result) {
+        debugger;
+        localStorage.setItem(LocalStorageKeys.user, JSON.stringify(userFound))
+        this.errorMessage = ""
+        this.router.navigate(['tabs/timeline']);
+        return
+      }
+      else {
+        this.errorMessage = "Mot de passe incorrect"
+      }
+
+    }, error => {
+      this.errorMessage = "Identifiant inconnu"
+    })
   }
 
   onNavigateRegister() {

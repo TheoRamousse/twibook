@@ -2,7 +2,7 @@ import { validateNewPost } from './Validator'
 
 
 export class Post {
-  private readonly _id: string;
+  private _id: string;
   private _text: string;
   private _userImageUrl: string;
   private _userNickName: string;
@@ -43,6 +43,10 @@ export class Post {
 
   public get id() {
     return this._id;
+  }
+
+  public set id(value: string) {
+    this._id = value;
   }
 
   public get text() {

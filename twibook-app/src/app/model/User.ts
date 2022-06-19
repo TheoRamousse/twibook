@@ -2,7 +2,7 @@ import { Car } from './Car'
 import { validateNewUser } from './Validator'
 
 export class User {
-  private readonly _id: string;
+  private _id: string;
   private readonly _cars: Array<Car>
   private _firstName: string;
   private _lastName: string;
@@ -86,6 +86,10 @@ export class User {
 
   public get id() {
     return this._id;
+  }
+
+  public set id(value: string) {
+    this._id = value
   }
 
   public set imageUrl(theImageUrl: string) {

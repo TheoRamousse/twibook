@@ -7,6 +7,7 @@ import { Comment } from '../model/Comment';
 import { LocalStorageKeys } from '../model/LocalStorageKeys';
 import { Observable } from 'rxjs';
 import { PostFromApi } from '../model/PostFromApi';
+import { UserFromApi } from '../model/UserFromApi';
 
 @Injectable({
   providedIn: 'root',
@@ -15,24 +16,8 @@ export class AppControllerService {
 
   constructor(private pers: PersistenceTemplateService) { }
 
-  public tryConnect(id: string, password: string) {
-    this.pers.getUserByIdentifiant(id).subscribe(userFound => {
-      if (userFound == null) {
-        throw new Error("Identifiant inconnu")
-      }
-
-      var result = bcrypt.compareSync(password, userFound.hashedPassword);
-
-      if (result) {
-        debugger;
-        localStorage.setItem(LocalStorageKeys.user, JSON.stringify(userFound))
-        return
-      }
-      else {
-        throw new Error("Mot de passe incorrect")
-      }
-
-    })
+  public tryConnect(id: string, password: string): Observable<UserFromApi> {
+    return this.pers.getUserByIdentifiant(id)
 
   }
 
@@ -84,7 +69,7 @@ export class AppControllerService {
     return this.pers.getPostsPagined(page, count)
   }
 
-  public getUserByNickName(nickName: string): Observable<User> {
+  public getUserByNickName(nickName: string): Observable<UserFromApi> {
     return this.pers.getUserByIdentifiant(nickName)
   }
 }
