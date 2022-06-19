@@ -44,7 +44,6 @@ public class UserService{
         UserEntity userToUpdate = repository.findByEmail(userEntity.getEmail());
 
         if(userToUpdate == null) {
-
             response = Status.CREATED;
         }
         else {
