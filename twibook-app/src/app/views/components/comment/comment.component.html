@@ -2,14 +2,17 @@
   <mat-card class="mat-elevation-z0 card neonPost" style=" margin: 0.5%;"
     [ngClass]="'!isUnderPost : comment-not-linked'">
     <mat-card-header>
-      <div mat-card-avatar [ngStyle]="{'background-image': 'url(' + userImageUrl + ')'}"
+      <div *ngIf="userImageUrl != null" mat-card-avatar [ngStyle]="{'background-image': 'url(' + userImageUrl + ')'}"
         class="profile-picture blueMotionImage"></div>
+      <div *ngIf="userImageUrl == null" mat-card-avatar
+        [ngStyle]="{'background-image': 'url(../../../assets/images/utilisateur.png)'}"
+        class="profile-picture blueMotionImage">
+      </div>
       <mat-card-title class="textNeon">{{userNickName}}</mat-card-title>
-      <mat-card-subtitle style="float: left;" class="textNeon">{{publicationDate.toLocaleString()}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       <p>
-        {{text}}
+        {{textToDisplay}}
       </p>
     </mat-card-content>
   </mat-card>

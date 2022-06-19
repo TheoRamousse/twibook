@@ -27,7 +27,6 @@ export class CameraService {
     return new Promise((resolve, reject) => {
       var reader = new FileReader();
       reader.addEventListener("load", function () {
-        console.log(typeof (reader.result));
         resolve(reader.result as string);
       }, false);
 

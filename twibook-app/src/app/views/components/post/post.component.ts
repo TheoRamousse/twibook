@@ -23,16 +23,16 @@ export class PostComponent implements OnInit {
   }
 
 
-  private async onLoadNextComments() {
+  private onLoadNextComments() {
     var idsNewComments = this.paginator(this.currentPost.idComments, this.pageNumber, this.NbCommentsToLoad)
 
-    idsNewComments.forEach(async el => {
-      this.controlleur.getCommentById(el).subscribe(comment => {
-        this.comments.push(comment)
-      })
-    })
-    this.pageNumber += 1
-    this.loadMoreVisibility = this.paginator(this.currentPost.idComments, this.pageNumber, this.NbCommentsToLoad).length == 0 ? "hidden" : "visible"
+    idsNewComments.forEach(el => this.controlleur.getCommentById(el).subscribe(comment => {
+      console.log(comment)
+      this.comments.push(comment)
+      this.pageNumber += 1
+      this.loadMoreVisibility = this.paginator(this.currentPost.idComments, this.pageNumber, this.NbCommentsToLoad).length == 0 ? "hidden" : "visible"
+    }))
+
   }
 
   private paginator(items: Array<string>, current_page: number, per_page_items: number): Array<string> {
@@ -50,6 +50,11 @@ export class PostComponent implements OnInit {
     this.controlleur.addNewComment(this.currentPost, newComment)
     this.comments.push(newComment)
     this.textComment = ""
+  }
+
+  private caca() {
+    console.log(this.currentPost.idComments)
+    console.log(this.comments)
   }
 
   ngOnInit() {

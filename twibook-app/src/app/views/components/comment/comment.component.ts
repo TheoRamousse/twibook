@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./comment.component.scss'],
 })
 export class CommentComponent implements OnInit {
-  @Input() text: String;
+  @Input() textToDisplay: String;
   @Input() userNickName: String;
   @Input() userImageUrl: Boolean = true;
   @Input() publicationDate: Boolean = true;
@@ -14,6 +14,7 @@ export class CommentComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
 }

@@ -23,7 +23,7 @@ import { from, Observable, observable, PartialObserver, Subscription } from 'rxj
 @Directive({ selector: '[trackScroll]' })
 export class TimelinePage {
   private posts: Array<Post> = []
-  private NbPostsToLoad = 4
+  private NbPostsToLoad = 2
   private pageNumber = 0
   private urlImage: SafeUrl
   private text = ""
@@ -42,11 +42,12 @@ export class TimelinePage {
   async scrolling(event: any) {
     const scrollElement = await this.content.getScrollElement();
     // calculate if max bottom was reached
+    console.log(scrollElement.scrollTop)
+    console.log(scrollElement.scrollHeight - scrollElement.clientHeight)
     if (
-      scrollElement.scrollTop ===
+      scrollElement.scrollTop + 1 >=
       scrollElement.scrollHeight - scrollElement.clientHeight
     ) {
-      debugger
       this.isLoading = true;
       this.onLoadNextPosts();
       this.isLoading = false;
@@ -55,13 +56,17 @@ export class TimelinePage {
 
 
   private async onLoadNextPosts() {
-    var result = this.controlleur.getPostsPagined(this.pageNumber, this.NbPostsToLoad).subscribe(results => {
+    console.log("Teddy")
 
-      this.posts.push(...results.map(result => {
-        return new Post(result.id, result.text, result.publicationDate, result.userImageUrl, result.userNickName, result.firstCommentPublicationDate, result.firstCommentText, result.firstCommentUserImageUrl, result.firstCommentUserNickName, result.postImage)
-      }))
-      this.pageNumber += 1
+    this.controlleur.getPostsPagined(this.pageNumber, this.NbPostsToLoad).subscribe(results => {
+      if (results != null) {
+        this.posts.push(...results.map(result => {
+          return new Post(result.id, result.text, result.publicationDate, result.userImageUrl, result.userNickName, result.firstCommentPublicationDate, result.firstCommentText, result.firstCommentUserImageUrl, result.firstCommentUserNickName, result.postImage, result.comments)
+        }))
+        this.pageNumber += 1
+      }
     })
+
 
   }
 
@@ -71,10 +76,13 @@ export class TimelinePage {
   cd
   onPostSent() {
     var newPost = new Post("0", this.text, new Date(Date.now()), this.controlleur.user!.imageUrl, this.controlleur.user!.nickName, undefined, undefined, undefined, undefined, this.base64ToSaveAsImageUrl)
-    this.controlleur.addNewPost(newPost)
-    this.posts = [newPost].concat(this.posts)
-    this.text = ""
-    this.urlImage = ""
+    this.controlleur.addNewPost(newPost).subscribe(result => {
+      newPost.id = result.id
+      this.posts = [newPost].concat(this.posts)
+      this.text = ""
+      this.urlImage = ""
+    })
+
   }
 
   onOpenCamera() {

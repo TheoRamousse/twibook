@@ -11,9 +11,6 @@ export function validateNewComment(id: string,
   if (userNickName == null || userNickName == "" || userNickName.length > 30) {
     throw new Error("-userNickName- est invalide");
   }
-  if (userImageUrl == null || userImageUrl == "" || userImageUrl.length > 256) {
-    throw new Error("-userImageUrl- est invalide");
-  }
 }
 
 export function validateNewPost(id: string,

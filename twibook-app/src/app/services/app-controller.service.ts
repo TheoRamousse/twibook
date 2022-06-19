@@ -26,12 +26,12 @@ export class AppControllerService {
   }
 
   public registerUser(email: string, password: string, nickName: string, firstName: string, lastName: string) {
-    debugger
     var hashedPassword = bcrypt.hashSync(password, 10);
     this.pers.addNewUser(new User("0", firstName, lastName, nickName, email, hashedPassword));
   }
 
   public getCommentById(id: string) {
+    console.log("toto")
     return this.pers.getCommentById(id)
   }
 
@@ -42,11 +42,10 @@ export class AppControllerService {
     }
 
     var result = JSON.parse(userAsString)
-    return new User(result._id, result._firstName, result._lastName, result._nickName, result._email, result._hashedPwd, result._imageUrl, result._birthDate, result._cars, result._idPosts);
+    return new User(result.id, result.firstName, result.lastName, result.nickName, result.email, result.password, result.imageUrl, result.birthDate, result.cars, result.posts);
   }
 
   public addNewComment(referencedPost: Post, newComment: Comment) {
-    debugger
     this.pers.addNewComment(newComment).subscribe(commentReturned => {
       if (referencedPost.idComments.length == 0) {
         referencedPost.firstCommentPublicationDate = newComment.publicationDate
@@ -55,14 +54,14 @@ export class AppControllerService {
         referencedPost.firstCommentUserNickName = newComment.userNickName
       }
 
-      referencedPost.idComments.push(commentReturned.id)
+      referencedPost.addComment(commentReturned.id)
 
-      this.pers.updatePost(referencedPost)
+      this.pers.updatePost(referencedPost).subscribe()
     })
   }
 
-  public addNewPost(post: Post) {
-    this.pers.addNewPost(post)
+  public addNewPost(post: Post): Observable<PostFromApi> {
+    return this.pers.addNewPost(post)
   }
 
   public getPostsPagined(page: number, count: number): Observable<Array<PostFromApi>> {

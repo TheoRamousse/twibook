@@ -5,6 +5,7 @@ import { Comment } from '../model/Comment';
 import { Observable } from 'rxjs';
 import { PostFromApi } from '../model/PostFromApi';
 import { UserFromApi } from '../model/UserFromApi';
+import { CommentFromApi } from '../model/CommentFromApi';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export abstract class PersistenceTemplateService {
   abstract getUsers(): Observable<Array<User>>;
   abstract getUserByIdentifiant(identifiant: string): Observable<UserFromApi>;
   abstract addNewUser(user: User): void;
-  abstract addNewComment(comment: Comment): Observable<Comment>;
+  abstract addNewComment(comment: Comment): Observable<CommentFromApi>;
   abstract addNewPost(post: Post): Observable<PostFromApi>;
   abstract updatePost(post: Post): Observable<PostFromApi>;
 }

@@ -67,7 +67,25 @@ public class PostService {
 		return repository.findAll();
 	}
 
-	public Status createPost(PostEntity postEntity){
+	public class EntityAndCodeResult{
+		private Status status;
+		private PostEntity entity;
+
+		public EntityAndCodeResult(Status status, PostEntity entity){
+			this.entity = entity;
+			this.status = status;
+		}
+
+		public Status getStatus() {
+			return status;
+		}
+
+		public PostEntity getEntity() {
+			return entity;
+		}
+	}
+
+	public EntityAndCodeResult createPost(PostEntity postEntity){
 		Status response;
 
 		if(postEntity.getId() != null && repository.existsById(postEntity.getId().toString())) {
@@ -78,8 +96,7 @@ public class PostService {
 			response = Status.CREATED;
 			postEntity.setSchemaVersion("2");
 		}
-		repository.save(postEntity);
-		return response;
+		return new EntityAndCodeResult(response, repository.save(postEntity));
 	}
 
 	public Long deletePost(ObjectId postToDelete) {

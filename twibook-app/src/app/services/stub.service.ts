@@ -8,6 +8,7 @@ import { Color } from '../model/Color';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { PostFromApi } from '../model/PostFromApi';
 import { UserFromApi } from '../model/UserFromApi';
+import { CommentFromApi } from '../model/CommentFromApi';
 
 @Injectable({
   providedIn: 'root'
@@ -34,10 +35,10 @@ export class StubService extends PersistenceTemplateService {
     return (maxId + 1).toString()
   }
 
-  addNewComment(comment: Comment): Observable<Comment> {
+  addNewComment(comment: Comment): Observable<CommentFromApi> {
     comment.id = this.getNextCommentId()
     this.comments.push(comment)
-    return new BehaviorSubject<Comment>(comment)
+    return new BehaviorSubject<CommentFromApi>(new CommentFromApi(comment))
   }
   addNewPost(post: Post): Observable<PostFromApi> {
     post.id = this.getNextPostId()

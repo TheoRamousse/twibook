@@ -2,6 +2,7 @@ package iut.uca.twibook.controller;
 
 import iut.uca.twibook.Status;
 import iut.uca.twibook.dtos.CommentDTO;
+import iut.uca.twibook.entities.comment_entities.CommentEntityV2;
 import iut.uca.twibook.mappers.CommentMapper;
 import iut.uca.twibook.services.CommentService;
 import org.bson.types.ObjectId;
@@ -45,15 +46,15 @@ public class CommentController {
     }
 
     @PostMapping
-    public ResponseEntity<String> createComment(@RequestBody CommentDTO comment) {
+    public ResponseEntity<CommentDTO> createComment(@RequestBody CommentDTO comment) {
         comment.setId(new ObjectId().toString());
 
-        Status response = commentService.createComment(mapper.toEntityV2(comment));
+        CommentService.EntityAndCodeResult response = commentService.createComment(mapper.toEntityV2(comment));
 
-        switch (response) {
-            case UPDATED: return new ResponseEntity<>("Comment updated", HttpStatus.OK);
+        switch (response.getStatus()) {
+            case UPDATED: return new ResponseEntity<>(mapper.toDTO(response.getEntity()), HttpStatus.OK);
 
-            default: return new ResponseEntity<>("Comment created", HttpStatus.CREATED);
+            default: return new ResponseEntity<>(mapper.toDTO(response.getEntity()), HttpStatus.CREATED);
         }
     }
 

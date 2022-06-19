@@ -9,6 +9,7 @@ import { ValueAccessor } from '@ionic/angular/directives/control-value-accessors
 import { Observable } from 'rxjs';
 import { PostFromApi } from '../model/PostFromApi';
 import { UserFromApi } from '../model/UserFromApi';
+import { CommentFromApi } from '../model/CommentFromApi';
 
 @Injectable({
   providedIn: 'root'
@@ -44,10 +45,9 @@ export class ApiClientService extends PersistenceTemplateService {
 
 
   override getUserByIdentifiant(identifiant: string): Observable<UserFromApi> {
-    return this.http.get<UserFromApi>(environment.apiUrl + 'users/nickName/' + identifiant)
+    return this.http.get<UserFromApi>(environment.apiUrl + 'users/nickname/' + identifiant)
   }
   override addNewUser(user: User): void {
-    debugger
     const headers = { 'content-type': 'application/json' }
     this.http.post(environment.apiUrl + 'users', {
       firstName: user.firstName,
@@ -63,10 +63,9 @@ export class ApiClientService extends PersistenceTemplateService {
 
     }, { 'headers': headers }).subscribe()
   }
-  override addNewComment(comment: Comment): Observable<Comment> {
-    debugger
+  override addNewComment(comment: Comment): Observable<CommentFromApi> {
     const headers = { 'content-type': 'application/json' }
-    return this.http.post<Comment>(environment.apiUrl + 'comments/', {
+    return this.http.post<CommentFromApi>(environment.apiUrl + 'comments/', {
       id: comment.id,
       text: comment.text,
       publicationDate: comment.publicationDate,
@@ -89,7 +88,19 @@ export class ApiClientService extends PersistenceTemplateService {
     }, { 'headers': headers });
   }
   override updatePost(post: Post): Observable<PostFromApi> {
-    return this.http.post<PostFromApi>(environment.apiUrl + 'posts/', post);
+    debugger
+    const headers = { 'content-type': 'application/json' }
+    return this.http.post<PostFromApi>(environment.apiUrl + 'posts/', {
+      id: post.id,
+      text: post.text,
+      postImage: post.imageUrl,
+      publicationDate: post.publicationDate,
+      firstCommentText: post.firstCommentText,
+      firstCommentUserImageUrl: post.firstCommentUserImageUrl,
+      firstCommentUserNickName: post.firstCommentUserNickName,
+      comments: post.idComments
+
+    }, { 'headers': headers });
   }
 
 }

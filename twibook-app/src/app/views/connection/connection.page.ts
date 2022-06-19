@@ -28,7 +28,6 @@ export class ConnectionPage {
       var result = bcrypt.compareSync(self.password, userFound.password);
 
       if (result) {
-        debugger;
         localStorage.setItem(LocalStorageKeys.user, JSON.stringify(userFound))
         this.errorMessage = ""
         this.router.navigate(['tabs/timeline']);

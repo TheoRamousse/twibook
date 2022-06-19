@@ -29,14 +29,15 @@
             <h2 class="top-comment">Top commentaire : </h2>
             <app-comment [userImageUrl]="currentPost.firstCommentUserImageUrl"
               [userNickName]="currentPost.firstCommentUserNickName"
-              [publicationDate]="currentPost.firstCommentPublicationDate" [text]="currentPost.firstCommentText">
+              [publicationDate]="currentPost.firstCommentPublicationDate"
+              [textToDisplay]="currentPost.firstCommentText">
             </app-comment>
           </div>
         </div>
       </mat-card-content>
       <mat-card-actions>
         <button mat-button>
-          <span *ngIf="isCommentVisible" (click)="isCommentVisible=false"
+          <span *ngIf="isCommentVisible" (click)="isCommentVisible=false; caca()"
             class="button-depier material-icons">expand_more</span>
           <span *ngIf="!isCommentVisible" (click)="isCommentVisible=true"
             class="button-depier material-icons">expand_less</span>
@@ -52,8 +53,9 @@
         <button (click)="onCommentPosted()">Poster</button>
       </div>
       <div *ngFor="let comment of comments">
-        <app-comment [text]="comment.text" [userNickName]="comment.userNickName" [userImageUrl]="comment.userImageUrl"
-          [publicationDate]="comment.publicationDate" class="under-post-container"></app-comment>
+        <app-comment [textToDisplay]="comment.text" [userNickName]="comment.userNickName"
+          [userImageUrl]="comment.userImageUrl" [publicationDate]="comment.publicationDate"
+          class="under-post-container"></app-comment>
       </div>
 
     </div>

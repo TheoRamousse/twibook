@@ -10,9 +10,11 @@ import { PersistenceTemplateService } from './services/persistence-template.serv
 import { StubService } from './services/stub.service';
 import { ApiClientService } from './services/api-client.service';
 import { HttpClientModule } from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, BrowserAnimationsModule, HttpClientModule],
