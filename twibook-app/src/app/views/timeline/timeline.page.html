@@ -1,29 +1,28 @@
-<ion-content [scrollEvents]="true" (ionScroll)="scrolling($event)" [fullscreen]=" true">
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Exemple Post
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
 
-<!--<div class="position">-->
-<!--  <div class="positionElement">-->
-  <div class="form-container">
+<ion-content [scrollEvents]="true" (ionScroll)="scrolling($event)" [fullscreen]=" true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Timeline</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
   <mat-card class="mat-elevation-z8 card neonPost">
     <mat-card-content>
-      <input class="" (change)="urlImage=$event.target.value" [value]="urlImage" type="text" placeholder="URL de l'image" />
-      <br />
-      <textarea class="" (change)="text=$event.target.value" [value]="text" placeholder="Votre texte"></textarea>
       <button (click)="onOpenCamera()">Prendre une photo</button>
       <img [hidden]="urlImage == undefined" [src]="urlImage" alt="" />
       <textarea (change)="text=$event.target.value" [value]="text" placeholder="Votre texte"></textarea>
     </mat-card-content>
-    <br />
     <mat-card-actions>
-      <button class="" (click)="onPostSent()" mat-button>Envoyer</button>
       <button (click)="onPostSent()" mat-button>Envoyer</button>
     </mat-card-actions>
   </mat-card>
-  </div>
-
-
-<!--</div>-->
-<!--</div>-->
   <div *ngFor=" let el of posts">
     <app-post [currentPost]="el"></app-post>
   </div>
