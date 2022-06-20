@@ -5,7 +5,7 @@
   <div class="naviguation box">
         <div class="content">
     <ul>
-      <li *ngIf="user != null" [ngClass]="isActiveAcceuil ? 'list active' : 'list'">
+      <li *ngIf="user === null" [ngClass]="isActiveAcceuil ? 'list active' : 'list'">
         <a (click)="navigateToAcceuil()">
         <span class="icon">
           <ion-icon name="finger-print-outline"></ion-icon>
@@ -13,7 +13,7 @@
           <span class="text">Home</span>
         </a>
       </li>
-      <li *ngIf="user != null" [ngClass]="isActiveInscription ? 'list active' : 'list'">
+      <li *ngIf="user === null" [ngClass]="isActiveInscription ? 'list active' : 'list'">
         <a (click)="navigateToInscription()">
         <span class="icon">
           <ion-icon name="reader-outline"></ion-icon>
@@ -21,7 +21,7 @@
           <span class="text">Inscription</span>
         </a>
       </li>
-      <li *ngIf="user != null" [ngClass]="isActivePost ? 'list active' : 'list'">
+      <li *ngIf="user !== null" [ngClass]="isActivePost ? 'list active' : 'list'">
         <a (click)="navigateToPost()">
         <span class="icon">
           <ion-icon name="chatbubble-outline"></ion-icon>
@@ -29,7 +29,7 @@
           <span class="text">Posts</span>
         </a>
       </li>
-      <li *ngIf="user != null" [ngClass]="isActiveSetting ? 'list active' : 'list'">
+      <li *ngIf="user !== null" [ngClass]="isActiveSetting ? 'list active' : 'list'">
         <a (click)="navigateToSetting()">
         <span class="icon">
           <ion-icon name="settings-outline"></ion-icon>
@@ -37,7 +37,7 @@
           <span class="text">Profil</span>
         </a>
       </li>
-      <li *ngIf="user != null" [ngClass]="isActiveDeco ? 'list active' : 'list'">
+      <li *ngIf="user !== null" [ngClass]="isActiveDeco ? 'list active' : 'list'">
         <a (click)="deconnexion()">
         <span class="icon">
           <ion-icon name="log-out-outline"></ion-icon>
