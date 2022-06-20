@@ -18,11 +18,6 @@
       <button class="monPadding" (click)="onPostSent()" mat-button>Envoyer</button>
     </mat-card-actions>
   </mat-card>
-  </div>
-
-
-<!--</div>-->
-<!--</div>-->
   <div *ngFor=" let el of posts">
     <app-post [currentPost]="el"></app-post>
   </div>
