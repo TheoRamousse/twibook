@@ -25,11 +25,6 @@ const routes: Routes = [
         path: 'edition-profile',
         loadChildren: () => import('../views/edition-profile/edition-profile.module').then(m => m.EditionProfilePageModule)
       },
-      {
-        path: '',
-        redirectTo: '/tabs/connection',
-        pathMatch: 'full'
-      }
     ]
   },
   {
