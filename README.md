@@ -53,4 +53,57 @@ On retrouve les différents référencements (id des posts dans user et id des c
 On retrouve également l'incorporation des voitures dans la classe utilisateur
 
 
+### Utilisation des indexes
+
+Les champs email et pseudo ont été indexés pour les utilisateurs car :
+- Lors de la connexion, c'est le pseudo de l'utilisateur qui est utilisé pour récupérer son mot de passe hashé
+- Lors de l'inscription, il faur vérifier que l'email de l'utilisateur n'est pas déjà utilisée
+
+
+##Partie multiplateformes
+
+### Packages utilisés
+
+Pour la réalisation du projet, nous avons utilisé différents packages. Voici une liste non-exaustives des principaux packages utilisés : 
+- @capacitor/camera : Permet de gérer la prise de photos mais aussi de récupérer une photo existante dans les fichiers de l'appareil
+- @angular/router : Permet de gérer l'accès aux pages en fonction de si l'utilisateur est connecté ou non
+- bcrypt.js : Permet de hasher le mot de passe de l'utilisateur et de le comparer pour la connexion de celui-ci
+
+### Arborescence du projet
+
+L'arborescence du projet ce décompose en plusieurs dossiers contenant les différentes classes de l'application Angular : 
+- Auth : Contient le service permettant d'accorder ou non l'accès aux différentes pages
+- Model : Contient les classes métier de l'application 
+- Services : Contient les différents services qui seront injectés dans les constructeurs des différentes pages (controlleur, stub, apiclient, camera ...)
+- Views: Contient les différentes pages de l'application
+- Views/Components : Contient les composants graphiques utilisés par les views
+
+###UI/UX
+
+Nous avons voulu donner un style "tuning" à notre réseau social puisqu'il se veut centré les amateurs de grosses cylindrées et de tuning. Voici quelques captures d'écran de l'application : 
+
+
+###Device API
+
+Nous utilisons l'appareil photo du téléphone ainsi que son stockage pour pouvoir publier un post. L'utilisateur peut prendre une photo et l'intégrer à son post. La photo est par la suite convertie en base64 pour être enregistrée dans la base de données.
+Pour cela, nous avons créé un service qui utilise le package "@capacitor/camera".
+
+###Api HTTP
+
+Notre application conatate l'API REST Java Spring Boot pour pouvoir effctuer les opérations CRUD sur la base de données. La liaison entre les deux est garantie par le service "Api-Client". Ce service crée les requêtes sur les différents endpoints de l'API et retourne des "Observable" qui pourront par la suite être consommés par le front.
+
+L'opération DELETE est bien implémentée mais non-utilisée par le front car nous n'en avons pas l'utilité pour le moment.
+
+Nous avons également le moyen de changer la persistence pour un stub grâce à l'injection de dépendances pour réaliser nos tests sur le front.
+
+###Data access/storage
+
+Utilisation du Web-basedstorage pour sauvegarder l'utilisateur connecté. Un nouvel item est donc créé lors de la connexion dans le "app-controlleur" et est détruit lors de la déconnexion dans le "app-controlleur". Le srvice "auth.guard" consomme cet item pour savoir si l'utilisateur est connecté ou non.
+
+
+
+
+
+
+
 
