@@ -1,29 +1,34 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Exemple Post
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [scrollEvents]="true" (ionScroll)="scrolling($event)" [fullscreen]=" true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Timeline</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
   <mat-card class="mat-elevation-z8 card neonPost">
+    <div class="center">
     <mat-card-content>
-      <button (click)="onOpenCamera()">Prendre une photo</button>
-      <img [hidden]="urlImage == undefined" [src]="urlImage" alt="" />
-      <textarea (change)="text=$event.target.value" [value]="text" placeholder="Votre texte"></textarea>
+      <br/><br/>
+      <a (click)="onOpenCamera()" style="--clr2:#FB00FF" >
+        <span>Prendre une photo</span>
+        <i></i>
+      </a>
+      <br/><br/><br/>
+      <img [hidden]="urlImage == undefined" [src]="urlImage" alt="" class="imageDesign"/>
+      <br/><br/>
+      <div class="inputBox">
+        <textarea (change)="text=$event.target.value" [value]="text" required="required"></textarea>
+        <span>Votre texte</span>
+      </div>
+      
     </mat-card-content>
     <mat-card-actions>
-      <button (click)="onPostSent()" mat-button>Envoyer</button>
+      <br/><br/><br/>
+      <a (click)="onPostSent()" style="--clr2:#00ff00" >
+        <span>Envoyer</span>
+        <i></i>
+      </a>
+      <br/><br/><br/>
     </mat-card-actions>
+  </div>
   </mat-card>
   <div *ngFor=" let el of posts">
     <app-post [currentPost]="el"></app-post>
   </div>
+
 </ion-content>

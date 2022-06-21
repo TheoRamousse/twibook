@@ -1,6 +1,6 @@
 <div style="width: 100%;">
   <div class="text-center" style="width: 100%; text-align: center">
-    <mat-card class="mat-elevation-z8 card neonPost">
+    <mat-card class="mat-elevation-z8 card neonPost" style="width: 70%;">
       <mat-card-header>
         <div *ngIf="currentPost.userImageUrl != null" mat-card-avatar
           [ngStyle]="{'background-image': 'url(' + currentPost.userImageUrl + ')'}"
@@ -37,7 +37,7 @@
       </mat-card-content>
       <mat-card-actions>
         <button mat-button>
-          <span *ngIf="isCommentVisible" (click)="isCommentVisible=false; caca()"
+          <span *ngIf="isCommentVisible" (click)="isCommentVisible=false;"
             class="button-depier material-icons">expand_more</span>
           <span *ngIf="!isCommentVisible" (click)="isCommentVisible=true"
             class="button-depier material-icons">expand_less</span>
@@ -45,12 +45,24 @@
       </mat-card-actions>
     </mat-card>
   </div>
+
   <div *ngIf="!isCommentVisible">
     <div>
+      <br/>
       <div class="monOrientation monMargin">
+        <!-- <div class="inputBox test">
+          <input (change)="textComment=$event.target.value" [value]="textComment"
+          class="text-input form-child monMarginInput" type="text" required="required" />
+          <span>Votre commentaire ici</span>
+        </div> -->
+        
         <input (change)="textComment=$event.target.value" [value]="textComment"
           class="text-input form-child monMarginInput" placeholder="Votre commentaire ici" />
-        <button (click)="onCommentPosted()">Poster</button>
+          <br/><br/><br/>
+          <a (click)="onCommentPosted()" style="--clr2:#00FF00" >
+            <span>Poster</span>
+            <i></i>
+          </a>
       </div>
       <div *ngFor="let comment of comments">
         <app-comment [textToDisplay]="comment.text" [userNickName]="comment.userNickName"
@@ -67,3 +79,4 @@
     </div>
   </div>
 </div>
+<br /><br />

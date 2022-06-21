@@ -14,7 +14,7 @@ import { InscriptionPageRoutingModule } from './inscription-routing.module';
     CommonModule,
     FormsModule,
     LoginRegisterContainerComponentModule,
-    InscriptionPageRoutingModule
+    InscriptionPageRoutingModule,
   ],
   declarations: [InscriptionPage]
 })

@@ -78,7 +78,6 @@ export class TimelinePage {
     var newPost = new Post("0", this.text, new Date(Date.now()), this.controlleur.user!.imageUrl, this.controlleur.user!.nickName, undefined, undefined, undefined, undefined, this.base64ToSaveAsImageUrl)
     this.controlleur.addNewPost(newPost).subscribe(result => {
       newPost.id = result.id
-      this.posts = [newPost].concat(this.posts)
       this.text = ""
       this.urlImage = ""
     })
