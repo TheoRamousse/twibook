@@ -83,20 +83,25 @@ L'arborescence du projet ce décompose en plusieurs dossiers contenant les diff�
 Nous avons voulu donner un style "tuning" à notre réseau social puisqu'il se veut centré les amateurs de grosses cylindrées et de tuning. Voici quelques captures d'écran de l'application : 
 
 Page de connexion : 
+
 ![Post déplié](Documentation/Images/connexion.png)
 
 Page d'inscription :
+
 ![Post déplié](Documentation/Images/inscription.png)
 
 
-Pae de la timeline : 
+Page de la timeline : 
+
 ![Post déplié](Documentation/Images/timeline1.png)
 
 
 Exemple de post lorsqu'il est plié : 
+
 ![Post déplié](Documentation/Images/post-plié.png)
 
 Exemple de post lorsqu'il est déplié :
+
 ![Post déplié](Documentation/Images/post-déplié.png)
 
 
