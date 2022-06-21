@@ -104,7 +104,6 @@ button {
   position: relative;
   margin-left: 43%;
   width: 250px;
-<<<<<<< HEAD
 }
 
 .inputBox input{
@@ -129,32 +128,6 @@ button {
   transition: 0.5s;
 }
 
-=======
-}
-
-.inputBox input{
-  width: 100%;
-  padding: 10px;
-  border: 1px solid rgba(255,255,255,0.25);
-  background: #1d2b3a;
-  border-radius: 5px;
-  outline: none;
-  color: #fff;
-  font-size: 1em;
-}
-
-.inputBox span{
-  position: absolute;
-  left: 0;
-  padding: 10px;
-  pointer-events: none;
-  font-size: 1em;
-  color: rgba(255,255,255,0.25);
-  text-transform: uppercase;
-  transition: 0.5s;
-}
-
->>>>>>> febb7af663feb0392b0f206151225daccec29f81
 .inputBox input:valid ~ span,
 .inputBox input:focus ~ span{
   color: #FB00FF;
@@ -165,19 +138,10 @@ button {
   border-left: 1px solid #FB00FF;
   border-right: 1px solid #FB00FF;
   letter-spacing: 0.2em;
-<<<<<<< HEAD
 }
 
 
 .inputBox input:valid,
-.inputBox input:focus {
-  border: 1px solid #FB00FF;
-=======
->>>>>>> febb7af663feb0392b0f206151225daccec29f81
-}
-
-
-.inputBox input:valid, 
 .inputBox input:focus {
   border: 1px solid #FB00FF;
 }
