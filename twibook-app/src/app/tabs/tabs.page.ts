@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppControllerService } from '../services/app-controller.service';
+<<<<<<< HEAD
 import { Router } from '@angular/router';
+=======
+>>>>>>> febb7af663feb0392b0f206151225daccec29f81
 
 @Component({
   selector: 'app-tabs',
