@@ -16,7 +16,7 @@ Voici un sketch montrant ce que l'on appelle un post "réduit" :
 Voici un sketch montrant ce que l'on appelle un post "déplié" : 
 ![Post déplié](Documentation/Images/Post déplié.PNG)
 
-### Techologies utilisées
+###Techologies utilisées
 
 Dans le cadre du cours de "Client-Serveur", sera la partie back sera développée ainsi qu'une application console pour valider le fonctionnement : 
 - Le back sera développé en JAVA - Spring Boot
@@ -60,7 +60,7 @@ Les champs email et pseudo ont été indexés pour les utilisateurs car :
 - Lors de l'inscription, il faur vérifier que l'email de l'utilisateur n'est pas déjà utilisée
 
 
-##Partie multiplateformes
+## Partie multiplateformes
 
 ### Packages utilisés
 
@@ -78,17 +78,17 @@ L'arborescence du projet ce décompose en plusieurs dossiers contenant les diff�
 - Views: Contient les différentes pages de l'application
 - Views/Components : Contient les composants graphiques utilisés par les views
 
-###UI/UX
+### UI/UX
 
 Nous avons voulu donner un style "tuning" à notre réseau social puisqu'il se veut centré les amateurs de grosses cylindrées et de tuning. Voici quelques captures d'écran de l'application : 
 
 
-###Device API
+### Device API
 
 Nous utilisons l'appareil photo du téléphone ainsi que son stockage pour pouvoir publier un post. L'utilisateur peut prendre une photo et l'intégrer à son post. La photo est par la suite convertie en base64 pour être enregistrée dans la base de données.
 Pour cela, nous avons créé un service qui utilise le package "@capacitor/camera".
 
-###Api HTTP
+### Api HTTP
 
 Notre application conatate l'API REST Java Spring Boot pour pouvoir effctuer les opérations CRUD sur la base de données. La liaison entre les deux est garantie par le service "Api-Client". Ce service crée les requêtes sur les différents endpoints de l'API et retourne des "Observable" qui pourront par la suite être consommés par le front.
 
@@ -96,7 +96,7 @@ L'opération DELETE est bien implémentée mais non-utilisée par le front car n
 
 Nous avons également le moyen de changer la persistence pour un stub grâce à l'injection de dépendances pour réaliser nos tests sur le front.
 
-###Data access/storage
+### Data access/storage
 
 Utilisation du Web-basedstorage pour sauvegarder l'utilisateur connecté. Un nouvel item est donc créé lors de la connexion dans le "app-controlleur" et est détruit lors de la déconnexion dans le "app-controlleur". Le srvice "auth.guard" consomme cet item pour savoir si l'utilisateur est connecté ou non.
 
