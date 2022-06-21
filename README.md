@@ -16,6 +16,8 @@ Voici un sketch montrant ce que l'on appelle un post "réduit" :
 Voici un sketch montrant ce que l'on appelle un post "déplié" : 
 ![Post déplié](Documentation/Images/Post déplié.PNG)
 
+Voici un figma montrant les sketchs colorés et un peu plus élaborés : https://www.figma.com/file/hE6qYulNAKEUwWXrhdnJTx/Untitled?node-id=0%3A1
+
 ### Techologies utilisées
 
 Dans le cadre du cours de "Client-Serveur", sera la partie back sera développée ainsi qu'une application console pour valider le fonctionnement : 
