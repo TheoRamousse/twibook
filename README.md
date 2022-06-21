@@ -113,7 +113,7 @@ Pour cela, nous avons créé un service qui utilise le package "@capacitor/camer
 
 ### Api HTTP
 
-Notre application conatate l'API REST Java Spring Boot pour pouvoir effctuer les opérations CRUD sur la base de données. La liaison entre les deux est garantie par le service "Api-Client". Ce service crée les requêtes sur les différents endpoints de l'API et retourne des "Observable" qui pourront par la suite être consommés par le front.
+Notre application contacte l'API REST Java Spring Boot pour pouvoir effctuer les opérations CRUD sur la base de données. La liaison entre les deux est garantie par le service "Api-Client". Ce service crée les requêtes sur les différents endpoints de l'API et retourne des "Observable" qui pourront par la suite être consommés par le front.
 
 L'opération DELETE est bien implémentée mais non-utilisée par le front car nous n'en avons pas l'utilité pour le moment.
 
