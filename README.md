@@ -100,7 +100,12 @@ Nous avons également le moyen de changer la persistence pour un stub grâce à 
 
 Utilisation du Web-basedstorage pour sauvegarder l'utilisateur connecté. Un nouvel item est donc créé lors de la connexion dans le "app-controlleur" et est détruit lors de la déconnexion dans le "app-controlleur". Le srvice "auth.guard" consomme cet item pour savoir si l'utilisateur est connecté ou non.
 
+### Ce que nous aurions voulu implémenter avec plus de temps
 
+Nous n'avons pas le temps nécessaire pour implémenter toutes les fonctionalités souhaitées.Voici une liste des fonctionalités qui pourrait apparaître dans une prochaine mise à jour : 
+- Possibilité pour l'utilisateur d'ajouter une photo de profile et de modifier son profile
+- Possibilité de cliquer sur un utilisateur pour voir la liste de ses voitures et son profile
+- Possibilité de modifier/supprimer un post
 
 
 
