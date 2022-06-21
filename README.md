@@ -5,7 +5,7 @@ Twibook est un réseau social pour les fans de grosses cylindrées. Nous avons p
 
 ### Contraintes techniques imposées
 
-- Une limite de 4 photos par post a été fixée afin d'éviter d'avoir des photos illisibles
+- Une limite de 1 photo par post a été fixée afin d'éviter d'avoir des photos illisibles
 - Lorsqu'un utilisateur visionne la timeline de Twibook, les posts sont "réduits". Cela signifie que seul le post est visible ainsi que le premier commentaire publié sous le post
 - Lorsqu'un utilisateur clique sur un post, celui-ci se "déplie". Cela signifie que l'ensemble des commentaires seront alors visibles en plus du contenu du post.
 - Pour des questions de quota serveur, aucune image n'est enregistré dans le stockage du site, celles-ci sont uploadés directement depuis le web grâce à leur URL
