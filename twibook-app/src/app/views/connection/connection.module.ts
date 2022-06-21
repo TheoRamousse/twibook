@@ -13,8 +13,9 @@ import { ConnectionPageRoutingModule } from './connection-routing.module';
     CommonModule,
     FormsModule,
     LoginRegisterContainerComponentModule,
-    ConnectionPageRoutingModule
+    ConnectionPageRoutingModule,
   ],
   declarations: [ConnectionPage]
 })
 export class ConnectionPageModule { }
+

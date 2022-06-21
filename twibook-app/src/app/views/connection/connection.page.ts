@@ -3,6 +3,7 @@ import * as bcrypt from 'bcryptjs';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { AppControllerService } from '../../services/app-controller.service';
 import { LocalStorageKeys } from '../../model/LocalStorageKeys';
+import { IonRefresher } from '@ionic/angular';
 
 @Component({
   selector: 'app-connection',
@@ -31,6 +32,7 @@ export class ConnectionPage {
         localStorage.setItem(LocalStorageKeys.user, JSON.stringify(userFound))
         this.errorMessage = ""
         this.router.navigate(['tabs/timeline']);
+        window.location.reload()
         return
       }
       else {
@@ -40,6 +42,7 @@ export class ConnectionPage {
     }, error => {
       this.errorMessage = "Identifiant inconnu"
     })
+    
   }
 
   onNavigateRegister() {
