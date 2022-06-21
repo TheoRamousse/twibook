@@ -59,6 +59,7 @@ export class TabsPage {
     this.isActivePost = false;
     this.isActiveInscription = false;
     this.controller.logout();
+    this.user = this.controller.user
   }
 
 }

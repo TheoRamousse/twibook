@@ -33,4 +33,136 @@ mat-card{
   justify-content: center !important;
 }
 
+.imageDesign{
+    width: 10%;
+    top: 40%;
+    left: 50%;
+    box-shadow: 0 0 .5vw 0.2vw #7476ff;
+    box-shadow: 0 0 .2vw 0.2vw #3134ff;
+    box-shadow: 0 0 .25vw 0.2vw #0408fb;
+    border-radius: 22px;
+}
 
+a{
+    position: relative;
+    background: #444;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+    padding: 10px 30px;
+    transition: 0.5s;
+}
+
+a:hover{
+    letter-spacing: 0.25em;
+    background: var(--clr2);
+    color: var(--clr2);
+    box-shadow: 0 0 35px var(--clr2);
+}
+
+a::before{
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: #1d2b3a;
+}
+
+a span{
+    position: relative;
+    z-index: 1;
+}
+
+a i{
+    position: absolute;
+    inset: 0;
+    display: block;
+}
+
+a i::before{
+    content: '';
+    position: absolute;
+    top: -3.5px;
+    right: 80%;
+    width: 10px;
+    height: 5px;
+    border: 2px solid var(--clr2);
+    background: #1d3a1d;
+    transition: 0.5s;
+}
+
+a:hover i::before{
+    width: 20px;
+    right: 20%;
+}
+
+a i::after{
+    content: '';
+    position: absolute;
+    bottom: -3.5px;
+    left: 80%;
+    width: 10px;
+    height: 5px;
+    border: 2px solid var(--clr2);
+    background: #1d2b3a;
+    transform: translateX(-50%);
+    transition: 0.5s;
+}
+
+a:hover i::after{
+    width: 20px;
+    left: 20%;
+}
+
+.center{
+    text-align: center;
+    justify-content: center;
+}
+
+.inputBox{
+    position: relative;
+    margin-left: 44%;
+    width: 250px;
+  }
+  
+  .inputBox textarea{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgba(255,255,255,0.25);
+    background: #1d2b3a;
+    border-radius: 5px;
+    outline: none;
+    color: #fff;
+    font-size: 1em;
+  }
+  
+  .inputBox span{
+    position: absolute;
+    left: 0;
+    padding: 10px;
+    pointer-events: none;
+    font-size: 1em;
+    color: rgba(255,255,255,0.25);
+    text-transform: uppercase;
+    transition: 0.5s;
+  }
+  
+  .inputBox textarea:valid ~ span,
+  .inputBox textarea:focus ~ span{
+    color: #FB00FF;
+    transform: translateX(10px) translateY(-7px);
+    font-size: 0.65em;
+    padding: 0 10px;
+    background: #1d2b3a;
+    border-left: 1px solid #FB00FF;
+    border-right: 1px solid #FB00FF;
+    letter-spacing: 0.2em;
+  }
+  
+  
+  .inputBox textarea:valid,
+  .inputBox textarea:focus {
+    border: 1px solid #FB00FF;
+  }
+  

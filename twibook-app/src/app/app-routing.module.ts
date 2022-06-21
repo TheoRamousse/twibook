@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../app/auth/services/auth.guard';
 
 const routes: Routes = [
   {
@@ -19,8 +20,9 @@ const routes: Routes = [
     loadChildren: () => import('./views/edition-profile/edition-profile.module').then(m => m.EditionProfilePageModule)
   },
   {
-    path: 'post',
-    loadChildren: () => import('./views/components/post/post.module').then(m => m.PostComponentModule)
+    path: 'timeline',
+    loadChildren: () => import('./views/timeline/timeline.module').then(m => m.TimelinePageModule),
+    canActivate: [AuthGuard]
   },
 
 ];
