@@ -19,8 +19,8 @@ Voici un figma montrant les sketchs colorés et un peu plus élaborés : https:/
 
 ### Techologies utilisées
 
-Dans le cadre du cours de "Client-Serveur", sera la partie back sera développée ainsi qu'une application console pour valider le fonctionnement : 
-- Le back sera développé en JAVA - Spring Boot
+Dans le cadre du cours de "Client-Serveur" et de "Multiplateformes", seront développés : 
+- Le back en JAVA - Spring Boot sous la forme d'une API
 - La couche de persistance des données sera gérée par une base de données MongoDB
 - Le front sera réalisé en Ionic Angular TS
 
