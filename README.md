@@ -121,7 +121,7 @@ Nous avons également le moyen de changer la persistence pour un stub grâce à 
 
 ### Data access/storage
 
-Utilisation du Web-basedstorage pour sauvegarder l'utilisateur connecté. Un nouvel item est donc créé lors de la connexion dans le "app-controlleur" et est détruit lors de la déconnexion dans le "app-controlleur". Le srvice "auth.guard" consomme cet item pour savoir si l'utilisateur est connecté ou non.
+Utilisation du Web-basedstorage pour sauvegarder l'utilisateur connecté. Un nouvel item est donc créé lors de la connexion dans le "app-controlleur" et est détruit lors de la déconnexion dans le "app-controlleur". Le service "auth.guard" consomme cet item pour savoir si l'utilisateur est connecté ou non.
 
 ### Ce que nous aurions voulu implémenter avec plus de temps
 
