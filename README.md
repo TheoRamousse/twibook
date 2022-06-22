@@ -1,92 +1,137 @@
-# Twibook
+# Twibook en quelques mots
+Twibook est un réseau social pour les fans de grosses cylindrées. Nous avons pour ambition de réunir les amateurs de beaux bolides à un même endroit afin qu'ils puissent échanger au sujet de leur passion avec des posts pouvant contenir du texte et une photo. Le réseau social est inspiré de Facebook et de Twitter. Ainsi, les utilisateurs pourront ajouter des posts à leur timeline et les autres utilisateurs auront la possibilité de les commenter. 
+
+## Contexte de création du site web
+
+### Contraintes techniques imposées
+
+- Une limite de 1 photo par post a été fixée afin d'éviter d'avoir des photos illisibles
+- Lorsqu'un utilisateur visionne la timeline de Twibook, les posts sont "réduits". Cela signifie que seul le post est visible ainsi que le premier commentaire publié sous le post
+- Lorsqu'un utilisateur clique sur un post, celui-ci se "déplie". Cela signifie que l'ensemble des commentaires seront alors visibles en plus du contenu du post.
+
+Voici un sketch montrant ce que l'on appelle un post "réduit" : 
+![Post réduit](Documentation/Images/Post réduit.PNG)
+
+Voici un sketch montrant ce que l'on appelle un post "déplié" : 
+![Post déplié](Documentation/Images/Post déplié.PNG)
+
+Voici un figma montrant les sketchs colorés et un peu plus élaborés : https://www.figma.com/file/hE6qYulNAKEUwWXrhdnJTx/Untitled?node-id=0%3A1
+
+### Techologies utilisées
+
+Dans le cadre du cours de "Client-Serveur" et de "Multiplateformes", seront développés : 
+- Le back en JAVA - Spring Boot sous la forme d'une API
+- La couche de persistance des données sera gérée par une base de données MongoDB
+- Le front sera réalisé en Ionic Angular TS
+
+## Partie client/serveur
+
+### Architecture globale No SQL
+
+Après avoir réfléchi aux différentes contraintes techniques que nous nous imposons pour la réalisation du projet, nous avons retranscrit cela sous la forme d'un diagramme UML. Les contraintes techniques sont explicitées grâce aux cardinalités du diagramme :
+
+![Diagramme UML pour l'architecture de la MongoDB](Documentation/Images/Diagramme UML préliminaire.png)
+
+Nous avons décidé de rajouter de l'incoporation dans les objets suivants : 
+- Comment : Permet d'afficher le pseudo et l'utilisateur et son avatar sans avoir à faire une sous requête pour récupérer ces attributs
+- Post : Permet d'afficher le premier commentaire du post sans voir à faire une sous requête pour le récupérer
+
+Nous avons décidé d'utiliser le référencement pour séparer les posts des commentaires ainsi que pour séparer les users des posts. Cela nécessitera donc de travailler avec les jointures pour requêter les données mais cela évitera d'avoir des résultats de requêtes trop importants (un post peut potentiellement avoir un grand nombre de commentaires qui lui sont associé).
+
+Pour la relation entre un utilisateur et ses voitures, nous auront une relation OneToFew car un utilisateur ne possédera jamais un très grand nombre de voitures. Nous avons donc choisi d'utiliser l'incorporation des voitures dans le document "user".
+
+### Patron NoSQL implémenté
+
+Nous avons également implémenté le patron NoSQL "Schema Versioning". Ce patron permet d'ajouter un numéro de version aux différents documents de la base. Ce numéro de version permettra de modifier les documents qui seront dans un numéro de version inférieur de la version courante dans le but qu'ils aient la même structure que les nouveaux documents insérés. Le patron facilite donc grandement les migrations en diminuant le temps d'exécution de celle-ci.
+
+L'intégralité de nos documents ont donc un champ "schema_version" de type string qui contient la version actuelle du document.
+
+### Diagramme de classes des entités JAVA
+
+![Diagramme de classes pour l'architecture des entités](Documentation/Images/diagramme de classes entities java.drawio.png)
+
+On retrouve les différents référencements (id des posts dans user et id des comments dans post)
+On retrouve également l'incorporation des voitures dans la classe utilisateur
+
+
+### Utilisation des indexes
+
+Les champs email et pseudo ont été indexés pour les utilisateurs car :
+- Lors de la connexion, c'est le pseudo de l'utilisateur qui est utilisé pour récupérer son mot de passe hashé
+- Lors de l'inscription, il faur vérifier que l'email de l'utilisateur n'est pas déjà utilisée
+
+
+## Partie multiplateformes
+
+### Packages utilisés
+
+Pour la réalisation du projet, nous avons utilisé différents packages. Voici une liste non-exaustives des principaux packages utilisés : 
+- @capacitor/camera : Permet de gérer la prise de photos mais aussi de récupérer une photo existante dans les fichiers de l'appareil
+- @angular/router : Permet de gérer l'accès aux pages en fonction de si l'utilisateur est connecté ou non
+- bcrypt.js : Permet de hasher le mot de passe de l'utilisateur et de le comparer pour la connexion de celui-ci
+
+### Arborescence du projet
+
+L'arborescence du projet ce décompose en plusieurs dossiers contenant les différentes classes de l'application Angular : 
+- Auth : Contient le service permettant d'accorder ou non l'accès aux différentes pages
+- Model : Contient les classes métier de l'application 
+- Services : Contient les différents services qui seront injectés dans les constructeurs des différentes pages (controlleur, stub, apiclient, camera ...)
+- Views: Contient les différentes pages de l'application
+- Views/Components : Contient les composants graphiques utilisés par les views
+
+### UI/UX
+
+Nous avons voulu donner un style "tuning" à notre réseau social puisqu'il se veut centré les amateurs de grosses cylindrées et de tuning. Voici quelques captures d'écran de l'application : 
+
+Page de connexion : 
+
+![Post déplié](Documentation/Images/connexion.png)
+
+Page d'inscription :
+
+![Post déplié](Documentation/Images/inscription.png)
+
+
+Page de la timeline : 
+
+![Post déplié](Documentation/Images/timeline1.png)
+
+
+Exemple de post lorsqu'il est plié : 
+
+![Post déplié](Documentation/Images/post-plié.png)
+
+Exemple de post lorsqu'il est déplié :
+
+![Post déplié](Documentation/Images/post-déplié.png)
+
+
+### Device API
+
+Nous utilisons l'appareil photo du téléphone ainsi que son stockage pour pouvoir publier un post. L'utilisateur peut prendre une photo et l'intégrer à son post. La photo est par la suite convertie en base64 pour être enregistrée dans la base de données.
+Pour cela, nous avons créé un service qui utilise le package "@capacitor/camera".
+
+### Api HTTP
+
+Notre application contacte l'API REST Java Spring Boot pour pouvoir effctuer les opérations CRUD sur la base de données. La liaison entre les deux est garantie par le service "Api-Client". Ce service crée les requêtes sur les différents endpoints de l'API et retourne des "Observable" qui pourront par la suite être consommés par le front.
+
+L'opération DELETE est bien implémentée mais non-utilisée par le front car nous n'en avons pas l'utilité pour le moment.
+
+Nous avons également le moyen de changer la persistence pour un stub grâce à l'injection de dépendances pour réaliser nos tests sur le front.
+
+### Data access/storage
+
+Utilisation du Web-basedstorage pour sauvegarder l'utilisateur connecté. Un nouvel item est donc créé lors de la connexion dans le "app-controlleur" et est détruit lors de la déconnexion dans le "app-controlleur". Le service "auth.guard" consomme cet item pour savoir si l'utilisateur est connecté ou non.
+
+### Ce que nous aurions voulu implémenter avec plus de temps
+
+Nous n'avons pas le temps nécessaire pour implémenter toutes les fonctionalités souhaitées.Voici une liste des fonctionalités qui pourrait apparaître dans une prochaine mise à jour : 
+- Possibilité pour l'utilisateur d'ajouter une photo de profile et de modifier son profile
+- Possibilité de cliquer sur un utilisateur pour voir la liste de ses voitures et son profile
+- Possibilité de modifier/supprimer un post
 
 
 
-## Getting started
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
 
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab.iut-clermont.uca.fr/maalbiero/twibook.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://gitlab.iut-clermont.uca.fr/maalbiero/twibook/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
