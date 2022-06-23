@@ -8,6 +8,7 @@ import iut.uca.twibook.dtos.PostDTO;
 import iut.uca.twibook.entities.PostEntityAndResultCode;
 import iut.uca.twibook.entities.post_entities.PostEntity;
 import iut.uca.twibook.entities.post_entities.PostEntityV2;
+import iut.uca.twibook.mappers.DateMapper;
 import iut.uca.twibook.mappers.PostMapper;
 import iut.uca.twibook.services.PostService;
 import org.bson.types.ObjectId;
@@ -32,6 +33,9 @@ public class PostController {
 
     @Autowired
     PostMapper mapper;
+
+    @Autowired
+    DateMapper dateMapper;
 
     /***
      * Ce endpoint permet de récupérer un post à partir de Id.
@@ -78,6 +82,11 @@ public class PostController {
         return new ResponseEntity("Post not found", HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping(value = "/groupby")
+    public ResponseEntity<List<PostDTO>> groupByPublicationDate(@RequestParam(required = true) long timestamp){
+        return new ResponseEntity<>(mapper.toListDTOwithV2(postService.groupByPublicationDate(dateMapper.toLocalDate(timestamp))), HttpStatus.OK);
+    }
+
     /***
      * Ce endpoint permet de récupérer l'ensemble des post présent dans la base de données
      * ou de les retourner sous la forme d'une pagination.
@@ -96,7 +105,7 @@ public class PostController {
             postDTOList = mapper.toListDTO(postService.findAllPagined(page, nbElementsPerPage));
         }
         else {
-            postDTOList = mapper.toListDTO(postService.getPosts());
+            postDTOList = mapper.toListDTOwithV2(postService.getPosts());
         }
 
         if (postDTOList.isEmpty()) {
