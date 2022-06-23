@@ -96,6 +96,26 @@ public class PostService {
 	}
 
 	/***
+	 * Cette méthode permet de récupérer des posts de manière groupé à partir d'une date donnée.
+	 * @param date La date pour regrouper les posts
+	 * @return retourne la liste des posts trouvés
+	 */
+	public List<PostEntityV2> groupByPublicationDate(LocalDate date){
+		List<PostEntity> postEntityList = repository.groupByPublicationDate(date);
+		List<PostEntityV2> postEntityV2List = repositoryV2.groupByPublicationDate(date);
+		List<PostEntityV2> temporaryList;
+
+		if(!postEntityList.isEmpty()) {
+			temporaryList = postMapper.toCurrentVersion(postEntityList);
+			temporaryList.removeAll(postEntityV2List);
+			postEntityV2List.addAll(temporaryList);
+		}
+
+		return postEntityV2List;
+	}
+
+
+	/***
 	 * Cette méthode permet de supprimer un post à partir de son Id.
 	 * @param postToDelete L'Id du post à supprimer.
 	 * @return Retourne un long indiquant si le post a bien été supprimé ou non.
