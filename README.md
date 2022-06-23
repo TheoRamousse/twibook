@@ -56,7 +56,7 @@ On retrouve également l'incorporation des voitures dans la classe utilisateur
 
 ### Utilisation des indexes
 
-Les champs email et pseudo ont été indexés pour les utilisateurs car :
+Les champs email et pseudo ont été indexés avec un "Single Field Index" pour les utilisateurs car :
 - Lors de la connexion, c'est le pseudo de l'utilisateur qui est utilisé pour récupérer son mot de passe hashé
 - Lors de l'inscription, il faur vérifier que l'email de l'utilisateur n'est pas déjà utilisée
 
