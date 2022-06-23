@@ -52,7 +52,7 @@ export class InscriptionPage {
       this.controlleur.getUserByNickName(this.nickName).subscribe(user => {
         this.errorMessage = "Ce pseudo est déjà utilisé";
       }, error => {
-        if (error.status == 404) {
+        if (error.status != 404) {
           this.controlleur.registerUser(this.email, this.password, this.nickName, this.firstName, this.lastName);
           this.errorMessage = "";
           this.router.navigate(['tabs/connection']);
