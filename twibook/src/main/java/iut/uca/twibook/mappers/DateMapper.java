@@ -1,11 +1,10 @@
 package iut.uca.twibook.mappers;
 
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import org.mapstruct.Mapper;
 import org.springframework.web.context.annotation.ApplicationScope;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 
 /***
  * Mapper de Date.
@@ -15,11 +14,11 @@ import java.time.LocalTime;
 public interface DateMapper {
 
     /***
-     * Cette méthode permet de convertir une date au format LocalDate en une date de type LocalDateTime.
-     * @param localDate La date à convertir.
-     * @return Retourne la date convertie au format LocalDateTime.
+     * Cette méthode permet de convertir une date au format long (Timestamp) en une date de type LocalDate.
+     * @param timestamp La date à convertir.
+     * @return Retourne la date convertie au format LocalDate.
      */
-    default LocalDateTime toLocalDateTime(LocalDate localDate) {
-        return localDate.atTime(0,0,0);
+    default LocalDate toLocalDate(long timestamp) {
+        return Instant.ofEpochMilli(timestamp).atZone(ZoneId.systemDefault()).toLocalDate();
     }
 }
