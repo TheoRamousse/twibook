@@ -1,6 +1,8 @@
 package iut.uca.twibook.services;
 
 import iut.uca.twibook.Status;
+import iut.uca.twibook.entities.CommentEntityAndResultCode;
+import iut.uca.twibook.entities.PostEntityAndResultCode;
 import iut.uca.twibook.entities.comment_entities.CommentEntity;
 import iut.uca.twibook.entities.comment_entities.CommentEntityV2;
 import iut.uca.twibook.mappers.CommentMapper;
@@ -75,27 +77,7 @@ public class CommentService {
      * @param commentEntityV2 Le commentaire à ajouter ou modifier.
      * @return Retourne si le commentaire a été créé ou modifié.
      */
-    public Status createComment(CommentEntityV2 commentEntityV2){
-
-        public class EntityAndCodeResult{
-        private Status status;
-        private CommentEntityV2 entity;
-
-        public EntityAndCodeResult(Status status, CommentEntityV2 entity){
-            this.entity = entity;
-            this.status = status;
-        }
-
-        public Status getStatus() {
-            return status;
-        }
-
-        public CommentEntityV2 getEntity() {
-            return entity;
-        }
-    }
-
-    public EntityAndCodeResult createComment(CommentEntityV2 commentEntityV2){
+    public CommentEntityAndResultCode createComment(CommentEntityV2 commentEntityV2){
         Status response;
 
         if(commentEntityV2.getId() != null && repositoryV2.existsById(commentEntityV2.getId().toString())) {
@@ -105,7 +87,7 @@ public class CommentService {
             response = Status.CREATED;
             commentEntityV2.setSchemaVersion("2");
         }
-        return new EntityAndCodeResult(response ,repositoryV2.save(commentEntityV2));
+        return new CommentEntityAndResultCode(response , repositoryV2.save(commentEntityV2));
     }
 
     /***

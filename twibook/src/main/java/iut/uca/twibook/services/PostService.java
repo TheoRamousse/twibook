@@ -1,8 +1,7 @@
 package iut.uca.twibook.services;
 
 import iut.uca.twibook.Status;
-import iut.uca.twibook.entities.comment_entities.CommentEntity;
-import iut.uca.twibook.entities.comment_entities.CommentEntityV2;
+import iut.uca.twibook.entities.PostEntityAndResultCode;
 import iut.uca.twibook.entities.post_entities.PostEntityV2;
 import iut.uca.twibook.mappers.PostMapper;
 import iut.uca.twibook.repositories.comment_repositories.CommentRepository;
@@ -79,39 +78,20 @@ public class PostService {
 	/***
 	 * Cette méthode permet d'ajouter ou de modifier un post si l'Id a été renseigné.
 	 * @param postEntity Le post à ajouter ou modifier.
-	 * @return Retourne si le post a été créé ou modifié.
+	 * @return Retourne si le post a été créé ou modifié, si oui le post ajouté est retourné aussi.
 	 */
-	public Status createPost(PostEntity postEntity){
-	public class EntityAndCodeResult{
-		private Status status;
-		private PostEntity entity;
-
-		public EntityAndCodeResult(Status status, PostEntity entity){
-			this.entity = entity;
-			this.status = status;
-		}
-
-		public Status getStatus() {
-			return status;
-		}
-
-		public PostEntity getEntity() {
-			return entity;
-		}
-	}
-
-	public EntityAndCodeResult createPost(PostEntity postEntity){
+	public PostEntityAndResultCode createPost(PostEntityV2 postEntityv2){
 		Status response;
 
-		if(postEntity.getId() != null && repository.existsById(postEntity.getId().toString())) {
+		if(postEntityv2.getId() != null && repository.existsById(postEntityv2.getId().toString())) {
 
 			response = Status.UPDATED;
 		}
 		else {
 			response = Status.CREATED;
-			postEntity.setSchemaVersion("2");
+			postEntityv2.setSchemaVersion("2");
 		}
-		return new EntityAndCodeResult(response, repository.save(postEntity));
+		return new PostEntityAndResultCode(response, repositoryV2.save(postEntityv2));
 	}
 
 	/***

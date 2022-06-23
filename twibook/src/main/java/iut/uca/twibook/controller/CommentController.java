@@ -1,8 +1,8 @@
 package iut.uca.twibook.controller;
 
-import iut.uca.twibook.Status;
 import iut.uca.twibook.dtos.CommentDTO;
-import iut.uca.twibook.entities.comment_entities.CommentEntityV2;
+import iut.uca.twibook.entities.CommentEntityAndResultCode;
+import iut.uca.twibook.entities.PostEntityAndResultCode;
 import iut.uca.twibook.mappers.CommentMapper;
 import iut.uca.twibook.services.CommentService;
 import org.bson.types.ObjectId;
@@ -65,7 +65,7 @@ public class CommentController {
     public ResponseEntity<CommentDTO> createComment(@RequestBody CommentDTO comment) {
         comment.setId(new ObjectId().toString());
 
-        CommentService.EntityAndCodeResult response = commentService.createComment(mapper.toEntityV2(comment));
+        CommentEntityAndResultCode response = commentService.createComment(mapper.toEntityV2(comment));
 
         switch (response.getStatus()) {
             case UPDATED: return new ResponseEntity<>(mapper.toDTO(response.getEntity()), HttpStatus.OK);

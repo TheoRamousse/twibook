@@ -5,7 +5,9 @@ import java.util.Objects;
 
 import iut.uca.twibook.Status;
 import iut.uca.twibook.dtos.PostDTO;
+import iut.uca.twibook.entities.PostEntityAndResultCode;
 import iut.uca.twibook.entities.post_entities.PostEntity;
+import iut.uca.twibook.entities.post_entities.PostEntityV2;
 import iut.uca.twibook.mappers.PostMapper;
 import iut.uca.twibook.services.PostService;
 import org.bson.types.ObjectId;
@@ -49,11 +51,11 @@ public class PostController {
      * @return Retourne un message indiquant si le post à été modifié (200) ou créé (201).
      */
     @PostMapping
-    public ResponseEntity<PostEntity> createPost(@RequestBody PostDTO post) {
+    public ResponseEntity<PostEntityV2> createPost(@RequestBody PostDTO post) {
         if(post.getId() == null || Objects.equals(post.getId(), "0")) {
             post.setId(new ObjectId().toString());
         }
-        PostService.EntityAndCodeResult response = postService.createPost(mapper.toEntity(post));
+        PostEntityAndResultCode response = postService.createPost(mapper.toEntityV2(post));
 
         switch (response.getStatus()) {
             case UPDATED: return new ResponseEntity<>(response.getEntity(), HttpStatus.OK);
