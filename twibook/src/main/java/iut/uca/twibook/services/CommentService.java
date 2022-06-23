@@ -1,6 +1,8 @@
 package iut.uca.twibook.services;
 
 import iut.uca.twibook.Status;
+import iut.uca.twibook.entities.CommentEntityAndResultCode;
+import iut.uca.twibook.entities.PostEntityAndResultCode;
 import iut.uca.twibook.entities.comment_entities.CommentEntity;
 import iut.uca.twibook.entities.comment_entities.CommentEntityV2;
 import iut.uca.twibook.mappers.CommentMapper;
@@ -14,6 +16,9 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+/***
+ * Service de commentaire permattant de séparer le traitement métier des couches controller et repository.
+ */
 @Service
 public class CommentService {
 
@@ -26,6 +31,11 @@ public class CommentService {
     @Autowired
     CommentMapper commentMapper;
 
+    /***
+     * Cette méthode permet de récupérer un commentaire à partir de son Id
+     * @param id L'Id du commentaire à récupérer.
+     * @return Retourne le commentaire dans son intégralité ou renvoie une erreur 404 si le commentaire n'est pas trouvé.
+     */
     public CommentEntityV2 findById(ObjectId id){
         CommentEntity commentEntity = repository.findById(id);
         CommentEntityV2 commentEntityV2;
@@ -44,6 +54,10 @@ public class CommentService {
         return commentEntityV2;
     }
 
+    /***
+     * Cette méthode permet de récupérer l'ensemble des commentaires présents en base.
+     * @return Retourne l'ensemble des utilisateurs convertis dans la version la plus recente.
+     */
     public List<CommentEntityV2> getComments(){
         List<CommentEntity> commentEntityList = repository.findAll();
         List<CommentEntityV2> commentEntityV2List = repositoryV2.findAll();
@@ -58,25 +72,12 @@ public class CommentService {
         return commentEntityV2List;
     }
 
-    public class EntityAndCodeResult{
-        private Status status;
-        private CommentEntityV2 entity;
-
-        public EntityAndCodeResult(Status status, CommentEntityV2 entity){
-            this.entity = entity;
-            this.status = status;
-        }
-
-        public Status getStatus() {
-            return status;
-        }
-
-        public CommentEntityV2 getEntity() {
-            return entity;
-        }
-    }
-
-    public EntityAndCodeResult createComment(CommentEntityV2 commentEntityV2){
+    /***
+     * Cette méthode permet d'ajouter ou de modifier un commentaire si l'Id a été renseigné.
+     * @param commentEntityV2 Le commentaire à ajouter ou modifier.
+     * @return Retourne si le commentaire a été créé ou modifié.
+     */
+    public CommentEntityAndResultCode createComment(CommentEntityV2 commentEntityV2){
         Status response;
 
         if(commentEntityV2.getId() != null && repositoryV2.existsById(commentEntityV2.getId().toString())) {
@@ -86,9 +87,14 @@ public class CommentService {
             response = Status.CREATED;
             commentEntityV2.setSchemaVersion("2");
         }
-        return new EntityAndCodeResult(response ,repositoryV2.save(commentEntityV2));
+        return new CommentEntityAndResultCode(response , repositoryV2.save(commentEntityV2));
     }
 
+    /***
+     * Cette méthode permet de supprimer un commentaire à partir de son Id.
+     * @param commentToDelete L'Id du commentaire à supprimer.
+     * @return Retourne un long indiquant si le commentaire a bien été supprimé ou non.
+     */
     public Long deleteComment(ObjectId commentToDelete) {
         return repository.removeById(commentToDelete);
     }
