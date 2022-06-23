@@ -1,0 +1,296 @@
+{
+	"info": {
+		"_postman_id": "396675c7-e3b1-4c67-a0e1-cda0f2c4db92",
+		"name": "Twibook_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18508278"
+	},
+	"item": [
+		{
+			"name": "manage users",
+			"item": [
+				{
+					"name": "getAll and getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/users?nickName=test",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "nickName",
+									"value": "test"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"firstName_example\",\n    \"lastName\": \"lastName_example\",\n    \"nickName\": \"nickName_example\",\n    \"imgUrl\": null,\n    \"birthDate\": \"2022-01-01\",\n    \"email\": \"monEmail@gmail.com\",\n    \"password\": \"password\",\n    \"posts\": null,\n    \"cars\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/users",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/users/62b4c4c68fb21715c71de079",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"users",
+								"62b4c4c68fb21715c71de079"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "manage comments",
+			"item": [
+				{
+					"name": "getAll and getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/comments",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"Commentaire sympas\",\n    \"publicationDate\": \"2015-01-03\",\n    \"user_nickName\": \"nickName_example\",\n    \"userImageUrl\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/comments",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete comment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/comments/629906cee7b74c5d321196a1",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"comments",
+								"629906cee7b74c5d321196a1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "manage posts",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/posts/",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"posts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/posts/62b4c4c68fb21715c71de079",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"posts",
+								"62b4c4c68fb21715c71de079"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "group by publication date",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/posts/groupby?timestamp=1655969577",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"posts",
+								"groupby"
+							],
+							"query": [
+								{
+									"key": "timestamp",
+									"value": "1655969577"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get posts page",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/posts?nbElementsPerPage=10&page=0",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"posts"
+							],
+							"query": [
+								{
+									"key": "nbElementsPerPage",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"text\": \"Ceci est un text à titre d'exemple\",\n    \"postImage\": \"https://picsum.photos/200/300\",\n    \"publicationDate\": \"2015-01-03\",\n    \"firstCommentText\": \"Text du premier commentaire\",\n    \"firstCommentUserImageUrl\": \"https://picsum.photos/200/300\",\n    \"firstCommentUserNickName\": \"first_user_nickName\",\n    \"comments\": [\"62a6f8e528465d645ac9c794\",\n                    \"62a6f8e428465d645ac9c78f\"]\n}\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:9000/posts",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:9000/posts/62b4c5288fb21715c71de07b",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"posts",
+								"62b4c5288fb21715c71de07b"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
