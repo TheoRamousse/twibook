@@ -46,6 +46,13 @@ Nous avons également implémenté le patron NoSQL "Schema Versioning". Ce patro
 
 L'intégralité de nos documents ont donc un champ "schema_version" de type string qui contient la version actuelle du document.
 
+### Requêtes de recherche implémentées
+
+Nous avons implémenté la recherche selon : 
+- L'adresse mail de l'utilisateur (utile lors de la phase de connexion)
+- Le pseudo de l'utilisateur (utile lors de la phase de connexion)
+- Les ids des différents composants (utile dans les différents cas de référencement)
+
 ### Diagramme de classes des entités JAVA
 
 ![Diagramme de classes pour l'architecture des entités](Documentation/Images/diagramme de classes entities java.drawio.png)
