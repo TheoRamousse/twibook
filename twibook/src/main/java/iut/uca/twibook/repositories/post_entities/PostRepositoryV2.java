@@ -41,7 +41,4 @@ public interface PostRepositoryV2 extends MongoRepository<PostEntityV2, String> 
             "{ $group: {_id: publication_date, posts: { $push: $$ROOT} } } }",
             "{ $project: { _id: 0, posts: 1} }"})
     List<PostEntityV2> groupByPublicationDate(LocalDate localDate);
-
-    // Ajouter une classe contenant une liste de posts, cette classe sera donnée en retour de la méthode
-    // groupby du repo
 }
