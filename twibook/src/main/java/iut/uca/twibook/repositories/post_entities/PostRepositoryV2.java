@@ -4,12 +4,16 @@ import iut.uca.twibook.entities.post_entities.PostEntityV2;
 import org.bson.types.ObjectId;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.repository.Aggregation;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
 /***
  * Repository de post de version actuel permettant de contacter la base de données.
  */
+import java.time.LocalDate;
+import java.util.List;
+
 public interface PostRepositoryV2 extends MongoRepository<PostEntityV2, String> {
     /***
      * Cette méthode permet de récupérer des post par page.
@@ -32,4 +36,12 @@ public interface PostRepositoryV2 extends MongoRepository<PostEntityV2, String> 
      * @return Retourne un long indiquant si le post à été supprimé ou non
      */
     Long removeById(ObjectId _id);
+
+    @Aggregation({"{ $match : { publication_date : ?0 } }",
+            "{ $group: {_id: publication_date, posts: { $push: $$ROOT} } } }",
+            "{ $project: { _id: 0, posts: 1} }"})
+    List<PostEntityV2> groupByPublicationDate(LocalDate localDate);
+
+    // Ajouter une classe contenant une liste de posts, cette classe sera donnée en retour de la méthode
+    // groupby du repo
 }

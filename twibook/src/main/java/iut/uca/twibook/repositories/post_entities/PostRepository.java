@@ -1,12 +1,16 @@
 package iut.uca.twibook.repositories.post_entities;
 
 import iut.uca.twibook.entities.post_entities.PostEntity;
+import iut.uca.twibook.entities.post_entities.PostEntityV2;
 import org.bson.types.ObjectId;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.time.LocalDate;
+import java.util.List;
 
 /***
  * Repository de post de version ultérieur permettant de contacter la base de données.
@@ -35,5 +39,8 @@ public interface PostRepository extends MongoRepository<PostEntity, String> {
      * @return Retourne un long indiquant si le post à été supprimé ou non
      */
     Long removeById(ObjectId _id);
+
+    @Query("{ $group: { publication_date: ?0 } }")
+    List<PostEntity> groupByPublicationDate(LocalDate localDate);
 }
 
