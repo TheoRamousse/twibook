@@ -68,6 +68,12 @@ Les champs email et pseudo ont été indexés avec un "Single Field Index" pour 
 - Lors de l'inscription, il faur vérifier que l'email de l'utilisateur n'est pas déjà utilisée
 
 
+### Pipeline d'agrégation
+
+Implémentation d'une pipeline d'agrégation sur les posts à partir de leur date de publication ($group, $project). Disponible dans
+la classe PostController, PostService, PostRepository et PostRepositoryV2.
+
+
 ## Partie multiplateformes
 
 ### Packages utilisés
