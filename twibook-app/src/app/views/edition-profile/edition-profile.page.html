@@ -6,7 +6,7 @@
       <div style="position: relative; width: 150px;
     height: 150px; display: flex;
   align-items: center;
-  justify-content: center; margin : auto">
+  justify-content: center; margin : auto">  
         <img style="position: absolute; filter: brightness(60%);" class="profile-picture blueMotionImage" src="/assets/images/post.jpg"
           alt="Avatar">
         <button style="z-index: 666;" mat-button>
@@ -14,6 +14,7 @@
         </button>
       </div>
       <br />
+      <div class="center form-container"  #body>
       <div class="inputBox">
         <input class="text-input form-child" type="text" required="required" />
         <span>Pseudo</span>
@@ -33,6 +34,7 @@
         <input class="text-input form-child" type="date" required="required"/>
         <span>Date</span>
       </div>
+    </div>
       <br /><br /><br />
       <a  style="--clr2:#f02a2a" >
         <span>ANNULER</span>
